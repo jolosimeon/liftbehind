@@ -1064,7 +1064,7 @@ GameObject:
   - component: {fileID: 513017587}
   - component: {fileID: 513017586}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: HealthBarCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1615,9 +1615,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bdf7936a39244b99adf2308c6356afb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TOP: 7
-  INITIAL: 1.48
-  BOTTOM_START: -5
 --- !u!1 &863993641
 GameObject:
   m_ObjectHideFlags: 0
@@ -3644,7 +3641,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df4e80d07c9c1e041a4a18a37553f82c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeDegrade: 5
   healthBar: {fileID: 1240575643}
+  MIN_ZOMBIE_X: -3.5
+  MIN_ZOMBIE_Z: -13.1
+  MAX_ZOMBIE_X: -0.8
+  MAX_ZOMBIE_Z: -8.4
+  ZOMBIE_Y: -1.9
+  MIN_SURV_X: -3.1
+  MIN_SURV_Z: -7.2
+  MAX_SURV_X: -1
+  MAX_SURV_Z: -5.9
+  SURV_Y: -0.7
 --- !u!1 &1770194315
 GameObject:
   m_ObjectHideFlags: 0
