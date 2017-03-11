@@ -32,6 +32,7 @@ public class GameController : MonoBehaviour {
         survivors = GameObject.FindGameObjectsWithTag("Survivor");
 
         GameStats.Hp = GameStats.MaxHp;
+		healthBar.fillAmount = GameStats.Hp / GameStats.MaxHp;
         timeLeft = timeDegrade;
 
         clearFloor();

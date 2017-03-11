@@ -6,6 +6,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class GameOverManager : MonoBehaviour {
 	public Light flashLight;
 	public FirstPersonController player;
+	public GameController gameController;
 
 	bool isGameOver;
 
@@ -100,5 +101,8 @@ public class GameOverManager : MonoBehaviour {
 		player.enabled = true;
 		flashLight.enabled = true;
 		flashLight.GetComponent<FlashLightManager> ().enabled = true;
+
+		// Reset Jolo's Script
+		gameController.SendMessage("Start");
 	}
 }
