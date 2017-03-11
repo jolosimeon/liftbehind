@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
-
+	public GameOverManager gameOverManager;
     public float timeDegrade = 5.0f;
     float timeLeft;
 
@@ -48,7 +48,10 @@ public class GameController : MonoBehaviour {
         }
 
         //if wala na hp
-		
+		if (GameStats.Hp <= 0) {
+			gameOverManager.SendMessage ("PlayerLoss");
+		}
+
         //aakyat
         if (GameStats.GoingUp) {
             GameStats.CurrFloor++;

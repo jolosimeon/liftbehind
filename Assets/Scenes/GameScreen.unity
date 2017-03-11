@@ -3771,6 +3771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df4e80d07c9c1e041a4a18a37553f82c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverManager: {fileID: 1221287056}
   timeDegrade: 5
   healthBar: {fileID: 256474583}
   MIN_ZOMBIE_X: -3.5
@@ -4490,6 +4491,10 @@ Prefab:
     - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_MouseLook.lockCursor
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
