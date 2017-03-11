@@ -2976,11 +2976,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1438993203}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64044ff05a73d4f2fac7cce4f64b4a44, type: 3}
+  m_Script: {fileID: 11500000, guid: dec345d3979c34910ac0d0a10243527e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundTurnOn: {fileID: 0}
-  soundTurnOff: {fileID: 0}
+  lightSource: {fileID: 1438993205}
 --- !u!82 &1438993207
 AudioSource:
   m_ObjectHideFlags: 0
