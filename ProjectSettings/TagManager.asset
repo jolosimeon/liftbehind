@@ -4,8 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Survivor
   - Enemy
-  - Elevator Button
+  - Interactive Object
   layers:
   - Default
   - TransparentFX

@@ -24,12 +24,12 @@ public class ElevatorUpButtonController : MonoBehaviour, IActionObject {
 
 	void Update () {
 		if (isInteractionInvoked) {
-			Debug.Log ("theafak");
 			if (!goingUp && !goingToInitial) {
 				goingUp = true;
 			} else if (IsMaxUp()) {
 				WarpToBottom();
-				goingUp = false;
+                GameStats.GoingUp = true;
+                goingUp = false;
 				goingToInitial = true; 
 			} else if (IsAtInitial()) {
 				goingToInitial = false;
@@ -43,11 +43,11 @@ public class ElevatorUpButtonController : MonoBehaviour, IActionObject {
 	}
 
 	public void Interact(){
-		Debug.Log ("what");
 		isInteractionInvoked = true;
 	}
 
 	public string GetTooltip(){
+		Debug.Log ("FMEDADY");
 		return "Press to go to the next floor";
 	}
 

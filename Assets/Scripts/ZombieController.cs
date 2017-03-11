@@ -16,11 +16,11 @@ public class ZombieController : MonoBehaviour {
 
 	// pasok dito pag may tumama
 	void OnCollisionEnter(Collision col){
-		Debug.Log ("ABA SER MA TUMAMA SAKIN ZOMBI AKO");
+		//Debug.Log ("ABA SER MA TUMAMA SAKIN ZOMBI AKO");
 	}
 		
 	public void Startle() {
-		Debug.Log ("aray ko ser sabi ni zombie");
+		//Debug.Log ("aray ko ser sabi ni zombie");
 		//Destroy (this.gameObject);
 	}
 }
