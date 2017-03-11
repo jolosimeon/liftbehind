@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Elevator Button
+  - Flashlight
   layers:
   - Default
   - TransparentFX

@@ -18,9 +18,22 @@ public class ShowStats : MonoBehaviour {
 	}
 
 	void OnGUI() {
-		GUI.skin.textArea.fontSize = 18;
-		GUI.skin.textArea.normal.background = null;
-		GUI.skin.textArea.active.background = null;
-		GUI.TextArea (new Rect (10,10, 300, 100), "Number of survivors saved: " + numOfSurvivorsSaved);
+
+		GUIStyle statsStyle = new GUIStyle ();
+		statsStyle.fontSize = 18;
+		statsStyle.fontStyle = FontStyle.Normal;
+
+		statsStyle.normal.background = null;
+		statsStyle.active.background = null;
+		statsStyle.hover.background = null;
+		statsStyle.focused.background = null;
+
+		statsStyle.normal.textColor = Color.white;
+		statsStyle.active.textColor = Color.white;
+		statsStyle.hover.textColor = Color.white;
+		statsStyle.focused.textColor = Color.white;
+
+		GUI.TextArea (new Rect (10,10, 300, 100), 
+			"Number of survivors saved: " + numOfSurvivorsSaved, statsStyle);
 	}
 }
