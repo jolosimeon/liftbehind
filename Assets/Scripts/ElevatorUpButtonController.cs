@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElevatorUpButtonController : MonoBehaviour, IElevatorButton {
+public class ElevatorUpButtonController : MonoBehaviour, IActionObject {
 
 	public GameObject elevatorObject;
 
@@ -24,7 +24,6 @@ public class ElevatorUpButtonController : MonoBehaviour, IElevatorButton {
 
 	void Update () {
 		if (isInteractionInvoked) {
-			//Debug.Log ("theafak");
 			if (!goingUp && !goingToInitial) {
 				goingUp = true;
 			} else if (IsMaxUp()) {
@@ -44,8 +43,12 @@ public class ElevatorUpButtonController : MonoBehaviour, IElevatorButton {
 	}
 
 	public void Interact(){
-		Debug.Log ("what");
 		isInteractionInvoked = true;
+	}
+
+	public string GetTooltip(){
+		Debug.Log ("FMEDADY");
+		return "Press to go to the next floor";
 	}
 
 
