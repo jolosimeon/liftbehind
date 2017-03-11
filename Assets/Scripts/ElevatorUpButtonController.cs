@@ -24,12 +24,13 @@ public class ElevatorUpButtonController : MonoBehaviour, IElevatorButton {
 
 	void Update () {
 		if (isInteractionInvoked) {
-			Debug.Log ("theafak");
+			//Debug.Log ("theafak");
 			if (!goingUp && !goingToInitial) {
 				goingUp = true;
 			} else if (IsMaxUp()) {
 				WarpToBottom();
-				goingUp = false;
+                GameStats.GoingUp = true;
+                goingUp = false;
 				goingToInitial = true; 
 			} else if (IsAtInitial()) {
 				goingToInitial = false;
