@@ -15,6 +15,10 @@ function Start () {
 }
 
 function Update () {
+
+}
+
+function moveElevatorUp(){
 	if (!goingUp && !goingToInitial && Input.GetKeyDown(KeyCode.F)) {
 		goingUp = true;
 	} else if (IsMaxUp()) {
@@ -29,7 +33,6 @@ function Update () {
 	if (goingUp || goingToInitial) {
 	 	MoveUp();
 	}
-
 }
 
 function IsMaxUp() {

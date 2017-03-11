@@ -21,11 +21,18 @@ public class PlayerRaycasting : MonoBehaviour {
 			//Debug.Log ("HI: " + hitObject.collider.gameObject.name);
 			if (hitObject.collider.gameObject.tag == "Enemy") {
 				//Destroy (hitObject.collider.gameObject);
-				Debug.Log ("enemy hit");
+				//Debug.Log ("enemy hit");
 
 				//ZombieController enemy = hitObject.collider.GetComponent<ZombieController> ();
 				ZombieController enemy = hitObject.collider.gameObject.GetComponent<ZombieController> ();
 				enemy.Startle ();
+			} else if (hitObject.collider.gameObject.tag == "Elevator Button") {
+				//Debug.Log ("NANDAYO");
+				IElevatorButton elevButton = hitObject.collider.gameObject.GetComponent<ElevatorUpButtonController> ();
+				if (Input.GetMouseButtonDown (0)) {
+					Debug.Log ("CLICKED");
+					elevButton.Interact ();
+				}
 			}
 		}
 	}
