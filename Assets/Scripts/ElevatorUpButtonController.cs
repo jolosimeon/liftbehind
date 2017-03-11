@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElevatorUpButtonController : MonoBehaviour, IElevatorButton {
+public class ElevatorUpButtonController : MonoBehaviour, IActionObject {
 
 	public GameObject elevatorObject;
 
@@ -45,6 +45,10 @@ public class ElevatorUpButtonController : MonoBehaviour, IElevatorButton {
 	public void Interact(){
 		Debug.Log ("what");
 		isInteractionInvoked = true;
+	}
+
+	public string GetTooltip(){
+		return "Press to go to the next floor";
 	}
 
 
