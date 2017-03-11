@@ -28,12 +28,16 @@ public class GameOverManager : MonoBehaviour {
 			flashLight.enabled = false;
 			flashLight.GetComponent<FlashLightManager> ().enabled = false;
 			player.enabled = false;
-			showGameOverHeader ();
-			showSubHeader ();
+			ShowGameOverHeader ();
+			ShowSubHeader ();
 		}
 	}
 
-	void showGameOverHeader() {
+	void PlayerLoss() {
+		isGameOver = true;
+	}
+
+	void ShowGameOverHeader() {
 		GUIStyle gameOverHeaderStyle = new GUIStyle ();
 		gameOverHeaderStyle.fontSize = 60;
 		gameOverHeaderStyle.fontStyle = FontStyle.Bold;
@@ -51,7 +55,7 @@ public class GameOverManager : MonoBehaviour {
 		GUI.TextArea(new Rect(330, 300, 320, 70), "GAME OVER", gameOverHeaderStyle);
 	}
 
-	void showSubHeader() {
+	void ShowSubHeader() {
 		GUIStyle gameOverSubHeaderStyle = new GUIStyle ();
 		gameOverSubHeaderStyle.fontSize = 25;
 		gameOverSubHeaderStyle.fontStyle = FontStyle.Normal;

@@ -2460,6 +2460,17 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   m_PrefabInternal: {fileID: 1983136074}
+--- !u!114 &1221287052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1221287051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b18a50be6d124d579b7ccd7a3a65664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1221287054 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0,
@@ -2479,7 +2490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashLight: {fileID: 1438993205}
   player: {fileID: 1221287054}
---- !u!114 &1221287057
+--- !u!114 &1221287058
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2487,9 +2498,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1221287051}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e13df62e6994f40d6bb2f5af3b1a0edc, type: 3}
+  m_Script: {fileID: 11500000, guid: e84e4e2d2a4ca4d95af2b037c4da8f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverManager: {fileID: 1221287056}
+  statsManager: {fileID: 1221287052}
+  numberOfMashesRequired: 0
+  numberOfMashesDone: 0
 --- !u!1 &1327449097
 GameObject:
   m_ObjectHideFlags: 0
@@ -2550,7 +2565,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1333692546
 GameObject:
@@ -4179,6 +4194,7 @@ Prefab:
     - target: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalPosition.x
       value: -0.69

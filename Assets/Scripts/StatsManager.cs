@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShowStats : MonoBehaviour {
+public class StatsManager : MonoBehaviour {
 	int numOfSurvivorsSaved;
 
-	// Use this for initialization
 	void Start () {
 		numOfSurvivorsSaved = 0;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Semicolon)) {
-			numOfSurvivorsSaved++;
-		}
+
+	}
+
+	void AddSurvivor() {
+		numOfSurvivorsSaved++;
 	}
 
 	void OnGUI() {
