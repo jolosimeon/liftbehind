@@ -1,29 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
+
+    public float timeDegrade = 5.0f;
+    float timeLeft;
 
     GameObject[] zombies;
     GameObject[] survivors;
     GameObject[] activeObjects;
 
-    double MIN_ZOMBIE_X = -3.5;
-    double MIN_ZOMBIE_Z = -13.1;
-    double MAX_ZOMBIE_X = -0.8;
-    double MAX_ZOMBIE_Z = -8.4;
-    double ZOMBIE_Y = -1.9;
+    public Image healthBar;
 
-    double MIN_SURV_X = -3.1;
-    double MIN_SURV_Z = -7.2;
-    double MAX_SURV_X = -1.0;
-    double MAX_SURV_Z = -5.9;
-    double SURV_Y = -0.7;
+    public double MIN_ZOMBIE_X = -3.5;
+    public double MIN_ZOMBIE_Z = -13.1;
+    public double MAX_ZOMBIE_X = -0.8;
+    public double MAX_ZOMBIE_Z = -8.4;
+    public double ZOMBIE_Y = -1.9;
+
+    public double MIN_SURV_X = -3.1;
+    public double MIN_SURV_Z = -7.2;
+    public double MAX_SURV_X = -1.0;
+    public double MAX_SURV_Z = -5.9;
+    public double SURV_Y = -0.7;
 
     // Use this for initialization
     void Start () {
         zombies = GameObject.FindGameObjectsWithTag("Enemy");
         survivors = GameObject.FindGameObjectsWithTag("Survivor");
+
+        GameStats.Hp = GameStats.MaxHp;
+        timeLeft = timeDegrade;
 
         clearFloor();
         spawnNPCs();
@@ -31,6 +40,13 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        timeLeft -= Time.deltaTime;
+        if (timeLeft < 0)
+        {
+            takeDamage(10);
+            timeLeft = timeDegrade;
+        }
+
         //if wala na hp
 		
         //aakyat
@@ -51,6 +67,13 @@ public class GameController : MonoBehaviour {
             }
         }
 	}
+
+    public void takeDamage (float dmg)
+    {
+        GameStats.Hp -= dmg;
+
+        healthBar.fillAmount = GameStats.Hp / GameStats.MaxHp;
+    }
 
     public void spawn(GameObject obj)
     {

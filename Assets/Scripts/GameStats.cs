@@ -10,7 +10,8 @@ public static class GameStats {
     private static int currFloor = 1;
     private static int score = 0;
     private static bool goingUp = false;
-    private static int hp = 100;
+    private static float hp = 100;
+    private static float maxHp = 100;
 
 
     public static int SurvToSave
@@ -70,6 +71,30 @@ public static class GameStats {
         set
         {
             goingUp = value;
+        }
+    }
+
+    public static float Hp
+    {
+        get
+        {
+            return hp;
+        }
+        set
+        {
+            hp = value;
+        }
+    }
+
+    public static float MaxHp
+    {
+        get
+        {
+            return maxHp;
+        }
+        set
+        {
+            maxHp = value;
         }
     }
 
