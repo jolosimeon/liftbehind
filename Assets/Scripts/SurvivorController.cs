@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombieController : MonoBehaviour {
+public class SurvivorController : MonoBehaviour {
 
 	float MOVE_SPEED;
 	bool isMovingTowardsPlayer;
@@ -12,7 +12,7 @@ public class ZombieController : MonoBehaviour {
 		MOVE_SPEED = (float)GetRandomNumber (3.0, 10.0);
 		isMovingTowardsPlayer = false;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if (isMovingTowardsPlayer) {
@@ -24,7 +24,7 @@ public class ZombieController : MonoBehaviour {
 	void OnCollisionEnter(Collision col){
 		//Debug.Log ("ABA SER MA TUMAMA SAKIN ZOMBI AKO");
 	}
-		
+
 	public void Startle() {
 		Debug.Log ("aray ko ser sabi ni zombie");
 		//Destroy (this.gameObject);

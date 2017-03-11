@@ -28,7 +28,12 @@ public class PlayerRaycasting : MonoBehaviour {
 				Debug.Log ("enemy hit");
 				ZombieController enemy = objectHit.GetComponent<ZombieController> ();
 				enemy.Startle ();
-			} 
+			}
+			else if (objectHit.tag == "Survivor") {
+				//Destroy (hitObject.collider.gameObject);
+				SurvivorController survivor = objectHit.GetComponent<SurvivorController> ();
+				survivor.Startle ();
+			}
 			else if (objectHit.tag == "Interactive Object") {
 				IActionObject actionObject = null;
 				switch (objectHit.name) {

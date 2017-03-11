@@ -47,7 +47,6 @@ public class ElevatorUpButtonController : MonoBehaviour, IActionObject {
 	}
 
 	public string GetTooltip(){
-		Debug.Log ("FMEDADY");
 		return "Press to go to the next floor";
 	}
 
