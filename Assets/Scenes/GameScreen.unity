@@ -1421,7 +1421,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 861133839}
-  - component: {fileID: 861133840}
   m_Layer: 0
   m_Name: Elevator
   m_TagString: Untagged
@@ -1448,20 +1447,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &861133840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 861133838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bdf7936a39244b99adf2308c6356afb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TOP: 7
-  INITIAL: 1.48
-  BOTTOM_START: -5
 --- !u!1 &863993641
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,7 +1620,6 @@ GameObject:
   - component: {fileID: 915023198}
   - component: {fileID: 915023197}
   - component: {fileID: 915023196}
-  - component: {fileID: 915023199}
   m_Layer: 0
   m_Name: Back Wall
   m_TagString: Untagged
@@ -1706,18 +1690,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 915023194}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &915023199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 915023194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0136dc4de9d6146f5bd849407a8a793a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showText: 0
 --- !u!1 &923424418
 GameObject:
   m_ObjectHideFlags: 0
@@ -2488,6 +2460,12 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   m_PrefabInternal: {fileID: 1983136074}
+--- !u!114 &1221287054 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1983136074}
+  m_Script: {fileID: 11500000, guid: 05ec5cf00ca181d45a42ba1870e148c3, type: 3}
 --- !u!114 &1221287056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2499,6 +2477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62888e5d75760417db0425314b07d338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flashLight: {fileID: 1438993205}
+  player: {fileID: 1221287054}
 --- !u!114 &1221287057
 MonoBehaviour:
   m_ObjectHideFlags: 0
