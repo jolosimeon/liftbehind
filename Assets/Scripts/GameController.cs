@@ -132,7 +132,7 @@ public class GameController : MonoBehaviour {
     public void spawnNPCs()
     {
         System.Random rand = new System.Random();
-        int nextLevel = rand.Next(0, 3);
+		int nextLevel = 1;
         Debug.Log("SPAWN!!!!!!!");
         //spawn stuff
         switch (nextLevel)
