@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/**
+ * Controls the elevator's changing of floors.
+ * Script is attached to the ElevatorUpButton object.
+ */
 public class ElevatorFloorManager : MonoBehaviour, IActionObject {
 	public GameObject elevator;
 

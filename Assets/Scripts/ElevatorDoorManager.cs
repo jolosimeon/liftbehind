@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/**
+ * Controls the opening and closing of the elevator's door.
+ * The script is attached to the Door object inside the Elevator object.
+ */
 public class ElevatorDoorManager : MonoBehaviour {
 	private static float MAX_DOOR_OPEN = 2.0f;
 	private static float MAX_DOOR_CLOSE = -2.0f;
