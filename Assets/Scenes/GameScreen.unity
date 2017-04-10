@@ -3904,8 +3904,8 @@ GameObject:
   - component: {fileID: 1770194318}
   - component: {fileID: 1770194317}
   - component: {fileID: 1770194316}
-  - component: {fileID: 1770194320}
   - component: {fileID: 1770194321}
+  - component: {fileID: 1770194320}
   m_Layer: 0
   m_Name: ElevatorUpButton
   m_TagString: Interactive Object
@@ -3984,10 +3984,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1770194315}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5c91efb738f21046b742ba0ff02e2a0, type: 3}
+  m_Script: {fileID: 11500000, guid: c51c3b11d31f848aeb5115660bd1ca35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elevatorObject: {fileID: 861133838}
+  elevator: {fileID: 861133838}
+  player: {fileID: 1221287051}
 --- !u!114 &1770194321
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -37,7 +37,7 @@ public class PlayerRaycasting : MonoBehaviour {
 			else if (objectHit.tag == "Interactive Object") {
 				IActionObject actionObject = null;
 				switch (objectHit.name) {
-					case "ElevatorUpButton": actionObject = objectHit.GetComponent<ElevatorUpButtonController> ();break;
+				case "ElevatorUpButton": actionObject = objectHit.GetComponent<ElevatorFloorManager> ();break;
 				}
 				interactionTooltipText.text = actionObject.GetTooltip ();
 				if (Input.GetMouseButtonDown (0)) {
