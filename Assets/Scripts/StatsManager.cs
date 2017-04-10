@@ -33,7 +33,7 @@ public class StatsManager : MonoBehaviour {
 		statsStyle.hover.textColor = Color.white;
 		statsStyle.focused.textColor = Color.white;
 
-		GUI.TextArea (new Rect (10,10, 300, 100), 
+		GUI.TextArea (new Rect (20,20, 300, 100), 
 			"Number of survivors saved: " + numOfSurvivorsSaved, statsStyle);
 	}
 }
