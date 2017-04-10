@@ -48,8 +48,7 @@ public class ElevatorFloorManager : MonoBehaviour, IActionObject {
 			warped = false;
 			MakeExactInitial ();
 		}
-
-	
+			
 		if (changingFloor) {
 			MoveUp ();
 		}

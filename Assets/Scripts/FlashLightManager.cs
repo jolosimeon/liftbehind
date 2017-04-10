@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlashLightManager : MonoBehaviour {
+public class FlashlightManager : MonoBehaviour {
 	private AudioClip soundTurnOn;
 	private AudioClip soundTurnOff;
 	public Light lightSource;

@@ -3261,7 +3261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec345d3979c34910ac0d0a10243527e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightSource: {fileID: 1438993205}
+  lightSource: {fileID: 0}
 --- !u!82 &1438993207
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3988,7 +3988,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elevator: {fileID: 861133838}
-  player: {fileID: 1221287051}
 --- !u!114 &1770194321
 MonoBehaviour:
   m_ObjectHideFlags: 0

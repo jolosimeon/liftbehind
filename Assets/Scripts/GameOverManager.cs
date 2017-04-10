@@ -43,7 +43,7 @@ public class GameOverManager : MonoBehaviour {
 	void OnGUI() {
 		if (isGameOver) {
 			flashLight.enabled = false;
-			flashLight.GetComponent<FlashLightManager> ().enabled = false;
+			flashLight.GetComponent<FlashlightManager> ().enabled = false;
 			player.enabled = false;
 			ShowGameOverHeader ();
 			ShowSubHeader ();
@@ -100,7 +100,7 @@ public class GameOverManager : MonoBehaviour {
 		isGameOver = false;
 		player.enabled = true;
 		flashLight.enabled = true;
-		flashLight.GetComponent<FlashLightManager> ().enabled = true;
+		flashLight.GetComponent<FlashlightManager> ().enabled = true;
 
 		// Reset Jolo's Script
 		gameController.SendMessage("Start");
