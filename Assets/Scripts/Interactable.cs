@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IActionObject {
+public interface Interactable {
 	void Interact();
 	string GetTooltip();
 }

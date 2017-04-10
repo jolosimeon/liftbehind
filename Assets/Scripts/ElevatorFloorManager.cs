@@ -7,7 +7,7 @@ using UnityEngine;
  * Controls the elevator's changing of floors.
  * Script is attached to the ElevatorUpButton object.
  */
-public class ElevatorFloorManager : MonoBehaviour, IActionObject {
+public class ElevatorFloorManager : MonoBehaviour, Interactable {
 	public GameObject elevator;
 
 	private Vector3 initialElevatorPosition;
