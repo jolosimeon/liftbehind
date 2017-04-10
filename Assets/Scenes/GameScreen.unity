@@ -2451,7 +2451,7 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 100002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   m_PrefabInternal: {fileID: 1983136074}
---- !u!114 &1062898404
+--- !u!114 &1062898405
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2459,10 +2459,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1062898400}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fc2722351efc944490215ba13efa0ff, type: 3}
+  m_Script: {fileID: 11500000, guid: dec345d3979c34910ac0d0a10243527e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceToSee: 30
+  lightSource: {fileID: 1438993205}
 --- !u!1 &1077355304
 GameObject:
   m_ObjectHideFlags: 0
@@ -3195,7 +3195,6 @@ GameObject:
   - component: {fileID: 1438993204}
   - component: {fileID: 1438993205}
   - component: {fileID: 1438993207}
-  - component: {fileID: 1438993206}
   m_Layer: 0
   m_Name: Spotlight
   m_TagString: Flashlight
@@ -3250,18 +3249,6 @@ Light:
   m_BounceIntensity: 2.72
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &1438993206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1438993203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dec345d3979c34910ac0d0a10243527e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightSource: {fileID: 0}
 --- !u!82 &1438993207
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3904,8 +3891,8 @@ GameObject:
   - component: {fileID: 1770194318}
   - component: {fileID: 1770194317}
   - component: {fileID: 1770194316}
-  - component: {fileID: 1770194321}
   - component: {fileID: 1770194320}
+  - component: {fileID: 1770194321}
   m_Layer: 0
   m_Name: ElevatorUpButton
   m_TagString: Interactive Object
