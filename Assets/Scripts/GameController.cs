@@ -12,8 +12,6 @@ public class GameController : MonoBehaviour {
     GameObject[] survivors;
     GameObject[] activeObjects;
 
-    public Image healthBar;
-
     public double MIN_ZOMBIE_X = -3.5;
     public double MIN_ZOMBIE_Z = -13.1;
     public double MAX_ZOMBIE_X = -0.8;
@@ -31,8 +29,6 @@ public class GameController : MonoBehaviour {
         zombies = GameObject.FindGameObjectsWithTag("Enemy");
         survivors = GameObject.FindGameObjectsWithTag("Survivor");
 
-        GameStats.Hp = GameStats.MaxHp;
-		healthBar.fillAmount = GameStats.Hp / GameStats.MaxHp;
         timeLeft = timeDegrade;
 
         clearFloor();
@@ -41,43 +37,8 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        timeLeft -= Time.deltaTime;
-        if (timeLeft < 0)
-        {
-            takeDamage(10);
-            timeLeft = timeDegrade;
-        }
-
-        //if wala na hp
-		if (GameStats.Hp <= 0) {
-			gameOverManager.SendMessage ("PlayerLoss");
-		}
-
-        //aakyat
-        if (GameStats.GoingUp) {
-            GameStats.CurrFloor++;
-
-            if (GameStats.CurrFloor == GameStats.Floors) {
-                //game over na pag wala na floors
-                //nasa taas ka na
-            }
-
-            else {
-
-                clearFloor();
-                spawnNPCs();
-               
-                GameStats.GoingUp = false;
-            }
-        }
+    
 	}
-
-    public void takeDamage (float dmg)
-    {
-        GameStats.Hp -= dmg;
-
-        healthBar.fillAmount = GameStats.Hp / GameStats.MaxHp;
-    }
 
     public void spawn(GameObject obj)
     {

@@ -10,8 +10,13 @@ using UnityEngine;
 public class GameRunManager : MonoBehaviour {
 
 	private GUIStyle gameStatsStyle;
+
+	private int numFloors;
+	private int currentFloor;
+
 	private int numSurvivorsNeeded;
 	private int numSurvivorsSaved;
+
 
 	private void Start () {
 		gameStatsStyle = new GUIStyle ();
