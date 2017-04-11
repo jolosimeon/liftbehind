@@ -8,7 +8,7 @@ using UnityEngine;
  * The script is attached to the survivor object.
  */
 public class SurvivorManager : RunningNPC {
-	private static float ELEVATOR_DOOR_BLOCK_Z = 3.8f;
+	private static float ELEVATOR_DOOR_BLOCK_Z = 3.75f;
 
 	public ElevatorDoorManager elevatorDoorManager;
 	private Animator animator;
@@ -24,7 +24,7 @@ public class SurvivorManager : RunningNPC {
 
 		if (IsAtDoor ()) {
 			base.StopRun ();
-			KillSurvivor ();
+			Wait ();
 		}
 	}
 
@@ -38,7 +38,11 @@ public class SurvivorManager : RunningNPC {
 //		return elevatorDoorManager.IsDoorOpen();
 	}
 
-	private void KillSurvivor() {
+	private void Wait() {
+		animator.SetTrigger ("Wait");
+	}
+
+	private void Die() {
 		animator.SetTrigger ("Dead");
 	}
 }
