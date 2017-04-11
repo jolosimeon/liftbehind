@@ -27,7 +27,6 @@ public class SurvivorManager : RunningNPC {
 
 	private void ResetAnimation() {
 		Debug.Log ("SurvivorManager:ResetAnimation: Resetting survivor animation");
-		animator.Stop ();
 		animator.Play ("Entry");
 		animator.Rebind ();
 	}
@@ -41,9 +40,16 @@ public class SurvivorManager : RunningNPC {
 	private void Update() {
 		base.Update ();
 
-		if (base.IsRunning() && IsAtDoor () && !IsDoorOpen()) {
+		if (base.IsRunning () && IsAtDoor () && !IsDoorOpen ()) {
 			Wait ();
+		} else if (!base.IsRunning () && IsAtDoor () && IsDoorOpen ()) {
+			ContinueRun ();
 		}
+	}
+
+	private void ContinueRun() {
+		animator.Play ("sprint_00");
+		base.StartRun ();
 	}
 		
 	private bool IsAtDoor() {

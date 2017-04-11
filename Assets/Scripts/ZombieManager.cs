@@ -29,11 +29,10 @@ public class ZombieManager : RunningNPC {
 		animator.Play ("Entry");
 		animator.Rebind ();
 	}
-
-
+		
 	private void Start() {
 		base.Start ();
-		base.SetMoveSpeed (2.0f);
+		base.SetMoveSpeed (1.0f);
 		animator = GetComponent<Animator> ();
 	}
 
@@ -45,7 +44,7 @@ public class ZombieManager : RunningNPC {
 			survivor.Die ();
 		}
 	}
-
+		
 	private bool IsSurvivorCaught() {
 		return Mathf.Abs (transform.position.z - survivor.transform.position.z) <= CAUGHT_DISTANCE;
 	}
