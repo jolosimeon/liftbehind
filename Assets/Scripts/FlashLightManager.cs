@@ -65,19 +65,15 @@ public class FlashlightManager : MonoBehaviour {
 	}
 
 	private void handleEnemy(GameObject enemyObj) {
-		Debug.Log ("FlashlightManager:handleEnemy: Enemy hit");
-		ZombieController enemyManager = enemyObj.GetComponent<ZombieController> ();
-		enemyManager.Startle ();
+//		Debug.Log ("FlashlightManager:handleEnemy: Enemy hit");
 	}
 
 	private void handleSurvivor(GameObject survivorObj) {
-		Debug.Log ("FlashlightManager:handleSurvivor: Survivor hit");
-		SurvivorController survivorManager = survivorObj.GetComponent<SurvivorController> ();
-		survivorManager.Startle ();
+//		Debug.Log ("FlashlightManager:handleSurvivor: Survivor hit");
 	}
 
 	private void handleInteractiveObject(GameObject interactiveObj) {
-		Debug.Log ("FlashlightManager:handleInteractiveObject: Interactive object hit");
+//		Debug.Log ("FlashlightManager:handleInteractiveObject: Interactive object hit");
 
 		switch (interactiveObj.name) {
 			case "ElevatorUpButton": {

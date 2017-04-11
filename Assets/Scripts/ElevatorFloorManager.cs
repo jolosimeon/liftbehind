@@ -8,6 +8,7 @@ using UnityEngine;
  * Script is attached to the ElevatorUpButton object.
  */
 public class ElevatorFloorManager : MonoBehaviour, Interactable {
+	public GameRunManager gameRunManager;
 	public GameObject elevator;
 
 	private Vector3 initialElevatorPosition;
@@ -52,6 +53,7 @@ public class ElevatorFloorManager : MonoBehaviour, Interactable {
 			changingFloor = false;
 			warped = false;
 			MakeExactInitial ();
+			gameRunManager.NotifyChangeFloor ();
 		}
 			
 		if (changingFloor) {
