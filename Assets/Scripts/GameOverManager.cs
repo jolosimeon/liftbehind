@@ -37,14 +37,14 @@ public class GameOverManager : MonoBehaviour {
 		messageHeaderStyle.fontSize = 60;
 		messageHeaderStyle.fontStyle = FontStyle.Bold;
 		messageHeaderStyle.alignment = TextAnchor.MiddleCenter;
-		Utility.SetBackground (messageHeaderStyle, null);
-		Utility.SetTextColor (messageHeaderStyle, Color.red);
+		GameInterfaceUtility.SetBackground (messageHeaderStyle, null);
+		GameInterfaceUtility.SetTextColor (messageHeaderStyle, Color.red);
 
 		messageBodyStyle = new GUIStyle ();
 		messageBodyStyle.fontSize = 25;
 		messageBodyStyle.alignment = TextAnchor.MiddleCenter;
-		Utility.SetBackground (messageBodyStyle, null);
-		Utility.SetTextColor (messageBodyStyle, Color.grey);
+		GameInterfaceUtility.SetBackground (messageBodyStyle, null);
+		GameInterfaceUtility.SetTextColor (messageBodyStyle, Color.grey);
 	
 		gameOver = false;
 	}

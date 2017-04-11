@@ -5,7 +5,7 @@ using UnityEngine;
 /**
  * Misc utility functions used by other scripts 
  */
-public class Utility {
+public class GameInterfaceUtility {
 	
 	public static void SetBackground(GUIStyle style, Texture2D background) {
 		style.normal.background = background;

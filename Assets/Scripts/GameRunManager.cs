@@ -30,8 +30,8 @@ public class GameRunManager : MonoBehaviour {
 		gameStatsStyle = new GUIStyle ();
 		gameStatsStyle.fontSize = 18;
 		gameStatsStyle.fontStyle = FontStyle.Normal;
-		Utility.SetBackground (gameStatsStyle, null);
-		Utility.SetTextColor (gameStatsStyle, Color.white);
+		GameInterfaceUtility.SetBackground (gameStatsStyle, null);
+		GameInterfaceUtility.SetTextColor (gameStatsStyle, Color.white);
 
 		numSurvivorsNeeded = 10;
 		numSurvivorsSaved = 0;
