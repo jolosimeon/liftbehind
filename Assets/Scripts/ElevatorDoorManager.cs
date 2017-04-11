@@ -19,11 +19,12 @@ public class ElevatorDoorManager : MonoBehaviour {
 
 	private bool doorOpened;
 
-	void Start () {
+
+	private void Start () {
 		doorOpened = false;
 	}
 
-	void Update () {
+	private void Update () {
 		if (Input.GetKeyDown (KeyCode.V)) {
 			MoveDoor ();
 
@@ -37,25 +38,25 @@ public class ElevatorDoorManager : MonoBehaviour {
 		}
 	}
 
-	void MoveDoor() {
+	private void MoveDoor() {
 		Vector3 movement = (doorOpened) ? CLOSE_MOVEMENT_VECTOR : OPEN_MOVEMENT_VECTOR;
 		float movementScale = (doorOpened) ? CLOSE_MOVEMENT_SCALE : OPEN_MOVEMENT_SCALE;
 		transform.Translate (movement * movementScale, Space.World);
 	}
 
-	bool IsMaxOpened() {
+	private bool IsMaxOpened() {
 		return transform.position.x >= MAX_DOOR_OPEN;
 	}
 
-	bool IsMaxClosed() {
+	private bool IsMaxClosed() {
 		return transform.position.x <= MAX_DOOR_CLOSE;
 	}
 
-	void MakeExactOpen() {
+	private void MakeExactOpen() {
 		transform.position = new Vector3 (MAX_DOOR_OPEN, transform.position.y, transform.position.z);
 	}
 
-	void MakeExactClose() {
+	private void MakeExactClose() {
 		transform.position = new Vector3 (MAX_DOOR_CLOSE, transform.position.y, transform.position.z);
 	}
 }

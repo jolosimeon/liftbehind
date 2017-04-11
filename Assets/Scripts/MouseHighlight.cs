@@ -2,21 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/**
+ * Highlights objects when focused on by the player 
+ */
 public class MouseHighlight : MonoBehaviour {
 
-	void Start () {
+	private void Start () {
 		
 	}
 
-	void Update () {
+	private void Update () {
 		
 	}
 
-	void OnMouseEnter() {
+	private void OnMouseEnter() {
 		gameObject.GetComponent<Renderer>().material.shader = Shader.Find("Custom/ImageEffectShader");
 	}
 
-	void OnMouseExit() {
+	private void OnMouseExit() {
 		gameObject.GetComponent<Renderer>().material.shader = Shader.Find("Diffuse");
 	}
 }

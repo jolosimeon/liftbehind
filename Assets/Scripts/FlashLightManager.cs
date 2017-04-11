@@ -11,17 +11,19 @@ using UnityEngine.UI;
 public class FlashlightManager : MonoBehaviour {
 	private float DISTANCE_TO_SEE = 30;
 
+	public Light lightSource;
+
 	private Text interactionTooltip;
 	private AudioClip soundTurnOn;
 	private AudioClip soundTurnOff;
-	public Light lightSource;
 
-	void Start () {
+
+	private void Start () {
 		interactionTooltip = GameObject.Find ("Interaction Tooltip").GetComponent<Text> ();
 		interactionTooltip.text = "";
 	}
 
-	void Update () {
+	private void Update () {
 		if (Input.GetMouseButtonDown (1)) {
 			ToggleFlashlight ();
 		}
@@ -29,7 +31,7 @@ public class FlashlightManager : MonoBehaviour {
 		Raycasting ();
 	}
 
-	void ToggleFlashlight() {
+	private void ToggleFlashlight() {
 		lightSource.enabled = !lightSource.enabled;
 
 		if (lightSource.enabled) {
@@ -39,7 +41,7 @@ public class FlashlightManager : MonoBehaviour {
 		}
 	}
 
-	void Raycasting() {
+	private void Raycasting() {
 		Debug.DrawRay (this.transform.position, 
 			this.transform.forward * DISTANCE_TO_SEE, Color.magenta);
 
@@ -50,7 +52,7 @@ public class FlashlightManager : MonoBehaviour {
 		}
 	}
 
-	void handleObject(GameObject obj) {
+	private void handleObject(GameObject obj) {
 		if (obj.tag == "Enemy") {
 			handleEnemy (obj);
 		} else if (obj.tag == "Survivor") {
@@ -62,19 +64,19 @@ public class FlashlightManager : MonoBehaviour {
 		}
 	}
 
-	void handleEnemy(GameObject enemyObj) {
+	private void handleEnemy(GameObject enemyObj) {
 		Debug.Log ("FlashlightManager:handleEnemy: Enemy hit");
 		ZombieController enemyManager = enemyObj.GetComponent<ZombieController> ();
 		enemyManager.Startle ();
 	}
 
-	void handleSurvivor(GameObject survivorObj) {
+	private void handleSurvivor(GameObject survivorObj) {
 		Debug.Log ("FlashlightManager:handleSurvivor: Survivor hit");
 		SurvivorController survivorManager = survivorObj.GetComponent<SurvivorController> ();
 		survivorManager.Startle ();
 	}
 
-	void handleInteractiveObject(GameObject interactiveObj) {
+	private void handleInteractiveObject(GameObject interactiveObj) {
 		Debug.Log ("FlashlightManager:handleInteractiveObject: Interactive object hit");
 
 		switch (interactiveObj.name) {
@@ -85,7 +87,7 @@ public class FlashlightManager : MonoBehaviour {
 		}
 	}
 
-	void handleElevatorUpButton(GameObject elevatorUpButton) {
+	private void handleElevatorUpButton(GameObject elevatorUpButton) {
 		ElevatorFloorManager interactiveObjectManager = elevatorUpButton.GetComponent<ElevatorFloorManager> ();
 		interactionTooltip.text = interactiveObjectManager.GetTooltip ();
 

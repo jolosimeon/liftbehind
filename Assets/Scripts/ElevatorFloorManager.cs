@@ -29,11 +29,11 @@ public class ElevatorFloorManager : MonoBehaviour, Interactable {
 		return "Press to go to the next floor";
 	}
 
-	void ChangeFloor() {
+	private void ChangeFloor() {
 		changingFloor = true;
 	}
 
-	void Start () {
+	private void Start () {
 		initialElevatorPosition = elevator.transform.position; 
 		topElevatorPosition = new Vector3 (elevator.transform.position.x,
 			7, elevator.transform.position.z);
@@ -44,7 +44,7 @@ public class ElevatorFloorManager : MonoBehaviour, Interactable {
 		warped = false;
 	}
 
-	void Update () {
+	private void Update () {
 		if (IsAtTop ()) {
 			WarpToBottom ();
 			warped = true;
@@ -59,23 +59,23 @@ public class ElevatorFloorManager : MonoBehaviour, Interactable {
 		}
 	}
 
-	bool IsAtTop() {
+	private bool IsAtTop() {
 		return elevator.transform.position.y >= topElevatorPosition.y;
 	}
 
-	void WarpToBottom() {
+	private void WarpToBottom() {
 		elevator.transform.position = bottomElevatorPosition;
 	}
 
-	bool IsAtInitial() {
+	private bool IsAtInitial() {
 		return elevator.transform.position.y >= initialElevatorPosition.y;
 	}
 
-	void MakeExactInitial() {
+	private void MakeExactInitial() {
 		elevator.transform.position = initialElevatorPosition;
 	}
 
-	void MoveUp() {
+	private void MoveUp() {
 		elevator.transform.Translate (Vector3.up * Time.deltaTime, Space.World);
 	}
 }
