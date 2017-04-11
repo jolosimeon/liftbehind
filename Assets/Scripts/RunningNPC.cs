@@ -6,6 +6,7 @@ public abstract class RunningNPC : MonoBehaviour {
 	private Vector3 startingPosition;
 	private float moveSpeed;
 	private bool running;
+	private bool initialized = false;
 
 
 	public void SetActive(bool active) {
@@ -30,7 +31,13 @@ public abstract class RunningNPC : MonoBehaviour {
 	}
 		
 	protected void Start () {
-		startingPosition = gameObject.transform.position;
+		if (!initialized) {
+			startingPosition = gameObject.transform.position;
+			initialized = true;
+		} else {
+			gameObject.transform.position = startingPosition;
+		}
+
 		moveSpeed = 3.0f;
 		running = false;
 	}

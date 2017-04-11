@@ -8,7 +8,7 @@ using UnityEngine;
  * The script is attached to the survivor object.
  */
 public class SurvivorManager : RunningNPC {
-	private static float ELEVATOR_DOOR_BLOCK_Z = 3.75f;
+	private static float ELEVATOR_DOOR_BLOCK_Z = 3.6f;
 
 	public ElevatorDoorManager elevatorDoorManager;
 	private Animator animator;
@@ -19,6 +19,18 @@ public class SurvivorManager : RunningNPC {
 		animator = GetComponent<Animator> ();
 	}
 
+	public void Reset() {
+		base.MoveToStartingPosition ();
+		ResetAnimation ();
+	}
+
+	public void ResetAnimation() {
+		Debug.Log ("SurvivorManager:Reset: Resetting survivor animation");
+		animator.Stop ();
+		animator.Play ("Entry");
+		animator.Rebind ();
+	}
+
 	private void Update() {
 		base.Update ();
 
@@ -27,8 +39,7 @@ public class SurvivorManager : RunningNPC {
 			Wait ();
 		}
 	}
-
-
+		
 	private bool IsAtDoor() {
 		return transform.position.z >= ELEVATOR_DOOR_BLOCK_Z;
 	}

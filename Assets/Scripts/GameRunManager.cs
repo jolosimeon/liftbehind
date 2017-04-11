@@ -107,7 +107,7 @@ public class GameRunManager : MonoBehaviour {
 		survivor.SetActive (true);
 
 		zombie.MoveToStartingPosition ();
-		survivor.MoveToStartingPosition ();
+		survivor.Reset ();
 
 		zombie.StartRun ();
 		survivor.StartRun ();
