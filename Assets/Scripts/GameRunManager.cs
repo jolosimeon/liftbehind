@@ -33,7 +33,7 @@ public class GameRunManager : MonoBehaviour {
 	}
 
 	private void DisplayGameStats() {
-		string numSavedMessage = "Number of survivors saved hehe: " + numSurvivorsSaved;
+		string numSavedMessage = "Number of survivors saved: " + numSurvivorsSaved;
 		GUI.TextArea (new Rect (20, 20, 300, 100), numSavedMessage, gameStatsStyle);
 	}
 }
