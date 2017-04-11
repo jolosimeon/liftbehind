@@ -22,7 +22,7 @@ public class SurvivorManager : RunningNPC {
 	private void Update() {
 		base.Update ();
 
-		if (IsAtDoor ()) {
+		if (IsAtDoor () && !IsDoorOpen()) {
 			base.StopRun ();
 			Wait ();
 		}
@@ -34,8 +34,7 @@ public class SurvivorManager : RunningNPC {
 	}
 
 	private bool IsDoorOpen() {
-		return true;
-//		return elevatorDoorManager.IsDoorOpen();
+		return elevatorDoorManager.IsDoorOpen();
 	}
 
 	private void Wait() {
