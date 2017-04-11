@@ -13,29 +13,35 @@ public class SurvivorManager : RunningNPC {
 	public ElevatorDoorManager elevatorDoorManager;
 	private Animator animator;
 
+
+	public void Die() {
+		base.StopRun ();
+		animator.SetTrigger ("Dead");
+		Debug.Log ("SurvivorManager:Die: Survivor is dead");
+	}
+		
+	public void Reset() {
+		base.MoveToStartingPosition ();
+		ResetAnimation ();
+	}
+
+	private void ResetAnimation() {
+		Debug.Log ("SurvivorManager:ResetAnimation: Resetting survivor animation");
+		animator.Stop ();
+		animator.Play ("Entry");
+		animator.Rebind ();
+	}
+
 	private void Start() {
 		base.Start ();
 		base.SetMoveSpeed (3.0f);
 		animator = GetComponent<Animator> ();
 	}
 
-	public void Reset() {
-		base.MoveToStartingPosition ();
-		ResetAnimation ();
-	}
-
-	public void ResetAnimation() {
-		Debug.Log ("SurvivorManager:Reset: Resetting survivor animation");
-		animator.Stop ();
-		animator.Play ("Entry");
-		animator.Rebind ();
-	}
-
 	private void Update() {
 		base.Update ();
 
-		if (IsAtDoor () && !IsDoorOpen()) {
-			base.StopRun ();
+		if (base.IsRunning() && IsAtDoor () && !IsDoorOpen()) {
 			Wait ();
 		}
 	}
@@ -49,10 +55,8 @@ public class SurvivorManager : RunningNPC {
 	}
 
 	private void Wait() {
+		base.StopRun ();
 		animator.SetTrigger ("Wait");
-	}
-
-	private void Die() {
-		animator.SetTrigger ("Dead");
+		Debug.Log ("SurvivorManager:Wait: Survivor is waiting");
 	}
 }
