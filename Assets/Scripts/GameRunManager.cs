@@ -12,7 +12,6 @@ public class GameRunManager : MonoBehaviour {
 	public SurvivorManager survivor;
 
 	private GUIStyle gameStatsStyle;
-
 	private int numFloors;
 	private int currentFloor;
 	private int numSurvivorsNeeded;
@@ -87,6 +86,7 @@ public class GameRunManager : MonoBehaviour {
 
 	/*
 	 * Suprise player with zombie jumpscare when flashlight points at corridor
+	 * Optional: Implement pressing of buttons on screen in proper order to push zombie away
 	 */
 	private void InitializeJumpScareFloor() {
 		Debug.Log ("GameRunManager:InitializeJumpScareFloor: Jump scare floor initialized");

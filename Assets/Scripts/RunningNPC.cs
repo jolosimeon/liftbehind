@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RunningNPC : MonoBehaviour {
-	private static float MOVE_SPEED = 3.0f;
-
+public abstract class RunningNPC : MonoBehaviour {
 	private Vector3 startingPosition;
+	private float moveSpeed;
 	private bool running;
 
 
@@ -21,12 +20,14 @@ public class RunningNPC : MonoBehaviour {
 	public void StartRun() {
 		running = true;
 	}
-
-	private void Start () {
+		
+	protected void Start () {
 		startingPosition = gameObject.transform.position;
+		moveSpeed = 3.0f;
+		running = false;
 	}
 
-	private void Update () {
+	protected void Update () {
 		if (running) {
 			MoveForward ();
 		}
@@ -34,6 +35,10 @@ public class RunningNPC : MonoBehaviour {
 
 	private void MoveForward() {
 		gameObject.transform.Translate (Vector3.forward 
-			* MOVE_SPEED * Time.deltaTime, Space.World);
+			* moveSpeed * Time.deltaTime, Space.World);
+	}
+
+	protected void SetMoveSpeed(float moveSpeed) {
+		this.moveSpeed = moveSpeed;
 	}
 }
