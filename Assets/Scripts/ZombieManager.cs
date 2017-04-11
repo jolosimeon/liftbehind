@@ -11,7 +11,7 @@ public class ZombieManager : RunningNPC {
 
 	private void Start() {
 		base.Start ();
-		base.SetMoveSpeed (1.5f);
+		base.SetMoveSpeed (0f);
 	}
 
 	private void Update() {

@@ -20,6 +20,10 @@ public class ElevatorDoorManager : MonoBehaviour {
 	private bool doorOpened;
 
 
+	public bool IsDoorOpen() {
+		return doorOpened;
+	}
+
 	private void Start () {
 		doorOpened = false;
 	}

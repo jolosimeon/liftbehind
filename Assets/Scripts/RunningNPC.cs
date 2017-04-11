@@ -20,6 +20,14 @@ public abstract class RunningNPC : MonoBehaviour {
 	public void StartRun() {
 		running = true;
 	}
+
+	public void StopRun() {
+		running = false;
+	}
+
+	public bool IsRunning() {
+		return running;
+	}
 		
 	protected void Start () {
 		startingPosition = gameObject.transform.position;
