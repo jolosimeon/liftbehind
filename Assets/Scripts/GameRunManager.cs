@@ -11,6 +11,8 @@ public class GameRunManager : MonoBehaviour {
 	public GameOverManager gameOverManager;
 	public ZombieManager zombie;
 	public SurvivorManager survivor;
+	public Text floorStatsText;
+	public Text savedStatsText;
 
 	private GUIStyle gameStatsStyle;
 	private int numFloors;
@@ -47,7 +49,9 @@ public class GameRunManager : MonoBehaviour {
 		GameInterfaceUtility.SetBackground (gameStatsStyle, null);
 		GameInterfaceUtility.SetTextColor (gameStatsStyle, Color.white);
 
-		numSurvivorsNeeded = 10;
+		numFloors = 10;
+		currentFloor = 1;
+		numSurvivorsNeeded = 5;
 		numSurvivorsSaved = 0;
 	}
 
@@ -60,8 +64,8 @@ public class GameRunManager : MonoBehaviour {
 	}
 
 	private void DisplayGameStats() {
-		string numSavedMessage = "Number of survivors saved: " + numSurvivorsSaved;
-		GUI.TextArea (new Rect (20, 20, 300, 100), numSavedMessage, gameStatsStyle);
+		floorStatsText.text = "FLOOR " + currentFloor + " / " + numFloors;
+		savedStatsText.text = numSurvivorsSaved + " / " + numSurvivorsNeeded + " SURVIVORS SAVED";
 	}
 
 	/*
