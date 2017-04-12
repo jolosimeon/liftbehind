@@ -49,13 +49,26 @@ public class ZombieManager : RunningNPC {
 
 		if (base.IsRunning() && IsSurvivorCaught ()) {
 			base.StopRun ();
+			animator.SetTrigger ("Eat");
 			survivor.Die ();
+		}
+			
+		// Start attack animation
+		if (Mathf.Abs(transform.position.z - ELEVATOR_DOOR_INSIDE_Z) < 2) {
+			animator.SetTrigger("Attack");
 		}
 
 		if (IsInsideElevator ()) {
 			base.StopRun ();
 			gameRunManager.NotifyZombieInElevator ();
 		}
+	}
+
+	IEnumerator Wait(float duration) {
+		Debug.Log("Start Wait() function. The time is: " + Time.time);
+		Debug.Log( "Float duration = "+duration);
+		yield return new WaitForSeconds(duration);   //Wait
+		Debug.Log("End Wait() function and the time is: " +Time.time);
 	}
 		
 	private bool IsSurvivorCaught() {
