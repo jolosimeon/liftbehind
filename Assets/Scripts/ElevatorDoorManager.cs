@@ -10,8 +10,8 @@ using UnityEngine;
 public class ElevatorDoorManager : MonoBehaviour {
 	private static float MAX_DOOR_OPEN = 2.0f;
 	private static float MAX_DOOR_CLOSE = -2.0f;
-	private static int NUM_PRESSES_OPEN = 5;
-	private static int NUM_PRESSES_CLOSE = 5;
+	private static int NUM_PRESSES_OPEN = 50;
+	private static int NUM_PRESSES_CLOSE = 50;
 	private static float OPEN_MOVEMENT_SCALE = Mathf.Abs(MAX_DOOR_OPEN - MAX_DOOR_CLOSE) / NUM_PRESSES_OPEN;
 	private static float CLOSE_MOVEMENT_SCALE = Mathf.Abs(MAX_DOOR_OPEN - MAX_DOOR_CLOSE) / NUM_PRESSES_CLOSE;
 	private static Vector3 OPEN_MOVEMENT_VECTOR = Vector3.right;
