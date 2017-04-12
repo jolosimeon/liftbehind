@@ -29,23 +29,37 @@ public class ElevatorDoorManager : MonoBehaviour {
 	}
 
 	private void Update () {
-		if (Input.GetKeyDown (KeyCode.V)) {
-			MoveDoor ();
+		if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+			OpenDoor ();
+		} else if (Input.GetKeyDown (KeyCode.RightArrow)) {
+			CloseDoor ();
+		}
 
-			if (IsMaxOpened ()) {
-				MakeExactOpen ();
-				doorOpened = true;
-			} else if (IsMaxClosed ()) {
-				MakeExactClose ();
-				doorOpened = false;
-			}
+		if (IsMaxOpened ()) {
+			MakeExactOpen ();
+			doorOpened = true;
+		} else if (IsMaxClosed ()) {
+			MakeExactClose ();
+			doorOpened = false;
 		}
 	}
 
+	/*
+	 * Alternative method of opening the door.
+	 * Only one button would be used.
+	 */
 	private void MoveDoor() {
 		Vector3 movement = (doorOpened) ? CLOSE_MOVEMENT_VECTOR : OPEN_MOVEMENT_VECTOR;
 		float movementScale = (doorOpened) ? CLOSE_MOVEMENT_SCALE : OPEN_MOVEMENT_SCALE;
 		transform.Translate (movement * movementScale, Space.World);
+	}
+
+	private void OpenDoor() {
+		transform.Translate (OPEN_MOVEMENT_VECTOR * OPEN_MOVEMENT_SCALE, Space.World);
+	}
+
+	private void CloseDoor() {
+		transform.Translate (CLOSE_MOVEMENT_VECTOR * CLOSE_MOVEMENT_SCALE, Space.World);
 	}
 
 	private bool IsMaxOpened() {

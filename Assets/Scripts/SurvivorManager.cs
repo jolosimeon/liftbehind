@@ -47,7 +47,9 @@ public class SurvivorManager : RunningNPC {
 			Wait ();
 		} else if (!saved && !base.IsRunning () && IsAtDoor () && IsDoorOpen ()) {
 			ContinueRun ();
-		} else if (!saved && IsInsideElevator ()) {
+		}
+
+		if (!saved && IsInsideElevator ()) {
 			Save ();
 		}
 	}

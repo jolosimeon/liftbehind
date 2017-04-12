@@ -33,6 +33,7 @@ public class ElevatorFloorManager : MonoBehaviour, Interactable {
 
 	private void ChangeFloor() {
 		changingFloor = true;
+		survivorManager.Reset ();
 	}
 
 	private void Start () {
