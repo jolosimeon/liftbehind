@@ -25,6 +25,13 @@ public class GameRunManager : MonoBehaviour {
 		InitializeRandomFloor ();
 	}
 
+	/*
+	 * Called by other scripts when a survivor is saved
+	 */
+	public void NotifySurvivorSaved() {
+		++numSurvivorsSaved;
+	}
+
 	private void Start () {
 		gameStatsStyle = new GUIStyle ();
 		gameStatsStyle.fontSize = 18;

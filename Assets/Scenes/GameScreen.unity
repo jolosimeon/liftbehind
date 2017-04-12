@@ -2758,6 +2758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6cc1e9eaeae4efbbb9d86e5794af10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameRunManager: {fileID: 1682442981}
   elevatorDoorManager: {fileID: 1509961595}
 --- !u!136 &1305300650
 CapsuleCollider:

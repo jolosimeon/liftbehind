@@ -9,10 +9,12 @@ using UnityEngine;
  */
 public class SurvivorManager : RunningNPC {
 	private static float ELEVATOR_DOOR_BLOCK_Z = 3.6f;
+	private static float ELEVATOR_DOOR_INSIDE_Z = 9.7f;
 
+	public GameRunManager gameRunManager;
 	public ElevatorDoorManager elevatorDoorManager;
 	private Animator animator;
-
+	private bool saved;
 
 	public void Die() {
 		base.StopRun ();
@@ -22,6 +24,7 @@ public class SurvivorManager : RunningNPC {
 		
 	public void Reset() {
 		base.MoveToStartingPosition ();
+		saved = false;
 		ResetAnimation ();
 	}
 
@@ -40,18 +43,15 @@ public class SurvivorManager : RunningNPC {
 	private void Update() {
 		base.Update ();
 
-		if (base.IsRunning () && IsAtDoor () && !IsDoorOpen ()) {
+		if (!saved && base.IsRunning () && IsAtDoor () && !IsDoorOpen ()) {
 			Wait ();
-		} else if (!base.IsRunning () && IsAtDoor () && IsDoorOpen ()) {
+		} else if (!saved && !base.IsRunning () && IsAtDoor () && IsDoorOpen ()) {
 			ContinueRun ();
+		} else if (!saved && IsInsideElevator ()) {
+			Save ();
 		}
 	}
 
-	private void ContinueRun() {
-		animator.Play ("sprint_00");
-		base.StartRun ();
-	}
-		
 	private bool IsAtDoor() {
 		return transform.position.z >= ELEVATOR_DOOR_BLOCK_Z;
 	}
@@ -60,9 +60,28 @@ public class SurvivorManager : RunningNPC {
 		return elevatorDoorManager.IsDoorOpen();
 	}
 
+	private void ContinueRun() {
+		animator.Play ("sprint_00");
+		base.StartRun ();
+		Debug.Log ("SurvivorManager:ContinueRun: Survivor continued running");
+	}
+
+	private bool IsInsideElevator() {
+		return transform.position.z >= ELEVATOR_DOOR_INSIDE_Z;
+	}
+
 	private void Wait() {
 		base.StopRun ();
 		animator.SetTrigger ("Wait");
 		Debug.Log ("SurvivorManager:Wait: Survivor is waiting");
+	}
+
+	private void Save() {
+		saved = true;
+		base.StopRun ();
+		transform.Rotate (new Vector3 (0, 180, 0));
+		animator.Play ("pose_01");
+		gameRunManager.NotifySurvivorSaved ();
+		Debug.Log ("SurvivorManager:Saved: Survivor is saved");
 	}
 }
