@@ -108,7 +108,8 @@ public class GameRunManager : MonoBehaviour {
 	 * The door's health is constantly reducing  until the zombie is defeated. 
 	 * If the door's health becomes zero then game over.
 	 * 
-	 * Decide whether to regen door's health at each floor.
+	 * Decide whether to regen door's health at each floor. The purpose of the flashlight
+	 * is to turn it off when going up levels and door's health is low.
 	 */
 	private void InitializeJumpScareFloor() {
 		Debug.Log ("GameRunManager:InitializeJumpScareFloor: Jump scare floor initialized");
