@@ -101,7 +101,14 @@ public class GameRunManager : MonoBehaviour {
 
 	/*
 	 * Suprise player with zombie jumpscare when flashlight points at corridor
-	 * Optional: Implement pressing of buttons on screen in proper order to push zombie away
+	 * Optional:
+	 * The zombie has a health and your door also has a health
+	 * 
+	 * A letter or key will be flashed on the screen. The user must press that key to deal damage to the zombie.
+	 * The door's health is constantly reducing  until the zombie is defeated. 
+	 * If the door's health becomes zero then game over.
+	 * 
+	 * Decide whether to regen door's health at each floor.
 	 */
 	private void InitializeJumpScareFloor() {
 		Debug.Log ("GameRunManager:InitializeJumpScareFloor: Jump scare floor initialized");
