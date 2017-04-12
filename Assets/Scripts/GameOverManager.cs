@@ -10,7 +10,7 @@ using UnityStandardAssets.Characters.FirstPerson;
  */
 public class GameOverManager : MonoBehaviour {
 	public FirstPersonController player;
-	public Light flashlight;
+	public FlashlightManager flashlight;
 
 	private GUIStyle messageHeaderStyle;
 	private GUIStyle messageBodyStyle;
@@ -19,7 +19,6 @@ public class GameOverManager : MonoBehaviour {
 
 	public void EndGame() {
 		DisableGameplay ();
-		DisplayGameOverMessage ("Game Over", "Press the spacebar to restart");
 		gameOver = true;
 	}
 
@@ -29,10 +28,10 @@ public class GameOverManager : MonoBehaviour {
 		
 	private void DisableGameplay() {
 		player.enabled = false;
-		flashlight.enabled = false;
+		flashlight.SetToInitialRotation ();
 	}
 
-	void Start() {
+	void OnGUI() {
 		messageHeaderStyle = new GUIStyle ();
 		messageHeaderStyle.fontSize = 60;
 		messageHeaderStyle.fontStyle = FontStyle.Bold;
@@ -44,11 +43,16 @@ public class GameOverManager : MonoBehaviour {
 		messageBodyStyle.fontSize = 25;
 		messageBodyStyle.alignment = TextAnchor.MiddleCenter;
 		GameInterfaceUtility.SetBackground (messageBodyStyle, null);
-		GameInterfaceUtility.SetTextColor (messageBodyStyle, Color.grey);
+		GameInterfaceUtility.SetTextColor (messageBodyStyle, Color.white);
 	
-		gameOver = false;
+		if (gameOver) {
+			DisplayGameOverMessage ("Game Over", "Press the spacebar to restart");
+		}
 	}
 
+	private void Start() {
+		gameOver = false;
+	}
 
 	private void Update() {
 		if (IsGameOver() && Input.GetKeyDown(KeyCode.Space)) {

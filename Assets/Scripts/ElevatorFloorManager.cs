@@ -9,6 +9,7 @@ using UnityEngine;
  */
 public class ElevatorFloorManager : MonoBehaviour, Interactable {
 	public GameRunManager gameRunManager;
+	public ZombieManager zombieManager;
 	public SurvivorManager survivorManager;
 	public GameObject elevator;
 
@@ -33,7 +34,12 @@ public class ElevatorFloorManager : MonoBehaviour, Interactable {
 
 	private void ChangeFloor() {
 		changingFloor = true;
-		survivorManager.Reset ();
+
+		zombieManager.StopRun ();
+
+		if (survivorManager.IsSaved ()) {
+			survivorManager.Reset ();
+		}
 	}
 
 	private void Start () {

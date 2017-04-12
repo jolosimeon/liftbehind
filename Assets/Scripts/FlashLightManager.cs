@@ -13,14 +13,20 @@ public class FlashlightManager : MonoBehaviour {
 
 	public Light lightSource;
 
+	private Quaternion initialRotation;
 	private Text interactionTooltip;
 	private AudioClip soundTurnOn;
 	private AudioClip soundTurnOff;
 
 
+	public void SetToInitialRotation() {
+		transform.rotation = initialRotation;
+	}
+
 	private void Start () {
 		interactionTooltip = GameObject.Find ("Interaction Tooltip").GetComponent<Text> ();
 		interactionTooltip.text = "";
+		initialRotation = transform.rotation;
 	}
 
 	private void Update () {
@@ -34,11 +40,11 @@ public class FlashlightManager : MonoBehaviour {
 	private void ToggleFlashlight() {
 		lightSource.enabled = !lightSource.enabled;
 
-		if (lightSource.enabled) {
-			GetComponent<AudioSource> ().clip = soundTurnOn;
-		} else {
-			GetComponent<AudioSource> ().clip = soundTurnOff;
-		}
+//		if (lightSource.enabled) {
+//			GetComponent<AudioSource> ().clip = soundTurnOn;
+//		} else {
+//			GetComponent<AudioSource> ().clip = soundTurnOff;
+//		}
 	}
 
 	private void Raycasting() {

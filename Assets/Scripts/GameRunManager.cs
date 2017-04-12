@@ -8,6 +8,7 @@ using UnityEngine;
  * The script is attached to the Game Run Manager object.
  */
 public class GameRunManager : MonoBehaviour {
+	public GameOverManager gameOverManager;
 	public ZombieManager zombie;
 	public SurvivorManager survivor;
 
@@ -30,6 +31,13 @@ public class GameRunManager : MonoBehaviour {
 	 */
 	public void NotifySurvivorSaved() {
 		++numSurvivorsSaved;
+	}
+
+	/*
+	 * Called by other scripts when a zombie enters the elevator
+	 */
+	public void NotifyZombieInElevator() {
+		gameOverManager.EndGame ();
 	}
 
 	private void Start () {

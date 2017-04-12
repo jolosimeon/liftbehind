@@ -9,6 +9,7 @@ using UnityEngine;
  */
 public class SurvivorManager : RunningNPC {
 	private static float ELEVATOR_DOOR_BLOCK_Z = 3.6f;
+	private static float ELEVATOR_DOOR_RAILS_Z = 4.6f;
 	private static float ELEVATOR_DOOR_INSIDE_Z = 9.7f;
 
 	public GameRunManager gameRunManager;
@@ -20,6 +21,10 @@ public class SurvivorManager : RunningNPC {
 		base.StopRun ();
 		animator.SetTrigger ("Dead");
 		Debug.Log ("SurvivorManager:Die: Survivor is dead");
+	}
+
+	public bool IsSaved() {
+		return saved;
 	}
 		
 	public void Reset() {
@@ -55,7 +60,7 @@ public class SurvivorManager : RunningNPC {
 	}
 
 	private bool IsAtDoor() {
-		return transform.position.z >= ELEVATOR_DOOR_BLOCK_Z;
+		return transform.position.z >= ELEVATOR_DOOR_BLOCK_Z && transform.position.z <= ELEVATOR_DOOR_RAILS_Z;
 	}
 
 	private bool IsDoorOpen() {
