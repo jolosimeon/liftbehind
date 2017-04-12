@@ -34,6 +34,7 @@ public class SurvivorManager : RunningNPC {
 	public void Reset() {
 		base.MoveToStartingPosition ();
 		saved = false;
+		dead = false;
 		ResetAnimation ();
 	}
 
