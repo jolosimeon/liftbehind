@@ -15,11 +15,13 @@ public class SurvivorManager : RunningNPC {
 	public GameRunManager gameRunManager;
 	public ElevatorDoorManager elevatorDoorManager;
 	private Animator animator;
+	private bool dead;
 	private bool saved;
 
 	// TODO: Fix bug where dead survivor can still run
 
 	public void Die() {
+		dead = true;
 		base.StopRun ();
 		animator.SetTrigger ("Dead");
 		Debug.Log ("SurvivorManager:Die: Survivor is dead");
@@ -45,18 +47,19 @@ public class SurvivorManager : RunningNPC {
 		base.Start ();
 		base.SetMoveSpeed (3.0f);
 		animator = GetComponent<Animator> ();
+		dead = false;
 	}
 
 	private void Update() {
 		base.Update ();
 
-		if (!saved && base.IsRunning () && IsAtDoor () && !IsDoorOpen ()) {
+		if (!dead && !saved && base.IsRunning () && IsAtDoor () && !IsDoorOpen ()) {
 			Wait ();
-		} else if (!saved && !base.IsRunning () && IsAtDoor () && IsDoorOpen ()) {
+		} else if (!dead && !saved && !base.IsRunning () && IsAtDoor () && IsDoorOpen ()) {
 			ContinueRun ();
 		}
 
-		if (!saved && IsInsideElevator ()) {
+		if (!dead && !saved && IsInsideElevator ()) {
 			Save ();
 		}
 	}
