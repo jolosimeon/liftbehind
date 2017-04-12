@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityStandardAssets.Characters.FirstPerson;
 
 /**
@@ -11,47 +12,48 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class GameOverManager : MonoBehaviour {
 	public FirstPersonController player;
 	public FlashlightManager flashlight;
+	public Canvas gameOverCanvas;
+	public Text gameOverHeader;
+	public Text gameOverReason;
+	public Text gameOverInstruction;
 
-	private GUIStyle messageHeaderStyle;
-	private GUIStyle messageBodyStyle;
 	private bool gameOver;
-
-
-	public void EndGame() {
-		DisableGameplay ();
-		gameOver = true;
-	}
 
 	public bool IsGameOver() {
 		return gameOver;
 	}
+
+	public void EndGame(string reason) {
+		gameOverReason.text = reason;
+
+		DisableGameplay ();
+		SetVisiblityGameOverMessage (true);
+		flashlight.SetEnabled (false);
+		flashlight.SetToInitialRotation ();
+		gameOver = true;
+	}
 		
 	private void DisableGameplay() {
 		player.enabled = false;
-		flashlight.SetToInitialRotation ();
+	}
+
+	private void SetVisiblityGameOverMessage(bool visible) {
+		gameOverCanvas.enabled = visible;
 	}
 
 	void OnGUI() {
-		messageHeaderStyle = new GUIStyle ();
-		messageHeaderStyle.fontSize = 60;
-		messageHeaderStyle.fontStyle = FontStyle.Bold;
-		messageHeaderStyle.alignment = TextAnchor.MiddleCenter;
-		GameInterfaceUtility.SetBackground (messageHeaderStyle, null);
-		GameInterfaceUtility.SetTextColor (messageHeaderStyle, Color.red);
-
-		messageBodyStyle = new GUIStyle ();
-		messageBodyStyle.fontSize = 25;
-		messageBodyStyle.alignment = TextAnchor.MiddleCenter;
-		GameInterfaceUtility.SetBackground (messageBodyStyle, null);
-		GameInterfaceUtility.SetTextColor (messageBodyStyle, Color.white);
-	
 		if (gameOver) {
-			DisplayGameOverMessage ("Game Over", "Press the spacebar to restart");
+//			DisplayGameOverMessage ("Game Over", "Press the spacebar to restart");
 		}
 	}
 
 	private void Start() {
+		gameOverHeader.text = "GAME OVER";
+		gameOverReason.text = "";
+		gameOverInstruction.text = "Press the spacebar to restart the game";
+
 		gameOver = false;
+		SetVisiblityGameOverMessage (false);
 	}
 
 	private void Update() {
@@ -60,17 +62,8 @@ public class GameOverManager : MonoBehaviour {
 		}
 	}
 
-	private void DisplayGameOverMessage(string header, string body) {
-		float w_ratio = 0.3f;
-		float h_ratio = 0.2f;
-
-		float x = (Screen.width * (1 - w_ratio)) / 2;
-		float y = (Screen.height * (1 - h_ratio)) / 2;
-		float w = Screen.width * w_ratio;
-		float h = Screen.height * h_ratio;
-
-		GUI.TextArea (new Rect (x, y, w, h), header, messageHeaderStyle);
-		GUI.TextArea (new Rect (x, y + 50, w, h), body, messageBodyStyle);
+	private void DisplayGameOverMessage(string header, string reason, string instruction) {
+		
 	}
 
 	private void Retry() {

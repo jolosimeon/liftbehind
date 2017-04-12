@@ -49,7 +49,6 @@ public class ZombieManager : RunningNPC {
 		}
 
 		if (IsInsideElevator ()) {
-			Debug.Log ("ZombieManager:Update: Zombie is inside elevator");
 			base.StopRun ();
 			gameRunManager.NotifyZombieInElevator ();
 		}

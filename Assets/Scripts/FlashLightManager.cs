@@ -19,6 +19,10 @@ public class FlashlightManager : MonoBehaviour {
 	private AudioClip soundTurnOff;
 
 
+	public void SetEnabled(bool enabled) {
+		lightSource.enabled = enabled;
+	}
+
 	public void SetToInitialRotation() {
 		transform.rotation = initialRotation;
 	}

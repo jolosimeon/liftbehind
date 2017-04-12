@@ -1683,7 +1683,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: YOU FAILED TO RESCUE THE REQUIRED AMOUNT OF SURVIVORS
+  m_Text: PUT REASON FOR LOSING HERE
 --- !u!222 &711957025
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2879,7 +2879,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PRESS THE SPACEBAR TO RESTART THE GAME
+  m_Text: Put restart instructions here
 --- !u!222 &1122778211
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4873,6 +4873,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 187034445}
   flashlight: {fileID: 1062898405}
+  gameOverCanvas: {fileID: 1044857534}
+  gameOverHeader: {fileID: 1496201293}
+  gameOverReason: {fileID: 711957024}
+  gameOverInstruction: {fileID: 1122778210}
 --- !u!1 &1682442979
 GameObject:
   m_ObjectHideFlags: 0

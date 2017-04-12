@@ -37,7 +37,7 @@ public class GameRunManager : MonoBehaviour {
 	 * Called by other scripts when a zombie enters the elevator
 	 */
 	public void NotifyZombieInElevator() {
-		gameOverManager.EndGame ();
+		gameOverManager.EndGame ("A ZOMBIE WAS ABLE TO ENTER THE ELEVATOR");
 	}
 
 	private void Start () {

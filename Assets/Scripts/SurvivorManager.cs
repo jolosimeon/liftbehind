@@ -17,6 +17,8 @@ public class SurvivorManager : RunningNPC {
 	private Animator animator;
 	private bool saved;
 
+	// TODO: Fix bug where dead survivor can still run
+
 	public void Die() {
 		base.StopRun ();
 		animator.SetTrigger ("Dead");
