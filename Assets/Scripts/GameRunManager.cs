@@ -126,7 +126,7 @@ public class GameRunManager : MonoBehaviour {
 		survivor.SetActive (false);
 
 		// Zombie should be moved to jumpscare position only when flashlight is pointed
-		zombie.DoJumpScare ();
+		zombie.MoveToJumpScarePosition();
 	}
 
 	/*

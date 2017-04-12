@@ -11,9 +11,7 @@ public class ZombieManager : RunningNPC {
 	public static float CAUGHT_DISTANCE = 1.5f;
 
 	private static float ELEVATOR_DOOR_INSIDE_Z = 4.5f;
-	private static float JUMP_SCARE_X = 0f;
-	private static float JUMP_SCARE_Y = 0f;
-	private static float JUMP_SCARE_Z = 0f;
+	private static float JUMP_SCARE_Z = 3.64f;
 
 	public GameRunManager gameRunManager;
 	public SurvivorManager survivor;
@@ -21,9 +19,10 @@ public class ZombieManager : RunningNPC {
 	private Animator animator;
 
 
-	public void DoJumpScare () {
-		transform.position = new Vector3 (JUMP_SCARE_X, JUMP_SCARE_Y, JUMP_SCARE_Z);
-		Debug.Log ("ZombieManager:DoJumpScare: Doing jump scare");
+	public void MoveToJumpScarePosition() {
+		transform.position = new Vector3 (transform.position.x,
+			transform.position.y, JUMP_SCARE_Z);
+		Debug.Log ("ZombieManager:MoveToJumpScarePosition: Moved to jump scare position");
 	}
 
 	public void Reset() {
