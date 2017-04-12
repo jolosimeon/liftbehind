@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.Characters.FirstPerson;
 
+
 /**
  * Controls the game over actions such as displaying the game over
  * message and allowing the user to retry.

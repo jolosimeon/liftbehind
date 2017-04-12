@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 /**
  * Controls the gameplay logic
@@ -110,6 +110,11 @@ public class GameRunManager : MonoBehaviour {
 	 * 
 	 * Decide whether to regen door's health at each floor. The purpose of the flashlight
 	 * is to turn it off when going up levels and door's health is low.
+	 * 
+	 * This floor is the reason why its a bad idea to always keep elevator door open.
+	 * If door is open and the level is a jumpscare floor, the player auto-loses.
+	 * 
+	 * Elevator cannot move up unstil zombie is defeated.
 	 */
 	private void InitializeJumpScareFloor() {
 		Debug.Log ("GameRunManager:InitializeJumpScareFloor: Jump scare floor initialized");
@@ -117,6 +122,7 @@ public class GameRunManager : MonoBehaviour {
 		survivor.SetActive (false);
 
 		// Zombie should be moved to jumpscare position only when flashlight is pointed
+		zombie.DoJumpScare ();
 	}
 
 	/*

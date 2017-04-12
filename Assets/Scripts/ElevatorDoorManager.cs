@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 /**
  * Controls the opening and closing of the elevator's door.
@@ -17,6 +17,8 @@ public class ElevatorDoorManager : MonoBehaviour {
 	private static Vector3 OPEN_MOVEMENT_VECTOR = Vector3.right;
 	private static Vector3 CLOSE_MOVEMENT_VECTOR = Vector3.left;
 
+	public Text doorStateText;
+
 	private bool doorOpened;
 
 
@@ -26,6 +28,8 @@ public class ElevatorDoorManager : MonoBehaviour {
 
 	private void Start () {
 		doorOpened = false;
+		doorStateText.text = "CLOSED";
+		doorStateText.color = Color.red;
 	}
 
 	private void Update () {
@@ -38,9 +42,15 @@ public class ElevatorDoorManager : MonoBehaviour {
 		if (IsMaxOpened ()) {
 			MakeExactOpen ();
 			doorOpened = true;
+
+			doorStateText.text = "OPEN";
+			doorStateText.color = Color.green;
 		} else if (IsMaxClosed ()) {
 			MakeExactClose ();
 			doorOpened = false;
+
+			doorStateText.text = "CLOSED";
+			doorStateText.color = Color.red;
 		}
 	}
 
