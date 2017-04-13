@@ -25,6 +25,7 @@ public class SurvivorManager : RunningNPC {
 		
 	public void Reset() {
 		base.Reset ();
+		waiting = false;
 		saved = false;
 		dead = false;
 	}
@@ -33,59 +34,66 @@ public class SurvivorManager : RunningNPC {
 	private const float ELEVATOR_DOOR_RAILS_Z = 4.6f;
 	private const float ELEVATOR_DOOR_INSIDE_Z = 9.7f;
 
+	private bool waiting;
 	private bool dead;
 	private bool saved;
 
 
 	private void Start() {
 		base.Start ();
-		dead = false;
+		Reset ();
 	}
 
 	private void Update() {
 		base.Update ();
 
-		if (!dead && !saved && base.IsRunning () && IsAtDoor () && !IsDoorOpen ()) {
-			Wait ();
-		} else if (!dead && !saved && !base.IsRunning () && IsAtDoor () && IsDoorOpen ()) {
-			ContinueRun ();
-		}
-
-		if (!dead && !saved && IsInsideElevator ()) {
-			Save ();
+		if (base.IsRunning () && IsTryingToGetSaved() && IsStuckOutsideDoor()) {
+			DoWait ();
+		} else if (IsTryingToGetSaved() && waiting && IsDoorOpen ()) {
+			DoContinueRun ();
+		} else if (IsTryingToGetSaved() && IsInsideElevator ()) {
+			DoSalute ();
+			gameRunManager.NotifySurvivorSaved ();
 		}
 	}
 
+	private bool IsTryingToGetSaved() {
+		return !dead && !saved;
+	}
+
+	private bool IsStuckOutsideDoor() {
+		return IsAtDoor () && !IsDoorOpen ();
+	}
+
 	private bool IsAtDoor() {
-		return transform.position.z >= ELEVATOR_DOOR_BLOCK_Z && transform.position.z <= ELEVATOR_DOOR_RAILS_Z;
+		return transform.position.z >= ELEVATOR_DOOR_BLOCK_Z
+			&& transform.position.z <= ELEVATOR_DOOR_RAILS_Z;
 	}
 
 	private bool IsDoorOpen() {
 		return elevatorDoorManager.IsDoorOpen();
 	}
 
-	private void ContinueRun() {
-		animator.Play ("sprint_00");
+	private void DoContinueRun() {
+		waiting = false;
 		base.StartRun ();
-		Debug.Log ("SurvivorManager:ContinueRun: Survivor continued running");
+		animator.Play ("sprint_00");
 	}
 
 	private bool IsInsideElevator() {
 		return transform.position.z >= ELEVATOR_DOOR_INSIDE_Z;
 	}
 
-	private void Wait() {
+	private void DoWait() {
 		base.StopRun ();
+		waiting = true;
 		animator.SetTrigger ("Wait");
-		Debug.Log ("SurvivorManager:Wait: Survivor is waiting");
 	}
 
-	private void Save() {
-		saved = true;
+	private void DoSalute() {
 		base.StopRun ();
+		saved = true;
 		transform.Rotate (new Vector3 (0, 180, 0));
 		animator.Play ("pose_01");
-		gameRunManager.NotifySurvivorSaved ();
-		Debug.Log ("SurvivorManager:Saved: Survivor is saved");
 	}
 }
