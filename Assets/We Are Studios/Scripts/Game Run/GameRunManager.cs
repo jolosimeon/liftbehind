@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 
 /**
  *	Script is attached to the Game Run Manager Game Object 
@@ -55,8 +55,6 @@ public class GameRunManager : MonoBehaviour {
 		}
 	}
 
-
-
 	public void NotifyChangeFloor() {
 		ClearFloor ();
 		InitializeRandomFloor ();
@@ -67,7 +65,8 @@ public class GameRunManager : MonoBehaviour {
 	}
 		
 	public void NotifyZombieInElevator() {
-		gameOverManager.EndGame ("A ZOMBIE WAS ABLE TO ENTER THE ELEVATOR");
+		SceneManager.LoadScene ("Game Over");
+//		gameOverManager.EndGame ("A ZOMBIE WAS ABLE TO ENTER THE ELEVATOR");
 	}
 
 	public bool IsSurvivorCaughtByZombie() {
