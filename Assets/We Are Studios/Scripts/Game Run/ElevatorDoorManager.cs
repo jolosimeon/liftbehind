@@ -3,33 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 /**
- * Controls the opening and closing of the elevator's door.
- * The script is attached to the Door object inside the Elevator object.
+ *	Script is attached to the Building Elevator Door Game Object 
  */
 public class ElevatorDoorManager : MonoBehaviour {
-	private static float MAX_DOOR_OPEN = 2.0f;
-	private static float MAX_DOOR_CLOSE = -2.0f;
-	private static int NUM_PRESSES_OPEN = 50;
-	private static int NUM_PRESSES_CLOSE = 50;
-	private static float OPEN_MOVEMENT_SCALE = Mathf.Abs(MAX_DOOR_OPEN - MAX_DOOR_CLOSE) / NUM_PRESSES_OPEN;
-	private static float CLOSE_MOVEMENT_SCALE = Mathf.Abs(MAX_DOOR_OPEN - MAX_DOOR_CLOSE) / NUM_PRESSES_CLOSE;
-	private static Vector3 OPEN_MOVEMENT_VECTOR = Vector3.right;
-	private static Vector3 CLOSE_MOVEMENT_VECTOR = Vector3.left;
 
-	public Text doorStateText;
-
-	private bool doorOpened;
+	public Text doorStateDisplay;
 
 
 	public bool IsDoorOpen() {
-		return doorOpened;
+		return doorOpen;
 	}
 
+	public void SetNumberPressesRequiredOpen(int numPressesRequired) {
+		openMovementScale = Mathf.Abs(MAX_DOOR_OPEN_X - MAX_DOOR_CLOSE_X) 
+			/ (float) numPressesRequired;
+	}
+
+	public void SetNumberPressesRequiredClose(int numPressesRequired) {
+		closeMovementScale = Mathf.Abs (MAX_DOOR_OPEN_X - MAX_DOOR_CLOSE_X) 
+			/ (float)numPressesRequired;
+	}
+		
+	private static Vector3 OPEN_MOVEMENT_VECTOR = Vector3.right;
+	private static Vector3 CLOSE_MOVEMENT_VECTOR = Vector3.left;
+	private static float MAX_DOOR_OPEN_X = 2.0f;
+	private static float MAX_DOOR_CLOSE_X = -2.0f;
+
+	private float openMovementScale;
+	private float closeMovementScale;
+	private bool doorOpen;
+
+
 	private void Start () {
-		doorOpened = false;
-		doorStateText.text = "CLOSED";
-		doorStateText.color = Color.red;
+		doorOpen = false;
+		SetNumberPressesRequiredOpen (50);
+		SetNumberPressesRequiredClose (50);
 	}
 
 	private void Update () {
@@ -40,51 +50,59 @@ public class ElevatorDoorManager : MonoBehaviour {
 		}
 
 		if (IsMaxOpened ()) {
-			MakeExactOpen ();
-			doorOpened = true;
-
-			doorStateText.text = "OPEN";
-			doorStateText.color = Color.green;
+			doorOpen = true;
+			MakeExact ();
 		} else if (IsMaxClosed ()) {
-			MakeExactClose ();
-			doorOpened = false;
-
-			doorStateText.text = "CLOSED";
-			doorStateText.color = Color.red;
+			doorOpen = false;
+			MakeExact ();
 		}
+
+		DisplayDoorState ();
+	}
+
+	private void OpenDoor() {
+		transform.Translate (OPEN_MOVEMENT_VECTOR * openMovementScale, Space.World);
+	}
+
+	private void CloseDoor() {
+		transform.Translate (CLOSE_MOVEMENT_VECTOR * closeMovementScale, Space.World);
 	}
 
 	/*
 	 * Alternative method of opening the door.
-	 * Only one button would be used.
+	 * Only one button would be used since it automatically
+	 * toggles between closing and opening.
 	 */
 	private void MoveDoor() {
-		Vector3 movement = (doorOpened) ? CLOSE_MOVEMENT_VECTOR : OPEN_MOVEMENT_VECTOR;
-		float movementScale = (doorOpened) ? CLOSE_MOVEMENT_SCALE : OPEN_MOVEMENT_SCALE;
+		Vector3 movement = (doorOpen) ? CLOSE_MOVEMENT_VECTOR : OPEN_MOVEMENT_VECTOR;
+		float movementScale = (doorOpen) ? closeMovementScale : openMovementScale;
 		transform.Translate (movement * movementScale, Space.World);
 	}
 
-	private void OpenDoor() {
-		transform.Translate (OPEN_MOVEMENT_VECTOR * OPEN_MOVEMENT_SCALE, Space.World);
-	}
-
-	private void CloseDoor() {
-		transform.Translate (CLOSE_MOVEMENT_VECTOR * CLOSE_MOVEMENT_SCALE, Space.World);
-	}
-
 	private bool IsMaxOpened() {
-		return transform.position.x >= MAX_DOOR_OPEN;
+		return transform.position.x >= MAX_DOOR_OPEN_X;
 	}
 
 	private bool IsMaxClosed() {
-		return transform.position.x <= MAX_DOOR_CLOSE;
+		return transform.position.x <= MAX_DOOR_CLOSE_X;
 	}
 
-	private void MakeExactOpen() {
-		transform.position = new Vector3 (MAX_DOOR_OPEN, transform.position.y, transform.position.z);
+
+	private void MakeExact() {
+		transform.position = new Vector3 (
+			(IsDoorOpen()) ? MAX_DOOR_OPEN_X : MAX_DOOR_CLOSE_X,
+			transform.position.y,
+			transform.position.z
+		);
 	}
 
-	private void MakeExactClose() {
-		transform.position = new Vector3 (MAX_DOOR_CLOSE, transform.position.y, transform.position.z);
+	private void DisplayDoorState() {
+		if (IsDoorOpen ()) {
+			doorStateDisplay.text = "OPEN";
+			doorStateDisplay.color = Color.green;
+		} else {
+			doorStateDisplay.text = "CLOSED";
+			doorStateDisplay.color = Color.red;
+		}
 	}
 }

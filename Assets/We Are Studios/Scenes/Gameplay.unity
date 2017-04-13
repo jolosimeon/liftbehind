@@ -3376,7 +3376,7 @@ GameObject:
   - component: {fileID: 1119736187}
   - component: {fileID: 1119736186}
   m_Layer: 10
-  m_Name: Door State
+  m_Name: Door State Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5362,7 +5362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce7a3fe062d84d61898605bacf4916b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorStateText: {fileID: 1119736186}
+  doorStateDisplay: {fileID: 1119736186}
 --- !u!1 &1533205102
 GameObject:
   m_ObjectHideFlags: 0
