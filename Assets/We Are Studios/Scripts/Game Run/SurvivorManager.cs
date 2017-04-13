@@ -7,15 +7,9 @@ using UnityEngine;
  *	Script is attached to the Survivor Game Object 
  */
 public class SurvivorManager : RunningNPC {
-	private static float ELEVATOR_DOOR_BLOCK_Z = 3.6f;
-	private static float ELEVATOR_DOOR_RAILS_Z = 4.6f;
-	private static float ELEVATOR_DOOR_INSIDE_Z = 9.7f;
 
 	public GameRunManager gameRunManager;
 	public ElevatorDoorManager elevatorDoorManager;
-	private Animator animator;
-	private bool dead;
-	private bool saved;
 
 
 	public void Die() {
@@ -33,19 +27,18 @@ public class SurvivorManager : RunningNPC {
 		base.Reset ();
 		saved = false;
 		dead = false;
-		ResetAnimation ();
 	}
 
-	private void ResetAnimation() {
-		Debug.Log ("SurvivorManager:ResetAnimation: Resetting survivor animation");
-		animator.Play ("Entry");
-		animator.Rebind ();
-	}
+	private const float ELEVATOR_DOOR_BLOCK_Z = 3.6f;
+	private const float ELEVATOR_DOOR_RAILS_Z = 4.6f;
+	private const float ELEVATOR_DOOR_INSIDE_Z = 9.7f;
+
+	private bool dead;
+	private bool saved;
+
 
 	private void Start() {
 		base.Start ();
-		base.SetMoveSpeed (3.0f);
-		animator = GetComponent<Animator> ();
 		dead = false;
 	}
 

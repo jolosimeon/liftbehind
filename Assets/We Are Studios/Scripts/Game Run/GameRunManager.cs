@@ -97,6 +97,9 @@ public class GameRunManager : MonoBehaviour {
 	}
 
 	private void Start () {
+		survivor.SetMoveSpeed (3.0f);
+		zombie.SetMoveSpeed (1.0f);
+
 		SetNumFloors (10);
 		currentFloor = 1;
 

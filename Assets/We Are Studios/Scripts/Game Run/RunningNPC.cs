@@ -4,9 +4,15 @@ using UnityEngine;
 
 
 public abstract class RunningNPC : MonoBehaviour {
-
+	
 	public void SetActive(bool active) {
 		gameObject.SetActive (active);
+	}
+
+	public void Reset() {
+		running = false;
+		MoveToStartingPosition ();
+		ResetAnimation ();
 	}
 
 	public void SetMoveSpeed(float moveSpeed) {
@@ -24,8 +30,12 @@ public abstract class RunningNPC : MonoBehaviour {
 	public bool IsRunning() {
 		return running;
 	}
-		
+
+	protected Animator animator;
+
+
 	protected void Start () {
+		animator = GetComponent<Animator> ();
 		startingPosition = gameObject.transform.position;
 		moveSpeed = DEFAULT_MOVE_SPEED;
 		Reset ();
@@ -37,9 +47,9 @@ public abstract class RunningNPC : MonoBehaviour {
 		}
 	}
 
-	protected void Reset() {
-		MoveToStartingPosition ();
-		running = false;
+	private void ResetAnimation() {
+		animator.Play ("Entry");
+		animator.Rebind ();
 	}
 
 	private void MoveToStartingPosition() {
@@ -57,6 +67,4 @@ public abstract class RunningNPC : MonoBehaviour {
 		gameObject.transform.Translate (Vector3.forward 
 			* moveSpeed * Time.deltaTime, Space.World);
 	}
-
-
 }

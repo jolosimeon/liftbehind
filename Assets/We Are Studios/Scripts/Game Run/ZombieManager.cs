@@ -18,25 +18,9 @@ public class ZombieManager : RunningNPC {
 	public GameRunManager gameRunManager;
 	public SurvivorManager survivor;
 
-	private Animator animator;
-
-
-	public void Reset() {
-		base.Reset ();
-		ResetAnimation ();
-	}
-
-	private void ResetAnimation() {
-		Debug.Log ("ZombieManager:ResetAnimation: Resetting survivor animation");
-		animator.Stop ();
-		animator.Play ("Entry");
-		animator.Rebind ();
-	}
 
 	private void Start() {
 		base.Start ();
-		base.SetMoveSpeed (1.0f);
-		animator = GetComponent<Animator> ();
 	}
 
 	private void Update() {
