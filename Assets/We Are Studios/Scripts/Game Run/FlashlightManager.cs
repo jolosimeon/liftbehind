@@ -86,7 +86,7 @@ public class FlashlightManager : MonoBehaviour {
 //		Debug.Log ("FlashlightManager:handleInteractiveObject: Interactive object hit");
 
 		switch (interactiveObj.name) {
-			case "ElevatorUpButton": {
+			case "Building Elevator Go Up Button": {
 				handleElevatorUpButton (interactiveObj);
 				break;
 			}
