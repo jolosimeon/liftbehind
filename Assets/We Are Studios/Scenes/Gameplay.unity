@@ -2124,6 +2124,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &600161529 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1983136074}
+  m_Script: {fileID: 11500000, guid: 05ec5cf00ca181d45a42ba1870e148c3, type: 3}
 --- !u!1 &663957695
 GameObject:
   m_ObjectHideFlags: 0
@@ -5628,10 +5634,10 @@ MonoBehaviour:
   flashlightManager: {fileID: 1062898405}
   elevatorDoorManager: {fileID: 1509961595}
   elevatorFloorManager: {fileID: 1770194320}
+  firstPerson: {fileID: 600161529}
   zombieGang: {fileID: 1470257413}
   zombie: {fileID: 1483534693}
   survivor: {fileID: 1305300649}
-  gameOverManager: {fileID: 0}
   floorNumberDisplay: {fileID: 1312630506}
   numberSavedDisplay: {fileID: 511327778}
   tooltipDisplay: {fileID: 739533725}

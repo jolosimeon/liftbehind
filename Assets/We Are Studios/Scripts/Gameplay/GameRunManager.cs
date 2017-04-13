@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.Characters.FirstPerson;
+
 
 /**
  *	Script is attached to the Game Run Manager Game Object 
@@ -11,6 +13,8 @@ public class GameRunManager : MonoBehaviour {
 	public FlashlightManager flashlightManager;
 	public ElevatorDoorManager elevatorDoorManager;
 	public ElevatorFloorManager elevatorFloorManager;
+
+	public FirstPersonController firstPerson;
 
 	public ZombieGangManager zombieGang;
 	public ZombieManager zombie;
@@ -64,6 +68,8 @@ public class GameRunManager : MonoBehaviour {
 		
 	public void NotifyZombieInElevator() {
 		reasonGameOver = "A ZOMBIE WAS ABLE TO ENTER THE ELEVATOR";
+
+		DisableFirstPerson ();
 		SceneManager.LoadScene ("Game Over");
 	}
 
@@ -199,5 +205,9 @@ public class GameRunManager : MonoBehaviour {
 
 	private void Awake() {
 		DontDestroyOnLoad (transform.gameObject);
+	}
+
+	private void DisableFirstPerson() {
+		firstPerson.GetComponent<FirstPersonController> ().enabled = false;
 	}
 }

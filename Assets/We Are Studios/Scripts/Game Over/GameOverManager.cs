@@ -26,6 +26,8 @@ public class GameOverManager : MonoBehaviour {
 		numberSavedDisplay.text = numSaved + " SURVIVOR"
 		+ ((numSaved != 1) ? "s" : "") + " SAVED";
 
+		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.Confined;
 		Destroy (gameRunManagerObject);
 	}
 
