@@ -6,7 +6,7 @@ using UnityEngine;
 /**
  *	Script is attached to the Building Elevator Go Up Button Game Object 
  */
-public class ElevatorFloorManager : MonoBehaviour, Interactable {
+public class ElevatorFloorManager : MonoBehaviour {
 	
 	public GameRunManager gameRun;
 	public GameObject elevator;
