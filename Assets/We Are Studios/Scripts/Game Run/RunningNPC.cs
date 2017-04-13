@@ -7,7 +7,6 @@ public abstract class RunningNPC : MonoBehaviour {
 
 	public void SetActive(bool active) {
 		gameObject.SetActive (active);
-		running = false; // TODO: Should this be part of this?
 	}
 
 	public void SetMoveSpeed(float moveSpeed) {
