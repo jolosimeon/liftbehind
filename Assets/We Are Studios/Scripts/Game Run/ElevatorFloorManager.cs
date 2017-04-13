@@ -4,24 +4,14 @@ using UnityEngine;
 
 
 /**
- * Controls the elevator's changing of floors.
- * Script is attached to the ElevatorUpButton object.
+ *	Script is attached to the Building Elevator Go Up Button Game Object 
  */
 public class ElevatorFloorManager : MonoBehaviour, Interactable {
-	public GameRunManager gameRunManager;
-	public ZombieManager zombieManager;
-	public SurvivorManager survivorManager;
+	
+	public GameRunManager gameRun;
 	public GameObject elevator;
 
-	private Vector3 initialElevatorPosition;
-	private Vector3 topElevatorPosition;
-	private Vector3 bottomElevatorPosition;
-	private bool changingFloor;
-	private bool warped;
 
-	/*
-	 * Triggered when elevator button is pressed
-	 */
 	public void Interact() {
 		if (!changingFloor) {
 			ChangeFloor ();
@@ -32,35 +22,43 @@ public class ElevatorFloorManager : MonoBehaviour, Interactable {
 		return "Press to go to the next floor";
 	}
 
+	private Vector3 initialPosition;
+	private Vector3 topMostPosition;
+	private Vector3 bottomMostPosition;
+	private bool changingFloor;
+	private bool warpedToBottom;
+
+
 	private void ChangeFloor() {
 		changingFloor = true;
-
-		zombieManager.StopRun ();
-
-		if (survivorManager.IsSaved ()) {
-			survivorManager.Reset ();
-		}
+		gameRun.ClearFloor ();
 	}
 
 	private void Start () {
-		initialElevatorPosition = elevator.transform.position; 
-		topElevatorPosition = new Vector3 (elevator.transform.position.x,
-			7, elevator.transform.position.z);
-		bottomElevatorPosition = new Vector3 (elevator.transform.position.x,
-			-5, elevator.transform.position.z);
+		initialPosition = elevator.transform.position; 
+		topMostPosition = 
+			new Vector3 (elevator.transform.position.x, 7, elevator.transform.position.z);
+		bottomMostPosition = 
+			new Vector3 (elevator.transform.position.x, -5, elevator.transform.position.z);
 		
+		Reset ();
+	}
+
+	private void Reset() {
+		MakeExactToInitialPosition ();
 		changingFloor = false;
-		warped = false;
+		warpedToBottom = false;
+	}
+
+	private void MakeExactToInitialPosition() {
+		elevator.transform.position = initialPosition;
 	}
 
 	private void Update () {
-		if (IsAtTop ()) {
-			WarpToBottom ();
-			warped = true;
-		} else if (warped && IsAtInitial ()) {
-			changingFloor = false;
-			warped = false;
-			MakeExactInitial ();
+		if (IsAtTopMostPosition ()) {
+			WarpToBottomPosition ();
+		} else if (warpedToBottom && IsAtInitialPosition ()) {
+			Reset ();
 		}
 			
 		if (changingFloor) {
@@ -68,24 +66,22 @@ public class ElevatorFloorManager : MonoBehaviour, Interactable {
 		}
 	}
 
-	private bool IsAtTop() {
-		return elevator.transform.position.y >= topElevatorPosition.y;
+	private bool IsAtTopMostPosition() {
+		return elevator.transform.position.y >= topMostPosition.y;
 	}
 
-	private void WarpToBottom() {
-		gameRunManager.NotifyChangeFloor ();
-		elevator.transform.position = bottomElevatorPosition;
+	private void WarpToBottomPosition() {
+		gameRun.NotifyChangeFloor ();
+		elevator.transform.position = bottomMostPosition;
+		warpedToBottom = true;
 	}
 
-	private bool IsAtInitial() {
-		return elevator.transform.position.y >= initialElevatorPosition.y;
+	private bool IsAtInitialPosition() {
+		return elevator.transform.position.y >= initialPosition.y;
 	}
-
-	private void MakeExactInitial() {
-		elevator.transform.position = initialElevatorPosition;
-	}
-
+		
 	private void MoveUp() {
 		elevator.transform.Translate (Vector3.up * Time.deltaTime, Space.World);
 	}
+
 }

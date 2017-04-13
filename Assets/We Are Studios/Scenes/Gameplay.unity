@@ -6045,9 +6045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c51c3b11d31f848aeb5115660bd1ca35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameRunManager: {fileID: 1682442981}
-  zombieManager: {fileID: 1483534693}
-  survivorManager: {fileID: 1305300649}
+  gameRun: {fileID: 1682442981}
   elevator: {fileID: 861133838}
 --- !u!114 &1770194321
 MonoBehaviour:
