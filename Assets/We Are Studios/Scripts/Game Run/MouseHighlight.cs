@@ -4,7 +4,8 @@ using UnityEngine;
 
 
 /**
- * Highlights objects when focused on by the player 
+ * Highlights objects when focused on by the player.
+ * Currently only attached to the Building Elevator Go Up Button game object.
  */
 public class MouseHighlight : MonoBehaviour {
 

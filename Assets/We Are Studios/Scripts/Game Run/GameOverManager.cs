@@ -6,9 +6,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 
 /**
- * Controls the game over actions such as displaying the game over
- * message and allowing the user to retry.
- * The script is attached to the Game Over Manager obect.
+ *	Script is attached to the Game Over Manager Game Object 
  */
 public class GameOverManager : MonoBehaviour {
 	public FirstPersonController player;
