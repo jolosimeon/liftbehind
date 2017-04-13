@@ -8,15 +8,9 @@ using UnityEngine;
  * The script is attached to the zombie object.
  */
 public class ZombieManager : RunningNPC {
-	public static float CAUGHT_DISTANCE = 1.5f;
+	public GameRunManager gameRunManager;
 
 	private static float ELEVATOR_DOOR_INSIDE_Z = 4.5f;
-	private static float JUMP_SCARE_X = 0f;
-	private static float JUMP_SCARE_Y = 0f;
-	private static float JUMP_SCARE_Z = 0f;
-
-	public GameRunManager gameRunManager;
-	public SurvivorManager survivor;
 
 
 	private void Start() {
@@ -26,35 +20,34 @@ public class ZombieManager : RunningNPC {
 	private void Update() {
 		base.Update ();
 
-		if (base.IsRunning() && IsSurvivorCaught ()) {
-			base.StopRun ();
-			animator.SetTrigger ("Eat");
-			survivor.Die ();
+		if (gameRunManager.IsSurvivorCaughtByZombie()) {
+			DoKillSurvivor ();
 		}
-			
-		// Start attack animation
-		if (Mathf.Abs(transform.position.z - ELEVATOR_DOOR_INSIDE_Z) < 2) {
-			animator.SetTrigger("Attack");
-		}
+
+		if (IsNearOpenElevatorDoor()) {
+			DoAttackPlayer ();
+		} 
 
 		if (IsInsideElevator ()) {
 			base.StopRun ();
 			gameRunManager.NotifyZombieInElevator ();
 		}
 	}
-
-	IEnumerator Wait(float duration) {
-		Debug.Log("Start Wait() function. The time is: " + Time.time);
-		Debug.Log( "Float duration = "+duration);
-		yield return new WaitForSeconds(duration);   //Wait
-		Debug.Log("End Wait() function and the time is: " +Time.time);
-	}
 		
-	private bool IsSurvivorCaught() {
-		return Mathf.Abs (transform.position.z - survivor.transform.position.z) <= CAUGHT_DISTANCE;
+	private void DoKillSurvivor() {
+		base.StopRun ();
+		animator.SetTrigger ("Eat");
+	}
+
+	private bool IsNearOpenElevatorDoor() {
+		return Mathf.Abs (transform.position.z - ELEVATOR_DOOR_INSIDE_Z) < 2;
+	}
+
+	private void DoAttackPlayer() {
+		animator.SetTrigger("Attack");
 	}
 
 	private bool IsInsideElevator() {
-		return transform.position.z >= ELEVATOR_DOOR_INSIDE_Z;
+		return transform.position.z >= ELEVATOR_DOOR_INSIDE_Z && gameRunManager.IsDoorOpen();
 	}
 }

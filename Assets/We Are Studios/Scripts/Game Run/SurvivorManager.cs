@@ -9,15 +9,7 @@ using UnityEngine;
 public class SurvivorManager : RunningNPC {
 
 	public GameRunManager gameRunManager;
-	public ElevatorDoorManager elevatorDoorManager;
 
-
-	public void Die() {
-		dead = true;
-		base.StopRun ();
-		animator.SetTrigger ("Dead");
-		Debug.Log ("SurvivorManager:Die: Survivor is dead");
-	}
 
 	public bool IsSaved() {
 		return saved;
@@ -47,13 +39,17 @@ public class SurvivorManager : RunningNPC {
 	private void Update() {
 		base.Update ();
 
-		if (base.IsRunning () && IsTryingToGetSaved() && IsStuckOutsideDoor()) {
+		if (base.IsRunning () && IsTryingToGetSaved () && IsStuckOutsideDoor ()) {
 			DoWait ();
-		} else if (IsTryingToGetSaved() && waiting && IsDoorOpen ()) {
+		} else if (IsTryingToGetSaved () && waiting && IsDoorOpen ()) {
 			DoContinueRun ();
-		} else if (IsTryingToGetSaved() && IsInsideElevator ()) {
+		} else if (IsTryingToGetSaved () && IsInsideElevator ()) {
 			DoSalute ();
 			gameRunManager.NotifySurvivorSaved ();
+		} 
+
+		if (gameRunManager.IsSurvivorCaughtByZombie ()) {
+			DoDie ();
 		}
 	}
 
@@ -71,7 +67,7 @@ public class SurvivorManager : RunningNPC {
 	}
 
 	private bool IsDoorOpen() {
-		return elevatorDoorManager.IsDoorOpen();
+		return gameRunManager.IsDoorOpen();
 	}
 
 	private void DoContinueRun() {
@@ -95,5 +91,14 @@ public class SurvivorManager : RunningNPC {
 		saved = true;
 		transform.Rotate (new Vector3 (0, 180, 0));
 		animator.Play ("pose_01");
+	}
+
+	private void DoDie() {
+		base.StopRun ();
+		waiting = false;
+		dead = true;
+		animator.SetTrigger ("Dead");
+
+		Debug.Log ("SurvivorManager:Die: Survivor is dead");
 	}
 }

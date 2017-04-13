@@ -22,6 +22,10 @@ public class ElevatorFloorManager : MonoBehaviour {
 		return "Press to go to the next floor";
 	}
 
+	public bool IsChangingFloor() {
+		return changingFloor;
+	}
+
 	private Vector3 initialPosition;
 	private Vector3 topMostPosition;
 	private Vector3 bottomMostPosition;

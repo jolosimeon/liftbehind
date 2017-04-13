@@ -43,9 +43,9 @@ public class ElevatorDoorManager : MonoBehaviour {
 	}
 
 	private void Update () {
-		if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+		if (Input.GetKeyDown (KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) {
 			OpenDoor ();
-		} else if (Input.GetKeyDown (KeyCode.RightArrow)) {
+		} else if (Input.GetKeyDown (KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) {
 			CloseDoor ();
 		}
 

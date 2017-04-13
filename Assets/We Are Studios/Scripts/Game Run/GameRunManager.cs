@@ -55,6 +55,8 @@ public class GameRunManager : MonoBehaviour {
 		}
 	}
 
+
+
 	public void NotifyChangeFloor() {
 		ClearFloor ();
 		InitializeRandomFloor ();
@@ -68,6 +70,20 @@ public class GameRunManager : MonoBehaviour {
 		gameOverManager.EndGame ("A ZOMBIE WAS ABLE TO ENTER THE ELEVATOR");
 	}
 
+	public bool IsSurvivorCaughtByZombie() {
+		return Mathf.Abs (zombie.transform.position.z - survivor.transform.position.z) 
+			<= CAUGHT_DISTANCE;
+	}
+
+	public bool IsDoorOpen() {
+		return elevatorDoorManager.IsDoorOpen ();
+	}
+
+	public bool IsChangingFloor() {
+		return elevatorFloorManager.IsChangingFloor ();
+	}
+
+	private const float CAUGHT_DISTANCE = 1.5f;
 	private const string ENEMY_TAG = "Enemy";
 	private const string SURVIVOR_TAG = "Survivor";
 	private const string INTERACTIVE_OBJECT_TAG = "Interactive Object";
