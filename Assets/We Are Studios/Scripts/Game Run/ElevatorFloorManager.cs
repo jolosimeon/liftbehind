@@ -31,7 +31,6 @@ public class ElevatorFloorManager : MonoBehaviour, Interactable {
 
 	private void ChangeFloor() {
 		changingFloor = true;
-		gameRun.ClearFloor ();
 	}
 
 	private void Start () {

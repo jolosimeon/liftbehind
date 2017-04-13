@@ -12,17 +12,30 @@ public class GameRunManager : MonoBehaviour {
 	public ZombieGangManager zombieGang;
 	public ZombieManager zombie;
 	public SurvivorManager survivor;
-	public Text floorStatsText;
-	public Text savedStatsText;
 
-	private GUIStyle gameStatsStyle;
+	public Text floorNumberDisplay;
+	public Text numberSavedDisplay;
+
 	private int numFloors;
 	private int currentFloor;
 	private int numSurvivorsNeeded;
 	private int numSurvivorsSaved;
 
 
+	public void SetNumFloors(int numFloors) {
+		this.numFloors = numFloors;
+	}
+
+	public void SetNumberOfSurvivorsNeeded(int numSurvivorsNeeded) {
+		this.numSurvivorsNeeded = numSurvivorsNeeded;
+	}
+
+	public void NotifyGameObjectSeen() {
+		// TODO: Implement this, transfer code from FlashlightManager
+	}
+
 	public void NotifyChangeFloor() {
+		ClearFloor ();
 		InitializeRandomFloor ();
 	}
 		
@@ -34,44 +47,28 @@ public class GameRunManager : MonoBehaviour {
 		gameOverManager.EndGame ("A ZOMBIE WAS ABLE TO ENTER THE ELEVATOR");
 	}
 
-	// Should this be private?
-	public void ClearFloor() {
-		// TODO: Implement this
+	private void ClearFloor() {
 		zombie.StopRun ();
-
-		if (survivor.IsSaved ()) {
-			survivor.Reset ();
-		}
+		survivor.Reset ();
 	}
 
 	private void Start () {
-		gameStatsStyle = new GUIStyle ();
-		gameStatsStyle.fontSize = 18;
-		gameStatsStyle.fontStyle = FontStyle.Normal;
-		GameInterfaceUtility.SetBackground (gameStatsStyle, null);
-		GameInterfaceUtility.SetTextColor (gameStatsStyle, Color.white);
-
-		numFloors = 10;
+		SetNumFloors (10);
 		currentFloor = 1;
-		numSurvivorsNeeded = 5;
+
+		SetNumberOfSurvivorsNeeded (5);
 		numSurvivorsSaved = 0;
 	}
 
 	private void Update () {
+		DisplayGameStatistics ();
+	}
+
+	private void DisplayGameStatistics() {
+		floorNumberDisplay.text = "FLOOR " + currentFloor + " / " + numFloors;
+		numberSavedDisplay.text = numSurvivorsSaved + " / " + numSurvivorsNeeded + " SURVIVORS SAVED";
+	}
 		
-	}
-
-	private void OnGUI() {
-		DisplayGameStats ();
-	}
-
-	private void DisplayGameStats() {
-		floorStatsText.text = "FLOOR " + currentFloor + " / " + numFloors;
-		savedStatsText.text = numSurvivorsSaved + " / " + numSurvivorsNeeded + " SURVIVORS SAVED";
-	}
-
-
-
 	private void InitializeRandomFloor() {
 //		int random = Random.Range(0, 3);
 		int random = 2;

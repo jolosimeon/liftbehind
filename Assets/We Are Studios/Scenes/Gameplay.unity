@@ -1653,7 +1653,7 @@ GameObject:
   - component: {fileID: 511327779}
   - component: {fileID: 511327778}
   m_Layer: 10
-  m_Name: Saved Statistics
+  m_Name: Number of Saved Survivors Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4444,7 +4444,7 @@ GameObject:
   - component: {fileID: 1312630507}
   - component: {fileID: 1312630506}
   m_Layer: 10
-  m_Name: Floor Statistics
+  m_Name: Floor Number Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5919,8 +5919,8 @@ MonoBehaviour:
   zombieGang: {fileID: 1470257413}
   zombie: {fileID: 1483534693}
   survivor: {fileID: 1305300649}
-  floorStatsText: {fileID: 1312630506}
-  savedStatsText: {fileID: 511327778}
+  floorNumberDisplay: {fileID: 1312630506}
+  numberSavedDisplay: {fileID: 511327778}
 --- !u!1 &1764467917
 GameObject:
   m_ObjectHideFlags: 0
