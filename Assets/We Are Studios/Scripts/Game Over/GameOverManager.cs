@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.Characters.FirstPerson;
+using UnityEngine.SceneManagement;
 
 
 /**
@@ -24,9 +25,16 @@ public class GameOverManager : MonoBehaviour {
 		int numSaved = gameRunManager.GetNumberOfSurvivorsSaved ();
 		numberSavedDisplay.text = numSaved + " SURVIVOR"
 		+ ((numSaved != 1) ? "s" : "") + " SAVED";
+
+		Destroy (gameRunManagerObject);
 	}
 
 	private void Update() {
 
+	}
+
+	public void Retry() {
+		Debug.Log ("GameOverManager:Retry: Retry button clicked");
+		SceneManager.LoadScene ("Gameplay");
 	}
 }

@@ -126,10 +126,12 @@ public class GameRunManager : MonoBehaviour {
 
 		SetNumberOfSurvivorsNeeded (5);
 		numSurvivorsSaved = 0;
+
+		reasonGameOver = null;
 	}
 
 	private void Update () {
-		if (Input.GetMouseButtonDown (1)) {
+		if (Input.GetMouseButtonDown (1) && reasonGameOver == null) {
 			flashlightManager.ToggleFlashlight ();
 		}
 
