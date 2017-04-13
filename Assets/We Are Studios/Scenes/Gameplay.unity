@@ -1141,7 +1141,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100088, guid: 8141a1e3f5562ba4d910d6c02d5d213c, type: 3}
       propertyPath: m_Name
-      value: Zombie (2)
+      value: Zombie Gang Member 2
       objectReference: {fileID: 0}
     - target: {fileID: 100088, guid: 8141a1e3f5562ba4d910d6c02d5d213c, type: 3}
       propertyPath: m_TagString
@@ -1804,7 +1804,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100088, guid: 8141a1e3f5562ba4d910d6c02d5d213c, type: 3}
       propertyPath: m_Name
-      value: Zombie (1)
+      value: Zombie Gang Member 1
       objectReference: {fileID: 0}
     - target: {fileID: 100088, guid: 8141a1e3f5562ba4d910d6c02d5d213c, type: 3}
       propertyPath: m_TagString
@@ -5298,6 +5298,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1470257412}
+  - component: {fileID: 1470257413}
   m_Layer: 0
   m_Name: Gang of Zombies
   m_TagString: Untagged
@@ -5321,6 +5322,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1470257413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1470257411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd96e465672c443c8905c9841263db35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zombie1: {fileID: 582496575}
+  zombie2: {fileID: 1403028326}
+  zombie3: {fileID: 807838972}
 --- !u!1 &1482445437
 GameObject:
   m_ObjectHideFlags: 0
@@ -5784,7 +5799,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100088, guid: 8141a1e3f5562ba4d910d6c02d5d213c, type: 3}
       propertyPath: m_Name
-      value: Zombie (3)
+      value: Zombie Gang Member 3
       objectReference: {fileID: 0}
     - target: {fileID: 100088, guid: 8141a1e3f5562ba4d910d6c02d5d213c, type: 3}
       propertyPath: m_TagString
@@ -6227,6 +6242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverManager: {fileID: 1665093818}
+  zombieGang: {fileID: 1470257413}
   zombie: {fileID: 1483534693}
   survivor: {fileID: 1305300649}
   floorStatsText: {fileID: 1312630506}

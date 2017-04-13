@@ -9,6 +9,7 @@ using UnityEngine.UI;
  */
 public class GameRunManager : MonoBehaviour {
 	public GameOverManager gameOverManager;
+	public ZombieGangManager zombieGang;
 	public ZombieManager zombie;
 	public SurvivorManager survivor;
 	public Text floorStatsText;
@@ -99,6 +100,7 @@ public class GameRunManager : MonoBehaviour {
 	 */
 	private void InitializeEmptyFloor() {
 		Debug.Log ("GameRunManager:InitializeEmptyFloor: Empty floor initialized");
+		zombieGang.SetActive (false);
 		zombie.SetActive (false);
 		survivor.SetActive (false);
 	}
@@ -122,11 +124,11 @@ public class GameRunManager : MonoBehaviour {
 	 */
 	private void InitializeJumpScareFloor() {
 		Debug.Log ("GameRunManager:InitializeJumpScareFloor: Jump scare floor initialized");
-		zombie.SetActive (true);
+		zombieGang.SetActive (true);
+		zombie.SetActive (false);
 		survivor.SetActive (false);
 
-		// Zombie should be moved to jumpscare position only when flashlight is pointed
-		zombie.DoJumpScare ();
+		// Zombie gang should only start attack when pointed with flashlight
 	}
 
 	/*
@@ -136,6 +138,7 @@ public class GameRunManager : MonoBehaviour {
 	 */
 	private void InitializeSaveSurvivorFloor() {
 		Debug.Log ("GameRunManager:InitializeSaveSurvivorFloor: Save survivor floor initialized");
+		zombieGang.SetActive (false);
 		zombie.SetActive (true);
 		survivor.SetActive (true);
 
