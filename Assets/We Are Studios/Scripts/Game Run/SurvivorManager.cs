@@ -4,8 +4,7 @@ using UnityEngine;
 
 
 /**
- * Controls the survivor's action, spawning, etc.
- * The script is attached to the survivor object.
+ *	Script is attached to the Survivor Game Object 
  */
 public class SurvivorManager : RunningNPC {
 	private static float ELEVATOR_DOOR_BLOCK_Z = 3.6f;
@@ -18,7 +17,6 @@ public class SurvivorManager : RunningNPC {
 	private bool dead;
 	private bool saved;
 
-	// TODO: Fix bug where dead survivor can still run
 
 	public void Die() {
 		dead = true;
@@ -32,7 +30,7 @@ public class SurvivorManager : RunningNPC {
 	}
 		
 	public void Reset() {
-		base.MoveToStartingPosition ();
+		base.Reset ();
 		saved = false;
 		dead = false;
 		ResetAnimation ();

@@ -21,13 +21,8 @@ public class ZombieManager : RunningNPC {
 	private Animator animator;
 
 
-	public void DoJumpScare () {
-		transform.position = new Vector3 (JUMP_SCARE_X, JUMP_SCARE_Y, JUMP_SCARE_Z);
-		Debug.Log ("ZombieManager:DoJumpScare: Doing jump scare");
-	}
-
 	public void Reset() {
-		base.MoveToStartingPosition ();
+		base.Reset ();
 		ResetAnimation ();
 	}
 

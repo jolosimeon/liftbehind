@@ -2,20 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class RunningNPC : MonoBehaviour {
-	private Vector3 startingPosition;
-	private float moveSpeed;
-	private bool running;
-	private bool initialized = false;
 
+public abstract class RunningNPC : MonoBehaviour {
 
 	public void SetActive(bool active) {
 		gameObject.SetActive (active);
-		running = false;
+		running = false; // TODO: Should this be part of this?
 	}
 
-	public void MoveToStartingPosition() {
-		gameObject.transform.position = startingPosition;
+	public void SetMoveSpeed(float moveSpeed) {
+		this.moveSpeed = moveSpeed;
 	}
 
 	public void StartRun() {
@@ -31,15 +27,9 @@ public abstract class RunningNPC : MonoBehaviour {
 	}
 		
 	protected void Start () {
-		if (!initialized) {
-			startingPosition = gameObject.transform.position;
-			initialized = true;
-		} else {
-			gameObject.transform.position = startingPosition;
-		}
-
-		moveSpeed = 3.0f;
-		running = false;
+		startingPosition = gameObject.transform.position;
+		moveSpeed = DEFAULT_MOVE_SPEED;
+		Reset ();
 	}
 
 	protected void Update () {
@@ -48,12 +38,26 @@ public abstract class RunningNPC : MonoBehaviour {
 		}
 	}
 
+	protected void Reset() {
+		MoveToStartingPosition ();
+		running = false;
+	}
+
+	private void MoveToStartingPosition() {
+		gameObject.transform.position = startingPosition;
+	}
+
+	private const float DEFAULT_MOVE_SPEED = 3.0f;
+
+	private Vector3 startingPosition;
+	private float moveSpeed;
+	private bool running;
+
+
 	private void MoveForward() {
 		gameObject.transform.Translate (Vector3.forward 
 			* moveSpeed * Time.deltaTime, Space.World);
 	}
 
-	protected void SetMoveSpeed(float moveSpeed) {
-		this.moveSpeed = moveSpeed;
-	}
+
 }
