@@ -28,8 +28,8 @@ public class ElevatorDoorManager : MonoBehaviour {
 		
 	private static Vector3 OPEN_MOVEMENT_VECTOR = Vector3.right;
 	private static Vector3 CLOSE_MOVEMENT_VECTOR = Vector3.left;
-	private static float MAX_DOOR_OPEN_X = 2.0f;
-	private static float MAX_DOOR_CLOSE_X = -2.0f;
+	private const float MAX_DOOR_OPEN_X = 2.0f;
+	private const float MAX_DOOR_CLOSE_X = -2.0f;
 
 	private float openMovementScale;
 	private float closeMovementScale;

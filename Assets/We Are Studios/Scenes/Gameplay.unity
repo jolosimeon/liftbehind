@@ -2249,7 +2249,7 @@ GameObject:
   - component: {fileID: 739533726}
   - component: {fileID: 739533725}
   m_Layer: 10
-  m_Name: Interaction Tooltip
+  m_Name: Tooltip Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3283,6 +3283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec345d3979c34910ac0d0a10243527e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameRunManager: {fileID: 1682442981}
   lightSource: {fileID: 1438993205}
 --- !u!1 &1077355304
 GameObject:
@@ -4862,7 +4863,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1438993204}
   - component: {fileID: 1438993205}
-  - component: {fileID: 1438993207}
   m_Layer: 9
   m_Name: Player Flashlight
   m_TagString: Flashlight
@@ -4917,86 +4917,6 @@ Light:
   m_BounceIntensity: 2.72
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!82 &1438993207
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1438993203}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!1 &1470257411
 GameObject:
   m_ObjectHideFlags: 0
@@ -5915,12 +5835,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4a58b04f43014aa7a0ea6a36d210322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverManager: {fileID: 1665093818}
+  flashlightManager: {fileID: 1062898405}
+  elevatorDoorManager: {fileID: 1509961595}
+  elevatorFloorManager: {fileID: 1770194320}
   zombieGang: {fileID: 1470257413}
   zombie: {fileID: 1483534693}
   survivor: {fileID: 1305300649}
+  gameOverManager: {fileID: 1665093818}
   floorNumberDisplay: {fileID: 1312630506}
   numberSavedDisplay: {fileID: 511327778}
+  tooltipDisplay: {fileID: 739533725}
 --- !u!1 &1764467917
 GameObject:
   m_ObjectHideFlags: 0

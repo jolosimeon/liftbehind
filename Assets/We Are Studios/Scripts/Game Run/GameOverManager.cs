@@ -30,7 +30,7 @@ public class GameOverManager : MonoBehaviour {
 		DisableGameplay ();
 		SetVisiblityGameOverMessage (true);
 		flashlight.SetEnabled (false);
-		flashlight.SetToInitialRotation ();
+		flashlight.RotateToInitialRotation ();
 		gameOver = true;
 	}
 		

@@ -8,18 +8,19 @@ using UnityEngine.UI;
  *	Script is attached to the Game Run Manager Game Object 
  */
 public class GameRunManager : MonoBehaviour {
-	public GameOverManager gameOverManager;
+	public FlashlightManager flashlightManager;
+	public ElevatorDoorManager elevatorDoorManager;
+	public ElevatorFloorManager elevatorFloorManager;
+
 	public ZombieGangManager zombieGang;
 	public ZombieManager zombie;
 	public SurvivorManager survivor;
 
+	public GameOverManager gameOverManager;
+
 	public Text floorNumberDisplay;
 	public Text numberSavedDisplay;
-
-	private int numFloors;
-	private int currentFloor;
-	private int numSurvivorsNeeded;
-	private int numSurvivorsSaved;
+	public Text tooltipDisplay;
 
 
 	public void SetNumFloors(int numFloors) {
@@ -30,8 +31,28 @@ public class GameRunManager : MonoBehaviour {
 		this.numSurvivorsNeeded = numSurvivorsNeeded;
 	}
 
-	public void NotifyGameObjectSeen() {
-		// TODO: Implement this, transfer code from FlashlightManager
+	public void NotifyGameObjectSeen(GameObject obj) {
+		switch (obj.tag) {
+			case ENEMY_TAG: {
+				break;
+			}
+				
+			case SURVIVOR_TAG: {
+				break;
+			}
+				
+			case INTERACTIVE_OBJECT_TAG: {
+				if (obj.name == ELEVATOR_UP_BUTTON_NAME) {
+					HandleElevatorUpButton ();
+				}
+				break;
+			}
+
+			default: {
+				DisplayTooltip ("");
+				break;
+			}
+		}
 	}
 
 	public void NotifyChangeFloor() {
@@ -45,6 +66,29 @@ public class GameRunManager : MonoBehaviour {
 		
 	public void NotifyZombieInElevator() {
 		gameOverManager.EndGame ("A ZOMBIE WAS ABLE TO ENTER THE ELEVATOR");
+	}
+
+	private const string ENEMY_TAG = "Enemy";
+	private const string SURVIVOR_TAG = "Survivor";
+	private const string INTERACTIVE_OBJECT_TAG = "Interactive Object";
+	private const string ELEVATOR_UP_BUTTON_NAME = "Building Elevator Go Up Button"; 
+
+	private int numFloors;
+	private int currentFloor;
+	private int numSurvivorsNeeded;
+	private int numSurvivorsSaved;
+
+
+	private void HandleElevatorUpButton() {
+		DisplayTooltip (elevatorFloorManager.GetTooltip ());
+
+		if (Input.GetMouseButton (0)) {
+			elevatorFloorManager.Interact ();
+		}
+	}
+
+	private void DisplayTooltip(string message) {
+		tooltipDisplay.text = message;
 	}
 
 	private void ClearFloor() {
@@ -61,6 +105,10 @@ public class GameRunManager : MonoBehaviour {
 	}
 
 	private void Update () {
+		if (Input.GetMouseButtonDown (1)) {
+			flashlightManager.ToggleFlashlight ();
+		}
+
 		DisplayGameStatistics ();
 	}
 
@@ -78,10 +126,12 @@ public class GameRunManager : MonoBehaviour {
 				InitializeEmptyFloor ();
 				break;
 			}
+				
 			case 1: {
 				InitializeJumpScareFloor ();
 				break;
 			}
+				
 			case 2: {
 				InitializeSurvivorFloor ();
 				break;
