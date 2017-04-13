@@ -70,7 +70,15 @@ public class GameRunManager : MonoBehaviour {
 		reasonGameOver = "A ZOMBIE WAS ABLE TO ENTER THE ELEVATOR";
 
 		DisableFirstPerson ();
-		SceneManager.LoadScene ("Game Over");
+//		SceneManager.LoadScene ("Game Over");
+		NotifyAtTopFloor();
+	}
+
+	public void NotifyAtTopFloor() {
+		bool savedAll = true;
+		if (savedAll) {
+			SceneManager.LoadScene ("Game Win");
+		}
 	}
 
 	public bool IsSurvivorCaughtByZombie() {
