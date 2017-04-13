@@ -16,8 +16,6 @@ public class GameRunManager : MonoBehaviour {
 	public ZombieManager zombie;
 	public SurvivorManager survivor;
 
-	public GameOverManager gameOverManager;
-
 	public Text floorNumberDisplay;
 	public Text numberSavedDisplay;
 	public Text tooltipDisplay;
@@ -65,7 +63,7 @@ public class GameRunManager : MonoBehaviour {
 	}
 		
 	public void NotifyZombieInElevator() {
-//		gameOverManager.EndGame ("A ZOMBIE WAS ABLE TO ENTER THE ELEVATOR");
+		reasonGameOver = "A ZOMBIE WAS ABLE TO ENTER THE ELEVATOR";
 		SceneManager.LoadScene ("Game Over");
 	}
 
@@ -82,6 +80,14 @@ public class GameRunManager : MonoBehaviour {
 		return elevatorFloorManager.IsChangingFloor ();
 	}
 
+	public int GetNumberOfSurvivorsSaved() {
+		return numSurvivorsSaved;
+	}
+
+	public string GetReasonGameOver() {
+		return reasonGameOver;
+	}
+
 	private const float CAUGHT_DISTANCE = 1.5f;
 	private const string ENEMY_TAG = "Enemy";
 	private const string SURVIVOR_TAG = "Survivor";
@@ -92,7 +98,7 @@ public class GameRunManager : MonoBehaviour {
 	private int currentFloor;
 	private int numSurvivorsNeeded;
 	private int numSurvivorsSaved;
-
+	private string reasonGameOver;
 
 	private void HandleElevatorUpButton() {
 		DisplayTooltip (elevatorFloorManager.GetTooltip ());
@@ -189,7 +195,7 @@ public class GameRunManager : MonoBehaviour {
 		Debug.Log ("GameRunManager:InitializeSaveSurvivorFloor: Survivor floor initialized");
 	}
 
-//	private void Awake() {
-//		DontDestroyOnLoad (transform.gameObject);
-//	}
+	private void Awake() {
+		DontDestroyOnLoad (transform.gameObject);
+	}
 }

@@ -9,24 +9,21 @@ using UnityStandardAssets.Characters.FirstPerson;
  *	Script is attached to the Game Over Manager Game Object 
  */
 public class GameOverManager : MonoBehaviour {
-	public const int CAUSE_ZOMBIE_IN_ELEVATOR = 0;
 
-	public GameObject zombieInElevator;
+	public Text gameOverReasonDisplay;
+	public Text numberSavedDisplay;
+
+	private	GameRunManager gameRunManager;
 
 	private void Start() {
-//		DeactivateAll ();
+		GameObject gameRunManagerObject = GameObject.Find ("Game Run Manager");
+		gameRunManager = gameRunManagerObject.GetComponent<GameRunManager> ();
 
-		int gameOverCause = 0;
-		switch (gameOverCause) {
-			case CAUSE_ZOMBIE_IN_ELEVATOR:{
-				zombieInElevator.SetActive (false);
-				break;
-			}
-		}
-	}
+		gameOverReasonDisplay.text = gameRunManager.GetReasonGameOver();
 
-	private void DeactivateAll() {
-		zombieInElevator.SetActive (false);
+		int numSaved = gameRunManager.GetNumberOfSurvivorsSaved ();
+		numberSavedDisplay.text = numSaved + " SURVIVOR"
+		+ ((numSaved != 1) ? "s" : "") + " SAVED";
 	}
 
 	private void Update() {
