@@ -9,71 +9,27 @@ using UnityStandardAssets.Characters.FirstPerson;
  *	Script is attached to the Game Over Manager Game Object 
  */
 public class GameOverManager : MonoBehaviour {
-	public FirstPersonController player;
-	public FlashlightManager flashlight;
-	public Canvas gameOverCanvas;
-	public Text gameOverHeader;
-	public Text gameOverReason;
-	public Text gameOverInstruction;
+	public const int CAUSE_ZOMBIE_IN_ELEVATOR = 0;
 
-	private bool gameOver;
+	public GameObject zombieInElevator;
 
-	public bool IsGameOver() {
-		return gameOver;
-	}
+	private void Start() {
+//		DeactivateAll ();
 
-	public void EndGame(string reason) {
-		gameOverReason.text = reason;
-
-		DisableGameplay ();
-		SetVisiblityGameOverMessage (true);
-		flashlight.SetEnabled (false);
-		flashlight.RotateToInitialRotation ();
-		gameOver = true;
-	}
-		
-	private void DisableGameplay() {
-		player.enabled = false;
-	}
-
-	private void SetVisiblityGameOverMessage(bool visible) {
-		gameOverCanvas.enabled = visible;
-	}
-
-	void OnGUI() {
-		if (gameOver) {
-//			DisplayGameOverMessage ("Game Over", "Press the spacebar to restart");
+		int gameOverCause = 0;
+		switch (gameOverCause) {
+			case CAUSE_ZOMBIE_IN_ELEVATOR:{
+				zombieInElevator.SetActive (false);
+				break;
+			}
 		}
 	}
 
-	private void Start() {
-		gameOverHeader.text = "GAME OVER";
-		gameOverReason.text = "";
-		gameOverInstruction.text = "Press the spacebar to restart the game";
-
-		gameOver = false;
-		SetVisiblityGameOverMessage (false);
+	private void DeactivateAll() {
+		zombieInElevator.SetActive (false);
 	}
 
 	private void Update() {
-		if (IsGameOver() && Input.GetKeyDown(KeyCode.Space)) {
-			Retry ();
-		}
-	}
 
-	private void DisplayGameOverMessage(string header, string reason, string instruction) {
-		
-	}
-
-	private void Retry() {
-//		EnableGameplay ();
-//		gameOver = false;
-
-		// Reload the game using GameRunManager
-	}
-
-	private void EnableGameplay() {
-		player.enabled = true;
-		flashlight.enabled = true;
 	}
 }

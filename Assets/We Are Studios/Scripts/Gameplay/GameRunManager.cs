@@ -65,8 +65,8 @@ public class GameRunManager : MonoBehaviour {
 	}
 		
 	public void NotifyZombieInElevator() {
-		SceneManager.LoadScene ("Game Over");
 //		gameOverManager.EndGame ("A ZOMBIE WAS ABLE TO ENTER THE ELEVATOR");
+		SceneManager.LoadScene ("Game Over");
 	}
 
 	public bool IsSurvivorCaughtByZombie() {
@@ -188,4 +188,8 @@ public class GameRunManager : MonoBehaviour {
 
 		Debug.Log ("GameRunManager:InitializeSaveSurvivorFloor: Survivor floor initialized");
 	}
+
+//	private void Awake() {
+//		DontDestroyOnLoad (transform.gameObject);
+//	}
 }

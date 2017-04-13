@@ -123,7 +123,7 @@ Material:
       second: 1
     - first:
         name: _Outline
-      second: 0.0057
+      second: 0.005
     - first:
         name: _Parallax
       second: 0.02
@@ -160,16 +160,16 @@ Material:
       second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _EmissionColor
-      second: {r: 0, g: 0, b: 0, a: 1}
+      second: {r: 0.22794116, g: 0.21360816, b: 0.02011246, a: 1}
     - first:
         name: _HueVariation
       second: {r: 1, g: 0.5, b: 0, a: 0.1}
     - first:
         name: _OutlineColor
-      second: {r: 1, g: 1, b: 1, a: 1}
+      second: {r: 0.49904567, g: 0.18771625, b: 0.8235294, a: 1}
     - first:
         name: _ShadowColor
       second: {r: 0, g: 0, b: 0, a: 0.5}
     - first:
         name: _SpecColor
-      second: {r: 0.67058825, g: 0.6666667, b: 0.62352943, a: 1}
+      second: {r: 0.9705882, g: 0.9610726, b: 0.8564014, a: 1}
