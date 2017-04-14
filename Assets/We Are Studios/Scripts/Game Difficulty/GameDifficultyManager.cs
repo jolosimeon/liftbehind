@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// TODO: Fix bug where restarting the game results in erroneous settings
+// TODO: Fix bug where player can go up even if door is open
+// TODO: Link back to menu buttons
+
 public class GameDifficultyManager : MonoBehaviour {
 	private const float EASY_ZOMBIE_SPEED = 0.5f;
 	private const float EASY_SURVIVOR_SPEED = 3.0f;
 	private const int EASY_NUMBER_PRESSES_OPEN = 10;
 	private const int EASY_NUMBER_PRESSES_CLOSE = 10;
-	private const int EASY_NUMBER_FLOORS = 5;
+//	private const int EASY_NUMBER_FLOORS = 5;
+	private const int EASY_NUMBER_FLOORS = 2;
 	private const int EASY_NUMBER_SURVIVORS_REQUIRED = 1;
 
 	private const float MEDIUM_ZOMBIE_SPEED = 1.0f;

@@ -58,8 +58,22 @@ public class GameRunManager : MonoBehaviour {
 	}
 
 	public void NotifyChangeFloor() {
-		ClearFloor ();
-		InitializeRandomFloor ();
+		if (currentFloor == numFloors) {
+			FinishGameRun ();
+		} else {
+			++currentFloor;
+			ClearFloor ();
+			InitializeRandomFloor ();
+		}
+	}
+
+	private void FinishGameRun() {
+		if (numSurvivorsSaved >= numSurvivorsNeeded) {
+			SceneManager.LoadScene ("Game Win");
+		} else {
+			reasonGameOver = "YOU FAILED TO RESCURE THE REQUIRED NUMBER OF SURVIVORS";
+			SceneManager.LoadScene ("Game Over");
+		}
 	}
 		
 	public void NotifySurvivorSaved() {
