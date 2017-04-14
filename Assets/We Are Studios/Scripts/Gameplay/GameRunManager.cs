@@ -132,16 +132,22 @@ public class GameRunManager : MonoBehaviour {
 	}
 
 	private void Start () {
-		survivor.SetMoveSpeed (3.0f);
-		zombie.SetMoveSpeed (1.0f);
+		GameObject gameDifficultyManagerObject = GameObject.Find ("Game Difficulty Manager");
+		GameDifficultyManager gameDifficultyManager = 
+			gameDifficultyManagerObject.GetComponent<GameDifficultyManager> ();
 
-		SetNumFloors (10);
+		survivor.SetMoveSpeed (gameDifficultyManager.GetSurvivorSpeed());
+		zombie.SetMoveSpeed (gameDifficultyManager.GetZombieSpeed());
+		elevatorDoorManager.SetNumberPressesRequiredOpen (gameDifficultyManager.GetNumberOfPressesOpen ());
+		elevatorDoorManager.SetNumberPressesRequiredClose (gameDifficultyManager.GetNumberOfPressesClose ());
+		SetNumFloors (gameDifficultyManager.GetNumberOfFloors());
+		SetNumberOfSurvivorsNeeded (gameDifficultyManager.GetNumberOfSurvivorsRequired());
+
 		currentFloor = 1;
-
-		SetNumberOfSurvivorsNeeded (5);
 		numSurvivorsSaved = 0;
-
 		reasonGameOver = null;
+
+		Destroy (gameDifficultyManagerObject);
 	}
 
 	private void Update () {
