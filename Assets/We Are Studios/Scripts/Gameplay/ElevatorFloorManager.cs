@@ -55,10 +55,7 @@ public class ElevatorFloorManager : MonoBehaviour {
 		warpedToBottom = false;
 
 		gameRun.elevatorDoorManager.MakeExact ();
-		gameRun.elevatorDoorManager.SetEnableMovement (
-			(gameRun.GetCurrentFloorType() == GameRunManager.JUMPSCARE_FLOOR)
-			? false : true
-		);
+		gameRun.elevatorDoorManager.SetEnableMovement (true);
 	}
 
 	private void MakeExactToInitialPosition() {
@@ -70,6 +67,9 @@ public class ElevatorFloorManager : MonoBehaviour {
 			WarpToBottomPosition ();
 		} else if (warpedToBottom && IsAtInitialPosition ()) {
 			Reset ();
+
+			bool enableDoorMove = (gameRun.GetCurrentFloorType () == GameRunManager.JUMPSCARE_FLOOR) ? false : true;
+			gameRun.elevatorDoorManager.SetEnableMovement (enableDoorMove); 
 		}
 			
 		if (changingFloor) {

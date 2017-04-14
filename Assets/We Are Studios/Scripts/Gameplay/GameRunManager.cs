@@ -61,6 +61,7 @@ public class GameRunManager : MonoBehaviour {
 	}
 
 	public void NotifyChangeFloor() {
+
 		if (currentFloor == numFloors) {
 			FinishGameRun ();
 		} else {
@@ -70,6 +71,11 @@ public class GameRunManager : MonoBehaviour {
 			int floorType = floorsToGenerate [currentFloor - 1];
 			InitializeFloor (floorType);
 		}
+	}
+
+	public void NotifyAtFloor() {
+		bool enableDoorMove = (GetCurrentFloorType () == JUMPSCARE_FLOOR) ? false : true;
+		elevatorDoorManager.SetEnableMovement (enableDoorMove); 
 	}
 
 	private void FinishGameRun() {
@@ -239,7 +245,7 @@ public class GameRunManager : MonoBehaviour {
 		
 	private void InitializeFloor(int floor) {
 		// TODO: Remove this after development
-		floor = JUMPSCARE_FLOOR;
+//		floor = JUMPSCARE_FLOOR;
 
 		switch (floor) {
 			case EMPTY_FLOOR: {
