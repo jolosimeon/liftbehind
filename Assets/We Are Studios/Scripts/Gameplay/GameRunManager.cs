@@ -64,7 +64,9 @@ public class GameRunManager : MonoBehaviour {
 		} else {
 			++currentFloor;
 			ClearFloor ();
-			InitializeFloor (currentFloor - 1);
+
+			int floorType = floorsToGenerate [currentFloor - 1];
+			InitializeFloor (floorType);
 		}
 	}
 
