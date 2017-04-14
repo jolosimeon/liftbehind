@@ -36,6 +36,7 @@ public class ZombieGangManager : MonoBehaviour {
 			++numKeysCorrect;
 
 			if (numKeysCorrect == numKeysToDefeat) {
+				keyToPress = KeyCode.None;
 				DefeatedByPlayer ();
 			} else {
 				keyToPress = GetRandomKeyCode ();

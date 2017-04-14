@@ -98,10 +98,9 @@ public class GameRunManager : MonoBehaviour {
 	}
 
 	public void NotifyZombieGangDefeated() {
-		jumpscareOngoing = false;
 		EnableFirstPerson ();
+		jumpscareOngoing = false;
 		keyToPressDisplay.text = "";
-		// Reenable first person
 		Debug.Log("Zombie gang successfully defeated");
 	}
 
@@ -258,7 +257,13 @@ public class GameRunManager : MonoBehaviour {
 			if (Input.anyKeyDown) {
 				KeyCode keyPressed = GetKeyPressed ();
 				zombieGang.AttackedByPlayer (keyPressed);
-				keyToPressDisplay.text = zombieGang.GetKeyToPress () + "";
+
+				KeyCode k = zombieGang.GetKeyToPress ();
+				if (k == KeyCode.None) {
+					keyToPressDisplay.text = "";
+				} else {
+					keyToPressDisplay.text = zombieGang.GetKeyToPress () + "";
+				}
 			}
 
 		} else if (!jumpscareOngoing && Input.GetMouseButtonDown (1) && reasonGameOver == null) {
