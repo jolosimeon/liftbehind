@@ -35,6 +35,8 @@ public class ElevatorFloorManager : MonoBehaviour {
 
 	private void ChangeFloor() {
 		changingFloor = true;
+		gameRun.elevatorDoorManager.MakeExact ();
+		gameRun.elevatorDoorManager.SetEnableMovement (false);
 	}
 
 	private void Start () {
@@ -51,6 +53,12 @@ public class ElevatorFloorManager : MonoBehaviour {
 		MakeExactToInitialPosition ();
 		changingFloor = false;
 		warpedToBottom = false;
+
+		gameRun.elevatorDoorManager.MakeExact ();
+		gameRun.elevatorDoorManager.SetEnableMovement (
+			(gameRun.GetCurrentFloorType() == GameRunManager.JUMPSCARE_FLOOR)
+			? false : true
+		);
 	}
 
 	private void MakeExactToInitialPosition() {

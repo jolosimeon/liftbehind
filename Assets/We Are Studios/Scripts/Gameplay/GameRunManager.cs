@@ -25,6 +25,7 @@ public class GameRunManager : MonoBehaviour {
 	public Text numberSavedDisplay;
 	public Text numberSurvivorsDisplay;
 	public Text tooltipDisplay;
+	public Text keyToPressDisplay;
 
 
 	public void SetNumFloors(int numFloors) {
@@ -112,15 +113,19 @@ public class GameRunManager : MonoBehaviour {
 		return reasonGameOver;
 	}
 
+	public int GetCurrentFloorType() {
+		return floorsToGenerate [currentFloor - 1];
+	}
+
 	private const float CAUGHT_DISTANCE = 1.5f;
 	private const string ENEMY_TAG = "Enemy";
 	private const string SURVIVOR_TAG = "Survivor";
 	private const string INTERACTIVE_OBJECT_TAG = "Interactive Object";
 	private const string ELEVATOR_UP_BUTTON_NAME = "Building Elevator Go Up Button"; 
 
-	private const int EMPTY_FLOOR = 0;
-	private const int JUMPSCARE_FLOOR = 1;
-	private const int SURVIVOR_FLOOR = 2;
+	public const int EMPTY_FLOOR = 0;
+	public const int JUMPSCARE_FLOOR = 1;
+	public const int SURVIVOR_FLOOR = 2;
 
 	private int numFloors;
 	private int currentFloor;
@@ -129,8 +134,7 @@ public class GameRunManager : MonoBehaviour {
 	private int numSurvivors;
 
 	private int[] floorsToGenerate;
-
-
+	private bool jumpscareOngoing;
 	private string reasonGameOver;
 
 	private void HandleElevatorUpButton() {
@@ -167,6 +171,7 @@ public class GameRunManager : MonoBehaviour {
 		currentFloor = 1;
 		numSurvivorsSaved = 0;
 		reasonGameOver = null;
+		jumpscareOngoing = false;
 
 		InitializeFloorsToGenerate ();
 
@@ -266,6 +271,8 @@ public class GameRunManager : MonoBehaviour {
 		zombieGang.SetActive (true);
 		zombie.SetActive (false);
 		survivor.SetActive (false);
+
+
 
 		// Zombie gang should only start attack when pointed with flashlight
 

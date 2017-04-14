@@ -11,6 +11,8 @@ public class ZombieGangManager : MonoBehaviour {
 	private Animator animator2;
 	private Animator animator3;
 
+	private int numKeysToDefeat;
+
 	private KeyCode[] possibleKeys = {
 		KeyCode.A, KeyCode.B, KeyCode.C, KeyCode.D, KeyCode.E, KeyCode.F, KeyCode.G,
 		KeyCode.H, KeyCode.I, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.M, KeyCode.N,
@@ -28,7 +30,7 @@ public class ZombieGangManager : MonoBehaviour {
 	}
 
 	void Start () {
-		
+		numKeysToDefeat = 5;
 	}
 
 	void Update () {
