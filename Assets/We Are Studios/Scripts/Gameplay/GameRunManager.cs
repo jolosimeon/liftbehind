@@ -23,6 +23,7 @@ public class GameRunManager : MonoBehaviour {
 
 	public Text floorNumberDisplay;
 	public Text numberSavedDisplay;
+	public Text numberSurvivorsDisplay;
 	public Text tooltipDisplay;
 
 
@@ -133,7 +134,10 @@ public class GameRunManager : MonoBehaviour {
 	private int currentFloor;
 	private int numSurvivorsNeeded;
 	private int numSurvivorsSaved;
+	private int numSurvivors;
+
 	private int[] floorsToGenerate;
+
 
 	private string reasonGameOver;
 
@@ -201,10 +205,15 @@ public class GameRunManager : MonoBehaviour {
 			floorsToGenerate [floor] = SURVIVOR_FLOOR;
 		}
 
+		numSurvivors = numSurvivorsNeeded;
 		for (int i = 0; i < floorIndexList.Count(); i++) {
 			int floor = GetRemoveRandom (floorIndexList);
 			int floorType = Random.Range (0, 3);
 			floorsToGenerate [floor] = floorType;
+
+			if (floorType == SURVIVOR_FLOOR) {
+				++numSurvivors;
+			}
 		}
 	}
 
@@ -226,7 +235,9 @@ public class GameRunManager : MonoBehaviour {
 
 	private void DisplayGameStatistics() {
 		floorNumberDisplay.text = "FLOOR " + currentFloor + " / " + numFloors;
-		numberSavedDisplay.text = numSurvivorsSaved + " / " + numSurvivorsNeeded + " SURVIVORS SAVED";
+		numberSavedDisplay.text = numSurvivorsSaved + " SURVIVORS SAVED";
+		numberSurvivorsDisplay.text = "RESCUE AT LEAST " 
+			+ numSurvivorsNeeded + " OUT OF " + numSurvivors;
 	}
 		
 	private void InitializeFloor(int floor) {
