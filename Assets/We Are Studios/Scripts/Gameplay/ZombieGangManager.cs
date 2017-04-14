@@ -50,11 +50,16 @@ public class ZombieGangManager : MonoBehaviour {
 
 	private void DefeatedByPlayer() {
 		gameRunManager.NotifyZombieGangDefeated ();
-
-		// TODO: Do animation fo zombie gang dying
+		animator1.SetTrigger ("Defeat");
+		animator2.SetTrigger ("Defeat");
+		animator3.SetTrigger ("Defeat");
 	}
 
 	private void Start () {
+		animator1 = zombie1.GetComponent<Animator> ();
+		animator2 = zombie2.GetComponent<Animator> ();
+		animator3 = zombie3.GetComponent<Animator> ();
+
 		numKeysToDefeat = 5;
 		numKeysCorrect = 0;
 		keyToPress = GetRandomKeyCode ();
