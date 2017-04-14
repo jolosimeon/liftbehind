@@ -5793,7 +5793,7 @@ MonoBehaviour:
   numberSavedDisplay: {fileID: 511327778}
   numberSurvivorsDisplay: {fileID: 171664939}
   tooltipDisplay: {fileID: 739533725}
-  keyToPressDisplay: {fileID: 0}
+  keyToPressDisplay: {fileID: 391603388}
 --- !u!1 &1764467917
 GameObject:
   m_ObjectHideFlags: 0

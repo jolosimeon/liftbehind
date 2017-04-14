@@ -77,11 +77,11 @@ public class GameRunManager : MonoBehaviour {
 		bool enableDoorMove = (GetCurrentFloorType () == JUMPSCARE_FLOOR) ? false : true;
 
 		if (GetCurrentFloorType () == JUMPSCARE_FLOOR) {
-			
-			FocusZombieGang ();
 			DisableFirstPerson ();
-
-			Debug.Log ("Focused to zombie gang and disabled first person");
+			FocusZombieGang ();
+			jumpscareOngoing = true;
+			keyToPressDisplay.text = zombieGang.GetKeyToPress () + "";
+			Debug.Log ("GameRunManager:NotifyAtFloor: Is at jumpscare floor");
 		}
 
 		elevatorDoorManager.SetEnableMovement (enableDoorMove); 
@@ -93,13 +93,16 @@ public class GameRunManager : MonoBehaviour {
 	}
 
 	private void FocusZombieGang() {
-		firstPerson.transform.LookAt (zombieGang.transform.position);
-		firstPerson.transform.Rotate (-10, 110, 13);
+		flashlightManager.transform.LookAt (zombieGang.transform.position);
+		flashlightManager.transform.Rotate (-10, 110, 13);
 	}
 
 	public void NotifyZombieGangDefeated() {
+		jumpscareOngoing = false;
 		EnableFirstPerson ();
+		keyToPressDisplay.text = "";
 		// Reenable first person
+		Debug.Log("Zombie gang successfully defeated");
 	}
 
 	private void FinishGameRun() {
@@ -198,6 +201,7 @@ public class GameRunManager : MonoBehaviour {
 		numSurvivorsSaved = 0;
 		reasonGameOver = null;
 		jumpscareOngoing = false;
+		keyToPressDisplay.text = "";
 
 		InitializeFloorsToGenerate ();
 
@@ -249,11 +253,28 @@ public class GameRunManager : MonoBehaviour {
 	}
 
 	private void Update () {
-		if (Input.GetMouseButtonDown (1) && reasonGameOver == null) {
+		if (jumpscareOngoing) {
+			// Subtract from elevator life
+			if (Input.anyKeyDown) {
+				KeyCode keyPressed = GetKeyPressed ();
+				zombieGang.AttackedByPlayer (keyPressed);
+				keyToPressDisplay.text = zombieGang.GetKeyToPress () + "";
+			}
+
+		} else if (!jumpscareOngoing && Input.GetMouseButtonDown (1) && reasonGameOver == null) {
 			flashlightManager.ToggleFlashlight ();
 		}
 
 		DisplayGameStatistics ();
+	}
+
+	private KeyCode GetKeyPressed () {
+		foreach (KeyCode k in System.Enum.GetValues(typeof(KeyCode))) {
+			if (Input.GetKeyDown (k)) {
+				return k;
+			}
+		}
+		return KeyCode.None;
 	}
 
 	private void DisplayGameStatistics() {
@@ -297,11 +318,6 @@ public class GameRunManager : MonoBehaviour {
 		zombieGang.SetActive (true);
 		zombie.SetActive (false);
 		survivor.SetActive (false);
-
-
-
-		// Zombie gang should only start attack when pointed with flashlight
-
 		Debug.Log ("GameRunManager:InitializeJumpScareFloor: Jump scare floor initialized");
 	}
 
@@ -324,7 +340,7 @@ public class GameRunManager : MonoBehaviour {
 	}
 
 	private void EnableFirstPerson() {
-		firstPerson.GetComponent<FirstPersonController> ().enabled = false;
+		firstPerson.GetComponent<FirstPersonController> ().enabled = true;
 	}
 
 	private void DisableFirstPerson() {

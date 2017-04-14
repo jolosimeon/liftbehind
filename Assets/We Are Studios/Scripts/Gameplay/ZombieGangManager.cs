@@ -21,9 +21,6 @@ public class ZombieGangManager : MonoBehaviour {
 		KeyCode.H, KeyCode.I, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.M, KeyCode.N,
 		KeyCode.O, KeyCode.P, KeyCode.Q, KeyCode.R, KeyCode.S, KeyCode.T, KeyCode.U,
 		KeyCode.V, KeyCode.W, KeyCode.X, KeyCode.Y, KeyCode.Z,
-
-		KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5,
-		KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0
 	};
 
 	private KeyCode keyToPress;
@@ -40,8 +37,14 @@ public class ZombieGangManager : MonoBehaviour {
 
 			if (numKeysCorrect == numKeysToDefeat) {
 				DefeatedByPlayer ();
+			} else {
+				keyToPress = GetRandomKeyCode ();
 			}
 		}
+	}
+
+	public KeyCode GetKeyToPress() {
+		return keyToPress;
 	}
 
 	private void DefeatedByPlayer() {
@@ -53,6 +56,12 @@ public class ZombieGangManager : MonoBehaviour {
 	private void Start () {
 		numKeysToDefeat = 5;
 		numKeysCorrect = 0;
+		keyToPress = GetRandomKeyCode ();
+	}
+
+	private KeyCode GetRandomKeyCode() {
+		int random = Random.Range (0, possibleKeys.Length);
+		return possibleKeys [random];
 	}
 
 	private void Update () {
