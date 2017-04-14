@@ -160,8 +160,6 @@ public class GameRunManager : MonoBehaviour {
 		currentFloor = 1;
 		numSurvivorsSaved = 0;
 		reasonGameOver = null;
-
-		Destroy (gameDifficultyManagerObject);
 	}
 
 	private void Update () {

@@ -24,4 +24,9 @@ public class GameWinManager : MonoBehaviour {
 	void Update () {
 		
 	}
+		
+	public void BackToMenu() {
+		GameObject gameDifficultyManagerObject = GameObject.Find ("Game Difficulty Manager");
+		Destroy (gameDifficultyManagerObject);
+	}
 }

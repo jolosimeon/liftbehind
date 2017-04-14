@@ -39,4 +39,9 @@ public class GameOverManager : MonoBehaviour {
 		Debug.Log ("GameOverManager:Retry: Retry button clicked");
 		SceneManager.LoadScene ("Gameplay");
 	}
+
+	public void BackToMenu() {
+		GameObject gameDifficultyManagerObject = GameObject.Find ("Game Difficulty Manager");
+		Destroy (gameDifficultyManagerObject);
+	}
 }
