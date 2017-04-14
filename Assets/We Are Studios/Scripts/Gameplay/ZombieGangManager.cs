@@ -11,7 +11,10 @@ public class ZombieGangManager : MonoBehaviour {
 	private Animator animator2;
 	private Animator animator3;
 
+	public GameRunManager gameRunManager;
 	private int numKeysToDefeat;
+	private int numKeysCorrect;
+
 
 	private KeyCode[] possibleKeys = {
 		KeyCode.A, KeyCode.B, KeyCode.C, KeyCode.D, KeyCode.E, KeyCode.F, KeyCode.G,
@@ -23,17 +26,36 @@ public class ZombieGangManager : MonoBehaviour {
 		KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0
 	};
 
+	private KeyCode keyToPress;
+
 	public void SetActive(bool active) {
 		zombie1.SetActive (active);
 		zombie2.SetActive (active);
 		zombie3.SetActive (active);
 	}
 
-	void Start () {
-		numKeysToDefeat = 5;
+	public void AttackedByPlayer(KeyCode keyPressed) {
+		if (keyPressed == keyToPress) {
+			++numKeysCorrect;
+
+			if (numKeysCorrect == numKeysToDefeat) {
+				DefeatedByPlayer ();
+			}
+		}
 	}
 
-	void Update () {
+	private void DefeatedByPlayer() {
+		gameRunManager.NotifyZombieGangDefeated ();
+
+		// TODO: Do animation fo zombie gang dying
+	}
+
+	private void Start () {
+		numKeysToDefeat = 5;
+		numKeysCorrect = 0;
+	}
+
+	private void Update () {
 		
 	}
 }

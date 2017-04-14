@@ -75,7 +75,31 @@ public class GameRunManager : MonoBehaviour {
 
 	public void NotifyAtFloor() {
 		bool enableDoorMove = (GetCurrentFloorType () == JUMPSCARE_FLOOR) ? false : true;
+
+		if (GetCurrentFloorType () == JUMPSCARE_FLOOR) {
+			
+			FocusZombieGang ();
+			DisableFirstPerson ();
+
+			Debug.Log ("Focused to zombie gang and disabled first person");
+		}
+
 		elevatorDoorManager.SetEnableMovement (enableDoorMove); 
+	}
+
+	public int GetCurrentFloorType() {
+		return JUMPSCARE_FLOOR;
+//		return floorsToGenerate [currentFloor - 1];
+	}
+
+	private void FocusZombieGang() {
+		firstPerson.transform.LookAt (zombieGang.transform.position);
+		firstPerson.transform.Rotate (-10, 110, 13);
+	}
+
+	public void NotifyZombieGangDefeated() {
+		EnableFirstPerson ();
+		// Reenable first person
 	}
 
 	private void FinishGameRun() {
@@ -117,10 +141,6 @@ public class GameRunManager : MonoBehaviour {
 
 	public string GetReasonGameOver() {
 		return reasonGameOver;
-	}
-
-	public int GetCurrentFloorType() {
-		return floorsToGenerate [currentFloor - 1];
 	}
 
 	private const float CAUGHT_DISTANCE = 1.5f;
@@ -245,7 +265,7 @@ public class GameRunManager : MonoBehaviour {
 		
 	private void InitializeFloor(int floor) {
 		// TODO: Remove this after development
-//		floor = JUMPSCARE_FLOOR;
+		floor = JUMPSCARE_FLOOR;
 
 		switch (floor) {
 			case EMPTY_FLOOR: {
@@ -301,6 +321,10 @@ public class GameRunManager : MonoBehaviour {
 
 	private void Awake() {
 		DontDestroyOnLoad (transform.gameObject);
+	}
+
+	private void EnableFirstPerson() {
+		firstPerson.GetComponent<FirstPersonController> ().enabled = false;
 	}
 
 	private void DisableFirstPerson() {

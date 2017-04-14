@@ -68,8 +68,9 @@ public class ElevatorFloorManager : MonoBehaviour {
 		} else if (warpedToBottom && IsAtInitialPosition ()) {
 			Reset ();
 
-			bool enableDoorMove = (gameRun.GetCurrentFloorType () == GameRunManager.JUMPSCARE_FLOOR) ? false : true;
-			gameRun.elevatorDoorManager.SetEnableMovement (enableDoorMove); 
+			gameRun.NotifyAtFloor ();
+//			bool enableDoorMove = (gameRun.GetCurrentFloorType () == GameRunManager.JUMPSCARE_FLOOR) ? false : true;
+//			gameRun.elevatorDoorManager.SetEnableMovement (enableDoorMove); 
 		}
 			
 		if (changingFloor) {

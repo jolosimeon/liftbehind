@@ -98,7 +98,5 @@ public class SurvivorManager : RunningNPC {
 		waiting = false;
 		dead = true;
 		animator.SetTrigger ("Dead");
-
-		Debug.Log ("SurvivorManager:Die: Survivor is dead");
 	}
 }
