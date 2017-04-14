@@ -17,15 +17,15 @@ TagManager:
   - UI
   - 
   - 
-  - Game Over - Survivor Floor
-  - Game Over - Jumpscare Floor
-  - Game Over - Top Floor
+  - Gameplay
+  - Gameplay - Empty
+  - Gameplay - Jumpscare
+  - Gameplay - Survivor
+  - Gameplay - UI
+  - Game Menu
+  - Game Difficulty
+  - Game Over
   - Game Win
-  - 
-  - 
-  - 
-  - 
-  - 
   - 
   - 
   - 

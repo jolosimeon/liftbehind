@@ -482,8 +482,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "~ Building has 5 floors\n\n~ You must save at least 1 survivor\n \n~ Zombies
-    walk slowly\n\n~ Few presses to open or close door\n\n~ Zombie gangs do low damage
-    to elevator door"
+    walk slowly\n\n~ Few presses to open or close door\n\n~ Zombie gangs have low
+    health"
 --- !u!222 &374289830
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -569,7 +569,7 @@ MonoBehaviour:
     ~ Medium number of presses required to open or close doors
 
 
-    ~ Zombie gangs do medium damage to elevator door'
+    ~ Zombie gangs have medium health'
 --- !u!222 &520039833
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -768,7 +768,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "~ Building has 20 floors\n\n~ You must save at least 10 survivors \n\n~
     Zombies walk very fast\n\n~ A lot of presses required to open or close the elevator
-    door\n\n~ Zombie gangs quickly destroy the elevator door"
+    door\n\n~ Zombie gangs have high health"
 --- !u!222 &629675486
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -88,15 +88,7 @@ public class GameRunManager : MonoBehaviour {
 		reasonGameOver = "A ZOMBIE WAS ABLE TO ENTER THE ELEVATOR";
 
 		DisableFirstPerson ();
-//		SceneManager.LoadScene ("Game Over");
-		NotifyAtTopFloor();
-	}
-
-	public void NotifyAtTopFloor() {
-		bool savedAll = true;
-		if (savedAll) {
-			SceneManager.LoadScene ("Game Win");
-		}
+		SceneManager.LoadScene ("Game Over");
 	}
 
 	public bool IsSurvivorCaughtByZombie() {
@@ -241,6 +233,9 @@ public class GameRunManager : MonoBehaviour {
 	}
 		
 	private void InitializeFloor(int floor) {
+		// TODO: Remove this after development
+		floor = JUMPSCARE_FLOOR;
+
 		switch (floor) {
 			case EMPTY_FLOOR: {
 				InitializeEmptyFloor ();

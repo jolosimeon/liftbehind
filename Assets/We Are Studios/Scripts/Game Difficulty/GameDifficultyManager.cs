@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 
 // TODO: Fix bug where saved survivor passes through floor (AGAIN). Previous fix was to
 //		 include in elevator object?
-// TODO: Implement generating at least required number of survivor floors (USE INT ARRAY)
-// TODO: Display total number of generated survivor floors 
+
+// PREVENT USER FROM MOVING DOOR WHILE CHANGING FLOOR. SET EXACT CLOSE AGAIN BEFORE GOING UP
+
 // TODO: Health is door opened instead of health bar for door
 //       (use same equation but diff start and max). Dead if door is open completely
 // TODO: Only zombie gang has life loop random using ascii
