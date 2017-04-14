@@ -129,9 +129,11 @@ public class GameRunManager : MonoBehaviour {
 	private string reasonGameOver;
 
 	private void HandleElevatorUpButton() {
-		DisplayTooltip (elevatorFloorManager.GetTooltip ());
+		string tooltipMessage = (elevatorDoorManager.IsDoorOpen()) 
+			? "Unable to go up while elevator is open" : elevatorFloorManager.GetTooltip ();
+		DisplayTooltip (tooltipMessage);
 
-		if (Input.GetMouseButton (0)) {
+		if (Input.GetMouseButton (0) && !elevatorDoorManager.IsDoorOpen()) {
 			elevatorFloorManager.Interact ();
 		}
 	}

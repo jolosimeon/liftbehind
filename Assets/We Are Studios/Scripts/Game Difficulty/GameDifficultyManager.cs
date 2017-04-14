@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-// TODO: Fix bug where player can go up even if door is open
-// TODO: Link back to menu buttons
+// TODO: Fix bug where player can go up even if door is open (INCLUDE WARNING)
 // TODO: Fix bug where saved survivor passes through floor (AGAIN). Previous fix was to
 //		 include in elevator object?
+// TODO: Implement generating at least required number of survivor floors (USE INT ARRAY)
+// TODO: Display total number of generated survivor floors 
+// TODO: Health is door opened instead of health bar for door
 
 public class GameDifficultyManager : MonoBehaviour {
 	private const float EASY_ZOMBIE_SPEED = 0.5f;
