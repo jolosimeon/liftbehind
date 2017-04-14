@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -63,7 +64,7 @@ public class GameRunManager : MonoBehaviour {
 		} else {
 			++currentFloor;
 			ClearFloor ();
-			InitializeRandomFloor ();
+			InitializeFloor (currentFloor - 1);
 		}
 	}
 
@@ -122,10 +123,16 @@ public class GameRunManager : MonoBehaviour {
 	private const string INTERACTIVE_OBJECT_TAG = "Interactive Object";
 	private const string ELEVATOR_UP_BUTTON_NAME = "Building Elevator Go Up Button"; 
 
+	private const int EMPTY_FLOOR = 0;
+	private const int JUMPSCARE_FLOOR = 1;
+	private const int SURVIVOR_FLOOR = 2;
+
 	private int numFloors;
 	private int currentFloor;
 	private int numSurvivorsNeeded;
 	private int numSurvivorsSaved;
+	private int[] floorsToGenerate;
+
 	private string reasonGameOver;
 
 	private void HandleElevatorUpButton() {
@@ -162,6 +169,49 @@ public class GameRunManager : MonoBehaviour {
 		currentFloor = 1;
 		numSurvivorsSaved = 0;
 		reasonGameOver = null;
+
+		InitializeFloorsToGenerate ();
+
+		Debug.Log ("------ Floors to Generate ------");
+		for (int i = 0; i < numFloors; i++) {
+			if (floorsToGenerate [i] == EMPTY_FLOOR) {
+				Debug.Log ("EMPTY FLOOR");
+			} else if (floorsToGenerate [i] == JUMPSCARE_FLOOR) {
+				Debug.Log ("JUMPSCARE FLOOR");
+			} else if (floorsToGenerate [i] == SURVIVOR_FLOOR) {
+				Debug.Log ("SURVIVOR FLOOR");
+			} else {
+				Debug.Log ("INVALID");
+			}
+		}
+	}
+
+	private void InitializeFloorsToGenerate() {
+		floorsToGenerate = new int[numFloors];
+
+		List<int> floorIndexList = new List<int> ();
+		for (int i = 0; i < numFloors; i++) {
+			floorIndexList.Add (i);
+		}
+
+		for (int i = 0; i < numSurvivorsNeeded; i++) {
+			int floor = GetRemoveRandom (floorIndexList);
+			floorsToGenerate [floor] = SURVIVOR_FLOOR;
+		}
+
+		for (int i = 0; i < floorIndexList.Count(); i++) {
+			int floor = GetRemoveRandom (floorIndexList);
+			int floorType = Random.Range (0, 3);
+			floorsToGenerate [floor] = floorType;
+		}
+	}
+
+	private int GetRemoveRandom(List<int> floorIndexList) {
+		int random = Random.Range (0, floorIndexList.Count ());
+		int item = floorIndexList.ElementAt(random);
+		floorIndexList.RemoveAt (random);
+
+		return item;
 	}
 
 	private void Update () {
@@ -177,22 +227,19 @@ public class GameRunManager : MonoBehaviour {
 		numberSavedDisplay.text = numSurvivorsSaved + " / " + numSurvivorsNeeded + " SURVIVORS SAVED";
 	}
 		
-	private void InitializeRandomFloor() {
-//		int random = Random.Range(0, 3);
-		int random = 2;
-
-		switch (random) {
-			case 0: {
+	private void InitializeFloor(int floor) {
+		switch (floor) {
+			case EMPTY_FLOOR: {
 				InitializeEmptyFloor ();
 				break;
 			}
 				
-			case 1: {
+			case JUMPSCARE_FLOOR: {
 				InitializeJumpScareFloor ();
 				break;
 			}
 				
-			case 2: {
+			case SURVIVOR_FLOOR: {
 				InitializeSurvivorFloor ();
 				break;
 			}
