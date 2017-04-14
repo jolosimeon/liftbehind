@@ -77,6 +77,8 @@ public class GameRunManager : MonoBehaviour {
 		bool enableDoorMove = (GetCurrentFloorType () == JUMPSCARE_FLOOR) ? false : true;
 
 		if (GetCurrentFloorType () == JUMPSCARE_FLOOR) {
+			zombieGang.Reset ();
+
 			DisableFirstPerson ();
 			FocusZombieGang ();
 			jumpscareOngoing = true;

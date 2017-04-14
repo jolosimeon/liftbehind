@@ -60,9 +60,7 @@ public class ZombieGangManager : MonoBehaviour {
 		animator2 = zombie2.GetComponent<Animator> ();
 		animator3 = zombie3.GetComponent<Animator> ();
 
-		numKeysToDefeat = 5;
-		numKeysCorrect = 0;
-		keyToPress = GetRandomKeyCode ();
+		Reset ();
 	}
 
 	private KeyCode GetRandomKeyCode() {
@@ -72,5 +70,19 @@ public class ZombieGangManager : MonoBehaviour {
 
 	private void Update () {
 		
+	}
+
+	public void Reset() {
+		animator1.Play ("attack");
+		animator2.Play ("attack");
+		animator3.Play ("attack");
+
+		animator1.Rebind ();
+		animator2.Rebind ();
+		animator3.Rebind ();
+
+		numKeysToDefeat = 5;
+		numKeysCorrect = 0;
+		keyToPress = GetRandomKeyCode ();
 	}
 }
