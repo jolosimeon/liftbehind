@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameWinManager : MonoBehaviour {
 	public Text numberSavedDisplay;
@@ -28,5 +29,6 @@ public class GameWinManager : MonoBehaviour {
 	public void BackToMenu() {
 		GameObject gameDifficultyManagerObject = GameObject.Find ("Game Difficulty Manager");
 		Destroy (gameDifficultyManagerObject);
+		SceneManager.LoadScene ("Game Menu");
 	}
 }

@@ -43,5 +43,6 @@ public class GameOverManager : MonoBehaviour {
 	public void BackToMenu() {
 		GameObject gameDifficultyManagerObject = GameObject.Find ("Game Difficulty Manager");
 		Destroy (gameDifficultyManagerObject);
+		SceneManager.LoadScene ("Game Menu");
 	}
 }

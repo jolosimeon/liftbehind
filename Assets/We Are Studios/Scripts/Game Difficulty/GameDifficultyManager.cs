@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// TODO: Fix bug where restarting the game results in erroneous settings
+
 // TODO: Fix bug where player can go up even if door is open
 // TODO: Link back to menu buttons
+// TODO: Fix bug where saved survivor passes through floor (AGAIN). Previous fix was to
+//		 include in elevator object?
 
 public class GameDifficultyManager : MonoBehaviour {
 	private const float EASY_ZOMBIE_SPEED = 0.5f;
