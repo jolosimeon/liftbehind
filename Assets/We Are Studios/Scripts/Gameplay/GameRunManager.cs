@@ -27,6 +27,14 @@ public class GameRunManager : MonoBehaviour {
 	public Text tooltipDisplay;
 	public Text keyToPressDisplay;
 
+	public Slider elevatorHealthDisplay;
+	private float elevatorMaxHealth;
+	private float elevatorHealth;
+	private float damagePerSecond;
+
+	public Slider zombieHealthDisplay;
+	public Canvas zombieGangHealthCanvas;
+
 
 	public void SetNumFloors(int numFloors) {
 		this.numFloors = numFloors;
@@ -77,8 +85,8 @@ public class GameRunManager : MonoBehaviour {
 		bool enableDoorMove = (GetCurrentFloorType () == JUMPSCARE_FLOOR) ? false : true;
 
 		if (GetCurrentFloorType () == JUMPSCARE_FLOOR) {
-			zombieGang.Reset ();
-
+			zombieGangHealthCanvas.enabled = true;
+			zombieHealthDisplay.value = zombieGang.GetHealthRatio ();
 			DisableFirstPerson ();
 			FocusZombieGang ();
 			jumpscareOngoing = true;
@@ -103,6 +111,7 @@ public class GameRunManager : MonoBehaviour {
 		EnableFirstPerson ();
 		jumpscareOngoing = false;
 		keyToPressDisplay.text = "";
+		zombieGangHealthCanvas.enabled = false;
 		Debug.Log("Zombie gang successfully defeated");
 	}
 
@@ -198,11 +207,17 @@ public class GameRunManager : MonoBehaviour {
 		SetNumFloors (gameDifficultyManager.GetNumberOfFloors());
 		SetNumberOfSurvivorsNeeded (gameDifficultyManager.GetNumberOfSurvivorsRequired());
 
+
+		zombieGangHealthCanvas.enabled = false;
+
 		currentFloor = 1;
 		numSurvivorsSaved = 0;
 		reasonGameOver = null;
 		jumpscareOngoing = false;
 		keyToPressDisplay.text = "";
+		elevatorMaxHealth = 100;
+		elevatorHealth = 100;
+		damagePerSecond = 1;
 
 		InitializeFloorsToGenerate ();
 
@@ -255,10 +270,14 @@ public class GameRunManager : MonoBehaviour {
 
 	private void Update () {
 		if (jumpscareOngoing) {
-			// Subtract from elevator life
+			elevatorHealth -= damagePerSecond * Time.deltaTime;
+
+
 			if (Input.anyKeyDown) {
 				KeyCode keyPressed = GetKeyPressed ();
 				zombieGang.AttackedByPlayer (keyPressed);
+
+				zombieHealthDisplay.value = zombieGang.GetHealthRatio ();
 
 				KeyCode k = zombieGang.GetKeyToPress ();
 				if (k == KeyCode.None) {
@@ -289,6 +308,8 @@ public class GameRunManager : MonoBehaviour {
 		numberSavedDisplay.text = numSurvivorsSaved + " SURVIVORS SAVED";
 		numberSurvivorsDisplay.text = "RESCUE AT LEAST " 
 			+ numSurvivorsNeeded + " OUT OF " + numSurvivors;
+
+		elevatorHealthDisplay.value = elevatorHealth / elevatorMaxHealth;
 	}
 		
 	private void InitializeFloor(int floor) {
@@ -325,6 +346,7 @@ public class GameRunManager : MonoBehaviour {
 		zombieGang.SetActive (true);
 		zombie.SetActive (false);
 		survivor.SetActive (false);
+		zombieGang.Reset ();
 		Debug.Log ("GameRunManager:InitializeJumpScareFloor: Jump scare floor initialized");
 	}
 

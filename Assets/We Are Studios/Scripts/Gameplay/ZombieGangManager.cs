@@ -81,8 +81,14 @@ public class ZombieGangManager : MonoBehaviour {
 		animator2.Rebind ();
 		animator3.Rebind ();
 
-		numKeysToDefeat = 5;
+		numKeysToDefeat = 20;
 		numKeysCorrect = 0;
 		keyToPress = GetRandomKeyCode ();
+	}
+
+	public float GetHealthRatio() {
+		float health = 1.0f - ((float)numKeysCorrect / (float)numKeysToDefeat);
+		Debug.Log ("Zombie Gang Health: " + health);
+		return health;
 	}
 }
