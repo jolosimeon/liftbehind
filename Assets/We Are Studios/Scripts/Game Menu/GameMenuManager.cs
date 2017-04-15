@@ -16,6 +16,7 @@ public class GameMenuManager : MonoBehaviour {
 
 	public void StartGame() {
 		SceneManager.LoadScene ("Game Difficulty");
+
 	}
 
 	public void Instructions() {
