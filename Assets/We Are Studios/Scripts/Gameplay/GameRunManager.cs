@@ -217,7 +217,7 @@ public class GameRunManager : MonoBehaviour {
 		keyToPressDisplay.text = "";
 		elevatorMaxHealth = 100;
 		elevatorHealth = 100;
-		damagePerSecond = 1;
+		damagePerSecond = 5;
 
 		InitializeFloorsToGenerate ();
 
@@ -269,6 +269,11 @@ public class GameRunManager : MonoBehaviour {
 	}
 
 	private void Update () {
+		if (elevatorHealth <= 0) {
+			reasonGameOver = "THE ELEVATOR DOOR WAS DESTROYED BY A GANG OF ZOMBIES";
+			SceneManager.LoadScene ("Game Over");
+		}
+
 		if (jumpscareOngoing) {
 			elevatorHealth -= damagePerSecond * Time.deltaTime;
 
