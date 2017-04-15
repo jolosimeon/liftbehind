@@ -254,7 +254,8 @@ public class GameRunManager : MonoBehaviour {
 		numSurvivors = numSurvivorsNeeded;
 		for (int i = 0; i < floorIndexList.Count(); i++) {
 			int floor = GetRemoveRandom (floorIndexList);
-			int floorType = Random.Range (0, 3);
+//			int floorType = Random.Range (0, 3);
+			int floorType = 1;
 			floorsToGenerate [floor] = floorType;
 
 			if (floorType == SURVIVOR_FLOOR) {
