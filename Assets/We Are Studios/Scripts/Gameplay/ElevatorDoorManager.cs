@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 
 /**
- *	Script is attached to the Building Elevator Door Game Object 
+ *  Script is attached to the Building Elevator Door Game Object 
  */
 public class ElevatorDoorManager : MonoBehaviour {
 
@@ -34,10 +34,20 @@ public class ElevatorDoorManager : MonoBehaviour {
 		);
 	}
 
+	public bool IsExactClose() {
+		decimal transform_x = (decimal) transform.position.x;
+		decimal max_close_x = (decimal) MAX_DOOR_CLOSE_X;
+
+
+		Debug.Log ("door_x: " + transform.position.x);
+		Debug.Log ("max_close_x: " + MAX_DOOR_CLOSE_X);
+		return transform_x == max_close_x;
+	}
+
 	public void SetEnableMovement(bool enable) {
 		movementEnabled = enable;
 	}
-		
+
 	private static Vector3 OPEN_MOVEMENT_VECTOR = Vector3.right;
 	private static Vector3 CLOSE_MOVEMENT_VECTOR = Vector3.left;
 	private const float MAX_DOOR_OPEN_X = 2.0f;
@@ -85,10 +95,10 @@ public class ElevatorDoorManager : MonoBehaviour {
 	}
 
 	/*
-	 * Alternative method of opening the door.
-	 * Only one button would be used since it automatically
-	 * toggles between closing and opening.
-	 */
+   * Alternative method of opening the door.
+   * Only one button would be used since it automatically
+   * toggles between closing and opening.
+   */
 	private void MoveDoor() {
 		Vector3 movement = (doorOpen) ? CLOSE_MOVEMENT_VECTOR : OPEN_MOVEMENT_VECTOR;
 		float movementScale = (doorOpen) ? closeMovementScale : openMovementScale;

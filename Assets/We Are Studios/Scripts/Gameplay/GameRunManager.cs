@@ -8,7 +8,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 
 /**
- *	Script is attached to the Game Run Manager Game Object 
+ *  Script is attached to the Game Run Manager Game Object 
  */
 public class GameRunManager : MonoBehaviour {
 	public FlashlightManager flashlightManager;
@@ -46,22 +46,22 @@ public class GameRunManager : MonoBehaviour {
 
 	public void NotifyGameObjectSeen(GameObject obj) {
 		switch (obj.tag) {
-			case ENEMY_TAG: {
+		case ENEMY_TAG: {
 				break;
 			}
-				
-			case SURVIVOR_TAG: {
+
+		case SURVIVOR_TAG: {
 				break;
 			}
-				
-			case INTERACTIVE_OBJECT_TAG: {
+
+		case INTERACTIVE_OBJECT_TAG: {
 				if (obj.name == ELEVATOR_UP_BUTTON_NAME) {
 					HandleElevatorUpButton ();
 				}
 				break;
 			}
 
-			default: {
+		default: {
 				DisplayTooltip ("");
 				break;
 			}
@@ -122,11 +122,11 @@ public class GameRunManager : MonoBehaviour {
 			SceneManager.LoadScene ("Game Over");
 		}
 	}
-		
+
 	public void NotifySurvivorSaved() {
 		++numSurvivorsSaved;
 	}
-		
+
 	public void NotifyZombieInElevator() {
 		reasonGameOver = "A ZOMBIE WAS ABLE TO ENTER THE ELEVATOR";
 
@@ -178,6 +178,12 @@ public class GameRunManager : MonoBehaviour {
 	private void HandleElevatorUpButton() {
 		string tooltipMessage = (elevatorDoorManager.IsDoorOpen()) 
 			? "Unable to go up while elevator is open" : elevatorFloorManager.GetTooltip ();
+
+		if (!elevatorDoorManager.IsDoorOpen ()
+			&& !elevatorDoorManager.IsExactClose ()) {
+			tooltipMessage = "The door must be completely closed";
+		}
+
 		DisplayTooltip (tooltipMessage);
 
 		if (Input.GetMouseButton (0) && !elevatorDoorManager.IsDoorOpen()) {
@@ -254,8 +260,7 @@ public class GameRunManager : MonoBehaviour {
 		numSurvivors = numSurvivorsNeeded;
 		for (int i = 0; i < floorIndexList.Count(); i++) {
 			int floor = GetRemoveRandom (floorIndexList);
-//			int floorType = Random.Range (0, 3);
-			int floorType = 1;
+			int floorType = Random.Range (0, 3);
 			floorsToGenerate [floor] = floorType;
 
 			if (floorType == SURVIVOR_FLOOR) {
@@ -320,20 +325,20 @@ public class GameRunManager : MonoBehaviour {
 
 		elevatorHealthDisplay.value = elevatorHealth / elevatorMaxHealth;
 	}
-		
+
 	private void InitializeFloor(int floor) {
 		switch (floor) {
-			case EMPTY_FLOOR: {
+		case EMPTY_FLOOR: {
 				InitializeEmptyFloor ();
 				break;
 			}
-				
-			case JUMPSCARE_FLOOR: {
+
+		case JUMPSCARE_FLOOR: {
 				InitializeJumpScareFloor ();
 				break;
 			}
-				
-			case SURVIVOR_FLOOR: {
+
+		case SURVIVOR_FLOOR: {
 				InitializeSurvivorFloor ();
 				break;
 			}
@@ -347,7 +352,7 @@ public class GameRunManager : MonoBehaviour {
 
 		Debug.Log ("GameRunManager:InitializeEmptyFloor: Empty floor initialized");
 	}
-		
+
 	private void InitializeJumpScareFloor() {
 		zombieGang.SetActive (true);
 		zombie.SetActive (false);

@@ -4,16 +4,21 @@ using UnityEngine;
 
 
 /**
- *	Script is attached to the Building Elevator Go Up Button Game Object 
+ *  Script is attached to the Building Elevator Go Up Button Game Object 
  */
 public class ElevatorFloorManager : MonoBehaviour {
-	
+
 	public GameRunManager gameRun;
 	public GameObject elevator;
 
 
 	public void Interact() {
-		if (!changingFloor) {
+		Debug.Log ("Door closed completely: " + gameRun.elevatorDoorManager.IsExactClose ());
+
+		if (!gameRun.elevatorDoorManager.IsDoorOpen() 
+			&& !gameRun.elevatorDoorManager.IsExactClose()) {
+			// DO NOTHING, Refactor this if possible, this is bad code design
+		} else if (!changingFloor) {
 			if (gameRun.survivor.IsSaved ()) {
 				gameRun.survivor.Reset ();
 			}
@@ -49,7 +54,7 @@ public class ElevatorFloorManager : MonoBehaviour {
 			new Vector3 (elevator.transform.position.x, 7, elevator.transform.position.z);
 		bottomMostPosition = 
 			new Vector3 (elevator.transform.position.x, -5, elevator.transform.position.z);
-		
+
 		Reset ();
 	}
 
@@ -73,10 +78,10 @@ public class ElevatorFloorManager : MonoBehaviour {
 			Reset ();
 
 			gameRun.NotifyAtFloor ();
-//			bool enableDoorMove = (gameRun.GetCurrentFloorType () == GameRunManager.JUMPSCARE_FLOOR) ? false : true;
-//			gameRun.elevatorDoorManager.SetEnableMovement (enableDoorMove); 
+			//      bool enableDoorMove = (gameRun.GetCurrentFloorType () == GameRunManager.JUMPSCARE_FLOOR) ? false : true;
+			//      gameRun.elevatorDoorManager.SetEnableMovement (enableDoorMove); 
 		}
-			
+
 		if (changingFloor) {
 			MoveUp ();
 		}
@@ -95,7 +100,7 @@ public class ElevatorFloorManager : MonoBehaviour {
 	private bool IsAtInitialPosition() {
 		return elevator.transform.position.y >= initialPosition.y;
 	}
-		
+
 	private void MoveUp() {
 		elevator.transform.Translate (Vector3.up * Time.deltaTime, Space.World);
 	}
