@@ -14,6 +14,7 @@ public class ElevatorFloorManager : MonoBehaviour {
 
 	public void Interact() {
 		if (!changingFloor) {
+			gameRun.survivor.Reset ();
 			ChangeFloor ();
 		}
 	}
