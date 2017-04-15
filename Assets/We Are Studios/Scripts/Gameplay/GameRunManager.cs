@@ -184,6 +184,10 @@ public class GameRunManager : MonoBehaviour {
 			tooltipMessage = "The door must be completely closed";
 		}
 
+		if (elevatorFloorManager.IsChangingFloor ()) {
+			tooltipMessage = "";
+		}
+
 		DisplayTooltip (tooltipMessage);
 
 		if (Input.GetMouseButton (0) && !elevatorDoorManager.IsDoorOpen()) {
