@@ -19,6 +19,6 @@ public class GameMenuManager : MonoBehaviour {
 	}
 
 	public void Instructions() {
-
+		SceneManager.LoadScene ("Instructions");
 	}
 }
