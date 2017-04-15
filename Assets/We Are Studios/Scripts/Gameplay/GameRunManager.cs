@@ -178,6 +178,12 @@ public class GameRunManager : MonoBehaviour {
 	private void HandleElevatorUpButton() {
 		string tooltipMessage = (elevatorDoorManager.IsDoorOpen()) 
 			? "Unable to go up while elevator is open" : elevatorFloorManager.GetTooltip ();
+
+		if (!elevatorDoorManager.IsDoorOpen ()
+		    && !elevatorDoorManager.IsExactClose ()) {
+			tooltipMessage = "The door must be completely closed";
+		}
+
 		DisplayTooltip (tooltipMessage);
 
 		if (Input.GetMouseButton (0) && !elevatorDoorManager.IsDoorOpen()) {

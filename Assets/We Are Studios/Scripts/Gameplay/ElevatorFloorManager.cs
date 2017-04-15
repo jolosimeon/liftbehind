@@ -13,7 +13,12 @@ public class ElevatorFloorManager : MonoBehaviour {
 
 
 	public void Interact() {
-		if (!changingFloor) {
+		Debug.Log ("Door closed completely: " + gameRun.elevatorDoorManager.IsExactClose ());
+
+		if (!gameRun.elevatorDoorManager.IsDoorOpen() 
+			&& !gameRun.elevatorDoorManager.IsExactClose()) {
+			// DO NOTHING, Refactor this if possible, this is bad code design
+		} else if (!changingFloor) {
 			if (gameRun.survivor.IsSaved ()) {
 				gameRun.survivor.Reset ();
 			}

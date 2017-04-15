@@ -34,6 +34,16 @@ public class ElevatorDoorManager : MonoBehaviour {
 		);
 	}
 
+	public bool IsExactClose() {
+		decimal transform_x = (decimal) transform.position.x;
+		decimal max_close_x = (decimal) MAX_DOOR_CLOSE_X;
+
+
+		Debug.Log ("door_x: " + transform.position.x);
+		Debug.Log ("max_close_x: " + MAX_DOOR_CLOSE_X);
+		return transform_x == max_close_x;
+	}
+
 	public void SetEnableMovement(bool enable) {
 		movementEnabled = enable;
 	}
