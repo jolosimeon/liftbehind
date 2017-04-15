@@ -8,6 +8,9 @@ TagManager:
   - Enemy
   - Interactive Object
   - Flashlight
+  - Chopper
+  - Zombie
+  - Wall
   layers:
   - Default
   - TransparentFX
