@@ -1929,6 +1929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FlashingLight: {fileID: 718558280}
+  randomFrequency: 0.9
 --- !u!1001 &753066883
 Prefab:
   m_ObjectHideFlags: 0
