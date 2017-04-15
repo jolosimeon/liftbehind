@@ -116,7 +116,7 @@ public class GameRunManager : MonoBehaviour {
 
 	private void FinishGameRun() {
 		if (numSurvivorsSaved >= numSurvivorsNeeded) {
-			SceneManager.LoadScene ("Game Win");
+			SceneManager.LoadScene ("LiftBehindCutScene");
 		} else {
 			reasonGameOver = "YOU FAILED TO RESCURE THE REQUIRED NUMBER OF SURVIVORS";
 			SceneManager.LoadScene ("Game Over");
