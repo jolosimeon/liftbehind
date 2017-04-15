@@ -98,8 +98,7 @@ public class GameRunManager : MonoBehaviour {
 	}
 
 	public int GetCurrentFloorType() {
-		return JUMPSCARE_FLOOR;
-//		return floorsToGenerate [currentFloor - 1];
+		return floorsToGenerate [currentFloor - 1];
 	}
 
 	private void FocusZombieGang() {
@@ -206,18 +205,19 @@ public class GameRunManager : MonoBehaviour {
 		elevatorDoorManager.SetNumberPressesRequiredClose (gameDifficultyManager.GetNumberOfPressesClose ());
 		SetNumFloors (gameDifficultyManager.GetNumberOfFloors());
 		SetNumberOfSurvivorsNeeded (gameDifficultyManager.GetNumberOfSurvivorsRequired());
-
+		zombieGang.SetHealth (gameDifficultyManager.GetZombieHealth ());
+		damagePerSecond = gameDifficultyManager.GetDamagePerSecond();
 
 		zombieGangHealthCanvas.enabled = false;
 
-		currentFloor = 1;
+
 		numSurvivorsSaved = 0;
 		reasonGameOver = null;
 		jumpscareOngoing = false;
 		keyToPressDisplay.text = "";
 		elevatorMaxHealth = 100;
 		elevatorHealth = 100;
-		damagePerSecond = 5;
+
 
 		InitializeFloorsToGenerate ();
 
@@ -233,6 +233,9 @@ public class GameRunManager : MonoBehaviour {
 				Debug.Log ("INVALID");
 			}
 		}
+		currentFloor = 0;
+		NotifyChangeFloor ();
+		NotifyAtFloor ();
 	}
 
 	private void InitializeFloorsToGenerate() {
@@ -318,9 +321,6 @@ public class GameRunManager : MonoBehaviour {
 	}
 		
 	private void InitializeFloor(int floor) {
-		// TODO: Remove this after development
-		floor = JUMPSCARE_FLOOR;
-
 		switch (floor) {
 			case EMPTY_FLOOR: {
 				InitializeEmptyFloor ();

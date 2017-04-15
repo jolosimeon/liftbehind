@@ -81,7 +81,6 @@ public class ZombieGangManager : MonoBehaviour {
 		animator2.Rebind ();
 		animator3.Rebind ();
 
-		numKeysToDefeat = 20;
 		numKeysCorrect = 0;
 		keyToPress = GetRandomKeyCode ();
 	}
@@ -90,5 +89,9 @@ public class ZombieGangManager : MonoBehaviour {
 		float health = 1.0f - ((float)numKeysCorrect / (float)numKeysToDefeat);
 		Debug.Log ("Zombie Gang Health: " + health);
 		return health;
+	}
+
+	public void SetHealth(int health) {
+		numKeysToDefeat = health;
 	}
 }
