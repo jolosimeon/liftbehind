@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: ad0400d21f564624aa8b5af391970446
+timeCreated: 1489220046
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Diediedie
+  fontNames:
+  - Horror
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -7,6 +7,7 @@ TagManager:
   - Survivor
   - Enemy
   - Interactive Object
+  - Flashlight
   layers:
   - Default
   - TransparentFX
@@ -16,15 +17,15 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Gameplay
+  - Gameplay - Empty
+  - Gameplay - Jumpscare
+  - Gameplay - Survivor
+  - Gameplay - UI
+  - Game Menu
+  - Game Difficulty
+  - Game Over
+  - Game Win
   - 
   - 
   - 
