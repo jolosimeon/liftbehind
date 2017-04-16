@@ -434,6 +434,115 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.3407435, y: 2.769274, z: 0.07585917}
   m_Center: {x: -1.0780237e-15, y: 0, z: 0.037929583}
+--- !u!1 &211261761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 211261763}
+  - component: {fileID: 211261762}
+  m_Layer: 0
+  m_Name: Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &211261762
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 211261761}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!4 &211261763
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 211261761}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 806589422}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &215119310
 Prefab:
   m_ObjectHideFlags: 0
@@ -828,6 +937,7 @@ GameObject:
   - component: {fileID: 393315482}
   - component: {fileID: 393315481}
   - component: {fileID: 393315483}
+  - component: {fileID: 393315484}
   m_Layer: 0
   m_Name: Start Game Button Text
   m_TagString: Untagged
@@ -848,10 +958,10 @@ RectTransform:
   m_Father: {fileID: 1516729986}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.33400002, y: 0.26000002}
+  m_AnchorMax: {x: 0.68, y: 0.8}
+  m_AnchoredPosition: {x: -3.5, y: -1.5}
+  m_SizeDelta: {x: 327, y: 23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &393315481
 MonoBehaviour:
@@ -944,6 +1054,53 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &393315484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 393315479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1797271327}
+          m_MethodName: Onhover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1797271327}
+          m_MethodName: Onclick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1001 &429291091
 Prefab:
   m_ObjectHideFlags: 0
@@ -1714,6 +1871,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FlashingLight: {fileID: 691765288}
+  randomFrequency: 0
+  flickerTimeInterval: 0
+  flickerTimeDuration: 0
 --- !u!1001 &692800991
 Prefab:
   m_ObjectHideFlags: 0
@@ -1889,6 +2049,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FlashingLight: {fileID: 718558280}
   randomFrequency: 0.9
+  flickerTimeInterval: 0
+  flickerTimeDuration: 0
 --- !u!1001 &753066883
 Prefab:
   m_ObjectHideFlags: 0
@@ -1954,6 +2116,7 @@ GameObject:
   - component: {fileID: 756605123}
   - component: {fileID: 756605122}
   - component: {fileID: 756605124}
+  - component: {fileID: 756605125}
   m_Layer: 0
   m_Name: Instructions Button Text
   m_TagString: Untagged
@@ -1974,10 +2137,10 @@ RectTransform:
   m_Father: {fileID: 333214978}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.30200002, y: 0.24000001}
+  m_AnchorMax: {x: 0.70400006, y: 0.84000003}
+  m_AnchoredPosition: {x: -1.5, y: -2}
+  m_SizeDelta: {x: 299, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &756605122
 MonoBehaviour:
@@ -2070,6 +2233,53 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &756605125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 756605120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1797271327}
+          m_MethodName: Onhover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1797271327}
+          m_MethodName: Onclick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1001 &758659256
 Prefab:
   m_ObjectHideFlags: 0
@@ -2292,6 +2502,7 @@ Transform:
   m_Children:
   - {fileID: 1516729986}
   - {fileID: 333214978}
+  - {fileID: 211261763}
   m_Father: {fileID: 1194877499}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2387,6 +2598,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FlashingLight: {fileID: 864415697}
+  randomFrequency: 0
+  flickerTimeInterval: 0
+  flickerTimeDuration: 0
 --- !u!1001 &959592297
 Prefab:
   m_ObjectHideFlags: 0
@@ -2779,6 +2993,7 @@ GameObject:
   - component: {fileID: 1194877498}
   - component: {fileID: 1194877497}
   - component: {fileID: 1194877496}
+  - component: {fileID: 1194877500}
   m_Layer: 0
   m_Name: Main Menu Display
   m_TagString: Untagged
@@ -2864,6 +3079,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1194877500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1194877495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2809d1b3587c3cc4fba6207bac41452e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 0}
+  hover: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1001 &1230825032
 Prefab:
   m_ObjectHideFlags: 0
@@ -4157,6 +4386,7 @@ GameObject:
   - component: {fileID: 1797271325}
   - component: {fileID: 1797271324}
   - component: {fileID: 1797271326}
+  - component: {fileID: 1797271327}
   m_Layer: 0
   m_Name: Game Menu Manager
   m_TagString: Untagged
@@ -4268,6 +4498,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1797271327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1797271323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2809d1b3587c3cc4fba6207bac41452e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 211261762}
+  hover: {fileID: 8300000, guid: e6a1966e351671f41aa5774d56a84874, type: 3}
+  click: {fileID: 8300000, guid: 68298122e57f86244b61349211b83d8e, type: 3}
 --- !u!1 &1822379577
 GameObject:
   m_ObjectHideFlags: 0
