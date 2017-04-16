@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Interactive Object
   - Flashlight
+  - Music Player
   layers:
   - Default
   - TransparentFX

@@ -13,12 +13,17 @@ public class GameMenuManager : MonoBehaviour {
 	private void Update () {
 		
 	}
+    
+    IEnumerator buttonLoad(string scene) {
+        yield return new WaitForSeconds(0.3f);
+        SceneManager.LoadScene(scene);
+    }
 
 	public void StartGame() {
-		SceneManager.LoadScene ("Game Difficulty");
+        StartCoroutine(buttonLoad("Game Difficulty"));
 	}
 
 	public void Instructions() {
-		SceneManager.LoadScene ("Instructions");
+        StartCoroutine(buttonLoad("Instructions"));
 	}
 }

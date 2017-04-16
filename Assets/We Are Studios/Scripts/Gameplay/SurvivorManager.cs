@@ -9,7 +9,11 @@ using UnityEngine;
 public class SurvivorManager : RunningNPC {
 
 	public GameRunManager gameRunManager;
-
+    public AudioSource survivorAudio;
+    public AudioClip scream;
+    public AudioClip helpme;
+    public AudioClip footsteps;
+    public AudioClip run;
 
 	public bool IsSaved() {
 		return saved;
@@ -74,6 +78,7 @@ public class SurvivorManager : RunningNPC {
 		waiting = false;
 		base.StartRun ();
 		animator.Play ("sprint_00");
+        survivorAudio.PlayOneShot(run);
 	}
 
 	private bool IsInsideElevator() {
@@ -84,6 +89,7 @@ public class SurvivorManager : RunningNPC {
 		base.StopRun ();
 		waiting = true;
 		animator.SetTrigger ("Wait");
+        survivorAudio.PlayOneShot(helpme);
 	}
 
 	private void DoSalute() {
@@ -98,5 +104,6 @@ public class SurvivorManager : RunningNPC {
 		waiting = false;
 		dead = true;
 		animator.SetTrigger ("Dead");
+        survivorAudio.PlayOneShot(scream);
 	}
 }

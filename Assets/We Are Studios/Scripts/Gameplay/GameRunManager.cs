@@ -35,6 +35,8 @@ public class GameRunManager : MonoBehaviour {
 	public Slider zombieHealthDisplay;
 	public Canvas zombieGangHealthCanvas;
 
+    public AudioSource gameAudio;
+
 
 	public void SetNumFloors(int numFloors) {
 		this.numFloors = numFloors;
@@ -116,9 +118,11 @@ public class GameRunManager : MonoBehaviour {
 
 	private void FinishGameRun() {
 		if (numSurvivorsSaved >= numSurvivorsNeeded) {
-			SceneManager.LoadScene ("LiftBehindCutScene");
+            gameAudio.Stop();
+            SceneManager.LoadScene ("LiftBehindCutScene");
 		} else {
-			reasonGameOver = "YOU FAILED TO RESCURE THE REQUIRED NUMBER OF SURVIVORS";
+            gameAudio.Stop();
+            reasonGameOver = "YOU FAILED TO RESCURE THE REQUIRED NUMBER OF SURVIVORS";
 			SceneManager.LoadScene ("Game Over");
 		}
 	}
@@ -128,7 +132,8 @@ public class GameRunManager : MonoBehaviour {
 	}
 
 	public void NotifyZombieInElevator() {
-		reasonGameOver = "A ZOMBIE WAS ABLE TO ENTER THE ELEVATOR";
+        gameAudio.Stop();
+        reasonGameOver = "A ZOMBIE WAS ABLE TO ENTER THE ELEVATOR";
 
 		DisableFirstPerson ();
 		SceneManager.LoadScene ("Game Over");
@@ -220,6 +225,8 @@ public class GameRunManager : MonoBehaviour {
 
 		zombieGangHealthCanvas.enabled = false;
 
+        gameAudio.time = 4f;
+        gameAudio.Play();
 
 		numSurvivorsSaved = 0;
 		reasonGameOver = null;
@@ -284,6 +291,7 @@ public class GameRunManager : MonoBehaviour {
 	private void Update () {
 		if (elevatorHealth <= 0) {
 			reasonGameOver = "THE ELEVATOR DOOR WAS DESTROYED BY A GANG OF ZOMBIES";
+            gameAudio.Stop();
 			SceneManager.LoadScene ("Game Over");
 		}
 

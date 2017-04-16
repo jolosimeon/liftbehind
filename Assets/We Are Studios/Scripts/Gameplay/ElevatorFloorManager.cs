@@ -10,6 +10,8 @@ public class ElevatorFloorManager : MonoBehaviour {
 
 	public GameRunManager gameRun;
 	public GameObject elevator;
+    public AudioSource elevatorAudio;
+    public AudioClip goingUp;
 
 
 	public void Interact() {
@@ -44,7 +46,8 @@ public class ElevatorFloorManager : MonoBehaviour {
 
 	private void ChangeFloor() {
 		changingFloor = true;
-		gameRun.elevatorDoorManager.MakeExact ();
+        elevatorAudio.PlayOneShot(goingUp);
+        gameRun.elevatorDoorManager.MakeExact ();
 		gameRun.elevatorDoorManager.SetEnableMovement (false);
 	}
 

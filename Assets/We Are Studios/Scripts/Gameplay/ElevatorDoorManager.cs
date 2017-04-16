@@ -10,7 +10,9 @@ using UnityEngine.UI;
 public class ElevatorDoorManager : MonoBehaviour {
 
 	public Text doorStateDisplay;
-
+    public AudioSource doorAudio;
+    public AudioClip open;
+    public AudioClip close;
 
 	public bool IsDoorOpen() {
 		return doorOpen;
@@ -88,11 +90,13 @@ public class ElevatorDoorManager : MonoBehaviour {
 
 	private void OpenDoor() {
 		transform.Translate (OPEN_MOVEMENT_VECTOR * openMovementScale, Space.World);
+        doorAudio.PlayOneShot(open);
 	}
 
 	private void CloseDoor() {
 		transform.Translate (CLOSE_MOVEMENT_VECTOR * closeMovementScale, Space.World);
-	}
+        doorAudio.PlayOneShot(close);
+    }
 
 	/*
    * Alternative method of opening the door.

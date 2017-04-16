@@ -10,15 +10,23 @@ using UnityEngine.UI;
 public class FlashlightManager : MonoBehaviour {
 	public GameRunManager gameRunManager;
 	public Light lightSource;
-
+    private AudioSource flashlightAudio;
+    public AudioSource flashlightAmbient;
 
 	public void ToggleFlashlight() {
 		lightSource.enabled = !lightSource.enabled;
+        flashlightAudio.PlayOneShot(flashlightAudio.clip);
 	}
 
 	public void SetEnabled(bool enabled) {
-		lightSource.enabled = enabled;
-	}
+        lightSource.enabled = enabled;
+        flashlightAudio.PlayOneShot(flashlightAudio.clip);
+        if (lightSource.enabled)
+            flashlightAmbient.Play();
+        else {
+            flashlightAmbient.Stop();
+        }
+    }
 
 	public void RotateToInitialRotation() {
 		transform.rotation = initialRotation;
@@ -30,7 +38,9 @@ public class FlashlightManager : MonoBehaviour {
 
 	private void Start () {
 		initialRotation = transform.rotation;
-	}
+        flashlightAudio = gameObject.GetComponent<AudioSource>();
+        //flashlightAmbient.Play();
+    }
 
 	private void Update () {
 		Focus ();
