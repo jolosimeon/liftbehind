@@ -17,3 +17,5 @@ EditorBuildSettings:
     path: Assets/We Are Studios/Scenes/Game Win.unity
   - enabled: 1
     path: Assets/We Are Studios/Scenes/Game Over.unity
+  - enabled: 1
+    path: Assets/We Are Studios/Scenes/Instructions.unity
