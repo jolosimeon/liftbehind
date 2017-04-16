@@ -11,7 +11,16 @@ public class ZombieGangManager : MonoBehaviour {
 	private Animator animator2;
 	private Animator animator3;
 
-	public GameRunManager gameRunManager;
+    public AudioSource[] zombiesAudio;
+    public AudioClip[] sounds;
+    public AudioClip damage;
+    public AudioClip dead;
+    public float frequencyMin = 4.0f;
+    public float frequencyMax = 7.0f;
+    private float timeLeft;
+    private bool death = false;
+
+    public GameRunManager gameRunManager;
 	private int numKeysToDefeat;
 	private int numKeysCorrect;
 
@@ -37,8 +46,10 @@ public class ZombieGangManager : MonoBehaviour {
 
 			if (numKeysCorrect == numKeysToDefeat) {
 				keyToPress = KeyCode.None;
-				DefeatedByPlayer ();
-			} else {
+                allPlay(dead);
+                death = true;
+                DefeatedByPlayer ();
+            } else {
 				keyToPress = GetRandomKeyCode ();
 			}
 		}
@@ -59,8 +70,9 @@ public class ZombieGangManager : MonoBehaviour {
 		animator1 = zombie1.GetComponent<Animator> ();
 		animator2 = zombie2.GetComponent<Animator> ();
 		animator3 = zombie3.GetComponent<Animator> ();
-
-		Reset ();
+        timeLeft = frequencyMin;
+        allPlayRandom();
+        Reset ();
 	}
 
 	private KeyCode GetRandomKeyCode() {
@@ -69,8 +81,14 @@ public class ZombieGangManager : MonoBehaviour {
 	}
 
 	private void Update () {
-		
-	}
+        if (!death) {
+            timeLeft -= Time.deltaTime;
+            if (timeLeft < 0) {
+                allPlayRandom();
+                timeLeft = Random.Range(frequencyMin, frequencyMax);
+            }
+        }
+    }
 
 	public void Reset() {
 		animator1.Play ("attack");
@@ -94,4 +112,17 @@ public class ZombieGangManager : MonoBehaviour {
 	public void SetHealth(int health) {
 		numKeysToDefeat = health;
 	}
+
+    public void allPlay(AudioClip clip) {
+        for (int i = 0; i < zombiesAudio.Length; i++) {
+            zombiesAudio[i].PlayOneShot(clip);
+        }
+    }
+
+    public void allPlayRandom() {
+        for (int i = 0; i < zombiesAudio.Length; i++) {
+            int selected = Random.Range(0, 5);
+            zombiesAudio[i].PlayOneShot(sounds[selected]);
+        }
+    }
 }

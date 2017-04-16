@@ -33,6 +33,7 @@ public class SurvivorManager : RunningNPC {
 	private bool waiting;
 	private bool dead;
 	private bool saved;
+    private bool playOnce = false;
 
 
 	private void Start() {
@@ -76,9 +77,11 @@ public class SurvivorManager : RunningNPC {
 
 	private void DoContinueRun() {
 		waiting = false;
-		base.StartRun ();
+        if (!IsInsideElevator())
+            survivorAudio.PlayOneShot(run);
+        base.StartRun ();
 		animator.Play ("sprint_00");
-        survivorAudio.PlayOneShot(run);
+       
 	}
 
 	private bool IsInsideElevator() {
@@ -86,10 +89,11 @@ public class SurvivorManager : RunningNPC {
 	}
 
 	private void DoWait() {
-		base.StopRun ();
-		waiting = true;
-		animator.SetTrigger ("Wait");
         survivorAudio.PlayOneShot(helpme);
+        base.StopRun ();
+		waiting = true;
+        animator.SetTrigger ("Wait");
+        
 	}
 
 	private void DoSalute() {
@@ -100,10 +104,14 @@ public class SurvivorManager : RunningNPC {
 	}
 
 	private void DoDie() {
-		base.StopRun ();
+        if (!playOnce) {
+            survivorAudio.PlayOneShot(scream);
+            playOnce = true;
+        }
+        
+        base.StopRun ();
 		waiting = false;
 		dead = true;
 		animator.SetTrigger ("Dead");
-        survivorAudio.PlayOneShot(scream);
 	}
 }
