@@ -9,6 +9,7 @@ TagManager:
   - Interactive Object
   - Flashlight
   - Music Player
+  - Elevator Bar
   layers:
   - Default
   - TransparentFX
