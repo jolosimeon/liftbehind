@@ -317,6 +317,11 @@ public class GameRunManager : MonoBehaviour {
 			flashlightManager.ToggleFlashlight ();
 		}
 
+
+		if (zombie.IsDamagingElevator()) {
+			elevatorHealth -= damagePerSecond * Time.deltaTime;
+		}
+
 		DisplayGameStatistics ();
 	}
 

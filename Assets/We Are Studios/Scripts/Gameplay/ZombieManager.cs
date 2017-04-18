@@ -11,31 +11,18 @@ public class ZombieManager : RunningNPC {
 	public GameRunManager gameRunManager;
 
 	private static float ELEVATOR_DOOR_INSIDE_Z = 4.5f;
-    public AudioSource zombieSoloAudio;
-    public AudioClip[] sounds;
-    public float frequency = 7.0f;
-    private float timeLeft;
+	private bool isDamagingElevator;
+
 
 	private void Start() {
-        int selected = Random.Range(0, 5);
-        zombieSoloAudio.PlayOneShot(sounds[selected]);
-        timeLeft = frequency;
-        base.Start ();
+		base.Start ();
+		isDamagingElevator = false;
 	}
 
 	private void Update() {
-        timeLeft -= Time.deltaTime;
-        if (timeLeft < 0) {
-            int selected = Random.Range(0, 5);
-            zombieSoloAudio.PlayOneShot(sounds[selected]);
-            timeLeft = frequency;
-        }
-        base.Update ();
+		base.Update ();
 
-        
-        
-        
-        if (gameRunManager.IsSurvivorCaughtByZombie()) {
+		if (gameRunManager.IsSurvivorCaughtByZombie()) {
 			DoKillSurvivor ();
 		}
 
@@ -48,9 +35,9 @@ public class ZombieManager : RunningNPC {
 			gameRunManager.NotifyZombieInElevator ();
 		}
 	}
-		
+
 	private void DoKillSurvivor() {
-		base.StopRun ();
+		//base.StopRun ();
 		animator.SetTrigger ("Eat");
 	}
 
@@ -64,5 +51,16 @@ public class ZombieManager : RunningNPC {
 
 	private bool IsInsideElevator() {
 		return transform.position.z >= ELEVATOR_DOOR_INSIDE_Z && gameRunManager.IsDoorOpen();
+	}
+
+	private void OnCollisionEnter(Collision collision){
+		if (collision.collider.tag == "Elevator Bar") {
+			isDamagingElevator = true;
+		} else
+			isDamagingElevator = false;
+	}
+
+	public bool IsDamagingElevator(){
+		return isDamagingElevator;
 	}
 }

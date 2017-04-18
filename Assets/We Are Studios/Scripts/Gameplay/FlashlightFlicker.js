@@ -1,8 +1,8 @@
 ﻿#pragma strict
 
 var FlashingLight : Light;
-var flashlightAudio : AudioSource;
-var flashlightAmbient : AudioSource;
+public var flashlightAudio : AudioSource;
+public var flashlightAmbient : AudioSource;
 FlashingLight.enabled = false;
 
 public var randomFrequency : float; // the lower the less naka-on light
@@ -16,6 +16,7 @@ var isFlickering;
 
 
 function Start() {
+	flickerTimeInterval = 50;
     nextFlickerTime = Time.time + flickerTimeInterval;
     isFlickering = false;
     flashlightAmbient.Play();
